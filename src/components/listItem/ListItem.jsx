@@ -1,4 +1,4 @@
-import "./listItem.scss";
+import styles from "./listItem.module.scss";
 import {
   PlayArrow,
   Add,
@@ -31,7 +31,7 @@ export default function ListItem({ index, item }) {
   return (
     <Link href={{ pathname: "/watch", movie: movie }}>
       <div
-        className="listItem"
+        className={styles.listItem}
         style={{ left: isHovered && index * 225 - 50 + index * 2.5 }}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
@@ -40,20 +40,20 @@ export default function ListItem({ index, item }) {
         {isHovered && (
           <>
             <video src={movie.trailer} autoPlay={true} loop />
-            <div className="itemInfo">
-              <div className="icons">
-                <PlayArrow className="icon" />
-                <Add className="icon" />
-                <ThumbUpAltOutlined className="icon" />
-                <ThumbDownOutlined className="icon" />
+            <div className={styles.itemInfo}>
+              <div className={styles.icons}>
+                <PlayArrow className={styles.icon} />
+                <Add className={styles.icon} />
+                <ThumbUpAltOutlined className={styles.icon} />
+                <ThumbDownOutlined className={styles.icon} />
               </div>
-              <div className="itemInfoTop">
+              <div className={styles.itemInfoTop}>
                 <span>{movie.duration}</span>
-                <span className="limit">+{movie.limit}</span>
+                <span className={styles.limit}>+{movie.limit}</span>
                 <span>{movie.year}</span>
               </div>
-              <div className="desc">{movie.desc}</div>
-              <div className="genre">{movie.genre}</div>
+              <div className={styles.desc}>{movie.desc}</div>
+              <div className={styles.genre}>{movie.genre}</div>
             </div>
           </>
         )}

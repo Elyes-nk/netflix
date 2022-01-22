@@ -1,5 +1,5 @@
-import './app.css'
-import { AuthContextProvider } from "./authContext/AuthContext";
+import './app.scss'
+import { AuthContextProvider } from "../authContext/AuthContext";
 
 function MyApp({ Component, pageProps }) {
   return (

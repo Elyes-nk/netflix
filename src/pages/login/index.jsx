@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { login } from "../../authContext/apiCalls";
 import { AuthContext } from "../../authContext/AuthContext";
-import "./login.scss";
+import styles from "./login.module.scss";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -13,17 +13,17 @@ export default function Login() {
     login({ email, password }, dispatch);
   };
   return (
-    <div className="login">
-      <div className="top">
-        <div className="wrapper">
+    <div className={styles.login}>
+      <div className={styles.top}>
+        <div className={styles.wrapper}>
           <img
-            className="logo"
+            className={styles.logo}
             src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Netflix_2015_logo.svg/2560px-Netflix_2015_logo.svg.png"
             alt=""
           />
         </div>
       </div>
-      <div className="container">
+      <div className={styles.container}>
         <form>
           <h1>Sign In</h1>
           <input
@@ -36,7 +36,7 @@ export default function Login() {
             placeholder="Password"
             onChange={(e) => setPassword(e.target.value)}
           />
-          <button className="loginButton" onClick={handleLogin}>
+          <button className={styles.loginButton} onClick={handleLogin}>
             Sign In
           </button>
           <span>

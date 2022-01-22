@@ -1,7 +1,7 @@
 import { InfoOutlined, PlayArrow } from "@material-ui/icons";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import "./featured.scss";
+import styles from "./featured.module.scss";
 
 export default function Featured({ type, setGenre }) {
   const [content, setContent] = useState({});
@@ -25,9 +25,9 @@ export default function Featured({ type, setGenre }) {
 
   console.log(content);
   return (
-    <div className="featured">
+    <div className={styles.featured}>
       {type && (
-        <div className="category">
+        <div className={styles.category}>
           <span>{type === "movies" ? "Movies" : "Series"}</span>
           <select
             name="genre"
@@ -52,15 +52,15 @@ export default function Featured({ type, setGenre }) {
         </div>
       )}
       <img src={content.img} alt="" />
-      <div className="info">
+      <div className={styles.info}>
         <img src={content.imgTitle} alt="" />
-        <span className="desc">{content.desc}</span>
-        <div className="buttons">
-          <button className="play">
+        <span className={styles.desc}>{content.desc}</span>
+        <div className={styles.buttons}>
+          <button className={styles.play}>
             <PlayArrow />
             <span>Play</span>
           </button>
-          <button className="more">
+          <button className={styles.more}>
             <InfoOutlined />
             <span>Info</span>
           </button>

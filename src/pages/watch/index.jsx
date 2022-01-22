@@ -1,19 +1,19 @@
 import { ArrowBackOutlined } from "@material-ui/icons";
 import Link from 'next/link'
-import "./watch.scss";
+import styles from "./watch.module.scss";
 
 export default function Watch() {
-  // const location = useLocation();
+  const location = useLocation();
   const movie = location.movie;
   return (
-    <div className="watch">
+    <div className={styles.watch}>
       <Link href="/">
-        <div className="back">
+        <div className={styles.back}>
           <ArrowBackOutlined />
           Home
         </div>
       </Link>
-      <video className="video" autoPlay progress controls src={movie.video} />
+      <video className={styles.video} autoPlay progress controls src={movie.video} />
     </div>
   );
 }

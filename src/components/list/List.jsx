@@ -4,7 +4,7 @@ import {
 } from "@material-ui/icons";
 import { useRef, useState } from "react";
 import ListItem from "../listItem/ListItem";
-import "./list.scss";
+import styles from "./list.module.scss";
 
 export default function List({ list }) {
   const [isMoved, setIsMoved] = useState(false);
@@ -14,33 +14,33 @@ export default function List({ list }) {
   const listRef = useRef();
 
   const handleClick = (direction) => {
-    setIsMoved(true);
-    let distance = listRef.current.getBoundingClientRect().x - 50;
-    if (direction === "left" && slideNumber > 0) {
-      setSlideNumber(slideNumber - 1);
-      listRef.current.style.transform = `translateX(${230 + distance}px)`;
-    }
-    if (direction === "right" && slideNumber < 10 - clickLimit) {
-      setSlideNumber(slideNumber + 1);
-      listRef.current.style.transform = `translateX(${-230 + distance}px)`;
-    }
+    // setIsMoved(true);
+    // let distance = listRef.current.getBoundingClientRect().x - 50;
+    // if (direction === "left" && slideNumber > 0) {
+    //   setSlideNumber(slideNumber - 1);
+    //   listRef.current.style.transform = `translateX(${230 + distance}px)`;
+    // }
+    // if (direction === "right" && slideNumber < 10 - clickLimit) {
+    //   setSlideNumber(slideNumber + 1);
+    //   listRef.current.style.transform = `translateX(${-230 + distance}px)`;
+    // }
   };
   return (
-    <div className="list">
-      <span className="listTitle">{list.title}</span>
-      <div className="wrapper">
+    <div className={styles.list}>
+      <span className={styles.listTitle}>{list.title}</span>
+      <div className={styles.wrapper}>
         <ArrowBackIosOutlined
-          className="sliderArrow left"
+          className={styles.sliderArrow__left}
           onClick={() => handleClick("left")}
           style={{ display: !isMoved && "none" }}
         />
-        <div className="container" ref={listRef}>
+        <div className={styles.container} ref={listRef}>
           {list.content.map((item, i) => (
             <ListItem index={i} item={item} />
           ))}
         </div>
         <ArrowForwardIosOutlined
-          className="sliderArrow right"
+          className={styles.sliderArrow__right}
           onClick={() => handleClick("right")}
         />
       </div>

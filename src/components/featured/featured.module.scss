@@ -1,4 +1,4 @@
-@import "../../app.scss";
+@import "../../pages/app.scss";
 
 .featured {
   height: 76vh;
@@ -16,7 +16,7 @@
 
     select {
       cursor: pointer;
-      background-color: var(--main-color);
+      background-color: #0b0b0b;
       border: 1px solid white;
       color: white;
       margin-left: 20px;
@@ -73,7 +73,7 @@
 
         &.play {
           background-color: white;
-          color: var(--main-color);
+          color: #0b0b0b;
         }
 
         &.more {
