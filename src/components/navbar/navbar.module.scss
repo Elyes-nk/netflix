@@ -1,4 +1,4 @@
-@import "../../pages/app.scss";
+@import "../../styles/mixins.scss";
 
 .navbar {
   width: 100%;
@@ -10,7 +10,7 @@
   background: linear-gradient(to top, transparent 0%, rgb(0, 0, 0, 0.3) 50%);
 
   &.scrolled {
-    background-color: var(--main-color);
+    background-color: #0b0b0b;
   }
 
   .container {
@@ -69,7 +69,7 @@
       .profile {
         .options {
           display: none;
-          background-color: var(--main-color);
+          background-color: #0b0b0b;
           border-radius: 5px;
         }
 

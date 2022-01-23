@@ -27,10 +27,10 @@ export default function List({ list }) {
   };
   return (
     <div className={styles.list}>
-      <span className={styles.listTitle}>{list.title}</span>
+      <span className={styles.list__title}>{list.title}</span>
       <div className={styles.wrapper}>
         <ArrowBackIosOutlined
-          className={styles.sliderArrow__left}
+          className={styles.slider__arrow__left}
           onClick={() => handleClick("left")}
           style={{ display: !isMoved && "none" }}
         />
@@ -40,7 +40,7 @@ export default function List({ list }) {
           ))}
         </div>
         <ArrowForwardIosOutlined
-          className={styles.sliderArrow__right}
+          className={styles.slider__arrow__right}
           onClick={() => handleClick("right")}
         />
       </div>

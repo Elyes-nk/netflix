@@ -35,7 +35,7 @@ export default function Register() {
             src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Netflix_2015_logo.svg/2560px-Netflix_2015_logo.svg.png"
             alt=""
           />
-          <button className={styles.loginButton}>Sign In</button>
+          <button className={styles.login__button}>Sign In</button>
         </div>
       </div>
       <div className={styles.container}>
@@ -47,7 +47,7 @@ export default function Register() {
         {!email ? (
           <div className={styles.input}>
             <input type="email" placeholder="email address" ref={emailRef} />
-            <button className={styles.registerButton} onClick={handleStart}>
+            <button className={styles.register__button} onClick={handleStart}>
               Get Started
             </button>
           </div>
@@ -55,7 +55,7 @@ export default function Register() {
           <form className={styles.input}>
             <input type="username" placeholder="username" ref={usernameRef} />
             <input type="password" placeholder="password" ref={passwordRef} />
-            <button className={styles.registerButton} onClick={handleFinish}>
+            <button className={styles.register__button} onClick={handleFinish}>
               Start
             </button>
           </form>
