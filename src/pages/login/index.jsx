@@ -3,6 +3,7 @@ import { login } from "../../authContext/apiCalls";
 import { AuthContext } from "../../authContext/AuthContext";
 import styles from "./login.module.scss";
 import Link from "next/link"
+import logo from "../../../public/logo.png"
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -19,7 +20,7 @@ export default function Login() {
         <div className={styles.wrapper}>
           <img
             className={styles.logo}
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Netflix_2015_logo.svg/2560px-Netflix_2015_logo.svg.png"
+            src={logo.src}
             alt=""
           />
         </div>

@@ -18,12 +18,12 @@ export default function Index() {
         const res = await axios.get(
           `lists${type ? "?type=" + type : ""}${
             genre ? "&genre=" + genre : ""
-          }`,
-          {
-            headers: {
-              token:JSON.parse(localStorage.getItem("user")).accessToken,
-            },
-          }
+          }`
+          // ,{
+          //   headers: {
+          //     token:JSON.parse(localStorage.getItem("user")).accessToken,
+          //   },
+          // }
         );
         setLists(res.data);
       } catch (err) {

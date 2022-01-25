@@ -4,6 +4,8 @@ import styles from "./navbar.module.scss";
 import Link from 'next/link'
 import { AuthContext } from "../../authContext/AuthContext";
 import { logout } from "../../authContext/AuthActions";
+import logo from "../../../public/logo.png"
+import profile from "../../../public/profile.png"
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -19,7 +21,7 @@ const Navbar = () => {
         <div className={styles.container}>
           <div className={styles.left}>
             <img
-              src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Netflix_2015_logo.svg/2560px-Netflix_2015_logo.svg.png"
+              src={logo.src}
               alt=""
             />
             <Link href="/" className={styles.link}>
@@ -39,7 +41,7 @@ const Navbar = () => {
             <span>KID</span>
             <Notifications className={styles.icon} />
             <img
-              src="https://images.pexels.com/photos/6899260/pexels-photo-6899260.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+              src={profile.src}
               alt=""
             />
             <div className={styles.profile}>

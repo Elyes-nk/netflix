@@ -9,13 +9,17 @@ export default function Featured({ type, setGenre }) {
   useEffect(() => {
     const getRandomContent = async () => {
       try {
-        const res = await axios.get(`/movies/random?type=${type}`, {
-          headers: {
-            token:
-              "Bearer "+JSON.parse(localStorage.getItem("user")).accessToken,
-          },
-        });
+        const res = await axios.get(`http://localhost:3030/api/movies/random?type=${type}`
+        // , {
+        //   headers: {
+        //     token:
+        //       "Bearer "+JSON.parse(localStorage.getItem("user")).accessToken,
+        //   },
+        // }
+        );
+        console.log(res);
         setContent(res.data[0]);
+        console.log("it works");
       } catch (err) {
         console.log(err);
       }
@@ -23,7 +27,6 @@ export default function Featured({ type, setGenre }) {
     getRandomContent();
   }, [type]);
 
-  console.log(content);
   return (
     <div className={styles.featured}>
       {type && (
