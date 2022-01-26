@@ -5,9 +5,10 @@ import { useRouter } from "next/router";
 import {useState, useEffect} from "react"
 import ReactPlayer from 'react-player/youtube'
 import axios from "axios";
+import withAuth from '../../../middleware/withAuth'
 
 
-export default function Watch() {
+function index() {
   const [movie, setMovie] = useState({});
   const router = useRouter();
   const id = router.query.id;
@@ -49,3 +50,4 @@ export default function Watch() {
     </div>
   );
 }
+export default withAuth(index)

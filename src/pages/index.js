@@ -1,5 +1,6 @@
 import React, {useEffect} from 'react';
 import Router from 'next/router'
+import withAuth from '../middleware/withAuth'
 
 function index() {
     useEffect(() => {
@@ -8,4 +9,4 @@ function index() {
   return <div></div>;
 }
 
-export default index;
+export default withAuth(index);

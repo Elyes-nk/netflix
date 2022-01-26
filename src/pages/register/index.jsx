@@ -3,9 +3,11 @@ import { useRef } from "react";
 import { useState } from "react";
 import Router from 'next/router'
 import styles from "./register.module.scss";
-import logo from "../../../public/logo.png"
+import logo from "../../../public/logo.png";
+import Link from "next/link";
+import withoutAuth from '../../middleware/withoutAuth'
 
-export default function Register() {
+function index() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
@@ -22,7 +24,12 @@ export default function Register() {
     setPassword(passwordRef.current.value);
     setUsername(usernameRef.current.value);
     try {
-      await axios.post("auth/register", { email,username, password });
+      await axios.post("http://localhost:3030/api/auth/register"
+      ,{ 
+        email, 
+        username, 
+        password 
+      });
       Router.push('/login')
     } catch (err) {}
   };
@@ -35,7 +42,9 @@ export default function Register() {
             src={logo.src}
             alt=""
           />
-          <button className={styles.login__button}>Sign In</button>
+          <Link href="/login">
+            <button className={styles.login__button}>Sign In</button>
+          </Link>
         </div>
       </div>
       <div className={styles.container}>
@@ -64,3 +73,4 @@ export default function Register() {
     </div>
   );
 }
+export default withoutAuth(index);

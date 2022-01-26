@@ -19,7 +19,7 @@ const Navbar = () => {
   } 
   return (
     <div className={styles.navbar}>
-      <div className={isScrolled && styles.scrolled}>
+      <div className={isScrolled ? styles.scrolled : styles.not__scrolled}>
         <div className={styles.container}>
           <div className={styles.left}>
             <img

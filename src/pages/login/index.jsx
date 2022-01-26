@@ -1,11 +1,12 @@
 import { useContext, useState } from "react";
 import { login } from "../../authContext/apiCalls";
 import { AuthContext } from "../../authContext/AuthContext";
+import withoutAuth from '../../middleware/withoutAuth'
 import styles from "./login.module.scss";
 import Link from "next/link"
 import logo from "../../../public/logo.png"
 
-export default function Login() {
+function index() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { dispatch } = useContext(AuthContext);
@@ -53,3 +54,4 @@ export default function Login() {
     </div>
   );
 }
+export default withoutAuth(index);

@@ -5,8 +5,10 @@ import List from "../../../components/list/List";
 import { useEffect, useState } from "react";
 import { useRouter } from 'next/router';
 import axios from "axios";
+import withAuth from '../../../middleware/withAuth'
 
-export default function Index() {
+
+function index() {
   const [lists, setLists] = useState([]);
   const [genre, setGenre] = useState(null);
 
@@ -40,3 +42,5 @@ export default function Index() {
     </div>
   )
 }
+
+export default withAuth(index)
