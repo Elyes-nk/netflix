@@ -17,9 +17,7 @@ export default function Featured({ type, setGenre }) {
         //   },
         // }
         );
-        console.log(res);
         setContent(res.data[0]);
-        console.log("it works");
       } catch (err) {
         console.log(err);
       }

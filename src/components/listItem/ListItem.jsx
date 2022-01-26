@@ -8,14 +8,16 @@ import {
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Link from 'next/link'
+import ReactPlayer from 'react-player/youtube'
+
 export default function ListItem({ index, item }) {
-  const [isHovered, setIsHovered] = useState(false);
+  const [isItemHovered, setIsItemHovered] = useState(false);
   const [movie, setMovie] = useState({});
 
   useEffect(() => {
     const getMovie = async () => {
       try {
-        const res = await axios.get("/movies/find/" + item
+        const res = await axios.get("http://localhost:3030/api/movies/find/" + item
         // , {
         //   headers: {
         //     token:JSON.parse(localStorage.getItem("user")).accessToken,
@@ -31,17 +33,25 @@ export default function ListItem({ index, item }) {
   }, [item]);
 
   return (
-    <Link href={{ pathname: "/watch", movie: movie }}>
+    <Link href={`/watch/${movie._id}`}>
       <div
         className={styles.listItem}
-        style={{ left: isHovered && index * 225 - 50 + index * 2.5 }}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
+        style={{ left: isItemHovered && index * 225 - 50 + index * 2.5 }}
+        onMouseEnter={() => setIsItemHovered(true)}
+        onMouseLeave={() => setIsItemHovered(false)}
       >
-        <img src={movie?.imgSm} alt="" />
-        {isHovered && (
+         
+        {isItemHovered ? 
+        (
           <>
-            <video src={movie.trailer} autoPlay={true} loop />
+            <ReactPlayer
+              className={styles.video} 
+              playing={true}
+              width="100%"
+              height="50%"
+              pip={false}
+              url={movie.video} 
+            />
             <div className={styles.itemInfo}>
               <div className={styles.icons}>
                 <PlayArrow className={styles.icon} />
@@ -58,7 +68,13 @@ export default function ListItem({ index, item }) {
               <div className={styles.genre}>{movie.genre}</div>
             </div>
           </>
-        )}
+        )
+        :
+        <img 
+          src={movie?.imgSm} 
+          alt=""
+        />
+        }
       </div>
     </Link>
   );

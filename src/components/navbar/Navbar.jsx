@@ -11,13 +11,15 @@ const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const { dispatch } = useContext(AuthContext);
 
-  // window.onscroll = () => {
-  //   setIsScrolled(window.pageYOffset === 0 ? false : true);
-  //   return () => (window.onscroll = null);
-  // };
+  if (typeof window !== "undefined") {
+    window.onscroll = () => {
+      setIsScrolled(window.pageYOffset === 0 ? false : true);
+      return () => (window.onscroll = null);
+    };
+  } 
   return (
     <div className={styles.navbar}>
-      <div className={isScrolled ? "navbar scrolled" : "navbar"}>
+      <div className={isScrolled && styles.scrolled}>
         <div className={styles.container}>
           <div className={styles.left}>
             <img

@@ -12,6 +12,7 @@ export default function List({ list }) {
   const [clickLimit, setClickLimit] = useState(window.innerWidth / 230);
 
   const listRef = useRef();
+  console.log(list);
 
   const handleClick = (direction) => {
     // setIsMoved(true);
@@ -36,7 +37,7 @@ export default function List({ list }) {
         />
         <div className={styles.container} ref={listRef}>
           {list.content.map((item, i) => (
-            <ListItem index={i} item={item} />
+            <ListItem index={i} item={item} key={item.id} />
           ))}
         </div>
         <ArrowForwardIosOutlined

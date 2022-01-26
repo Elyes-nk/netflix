@@ -15,10 +15,7 @@ export default function Index() {
   useEffect(() => {
     const getRandomLists = async () => {
       try {
-        const res = await axios.get(
-          `lists${type ? "?type=" + type : ""}${
-            genre ? "&genre=" + genre : ""
-          }`
+        const res = await axios.get(`http://localhost:3030/api/lists${type ? "?type=" + type : ""}${genre ? "&genre=" + genre : ""}`
           // ,{
           //   headers: {
           //     token:JSON.parse(localStorage.getItem("user")).accessToken,
@@ -38,7 +35,7 @@ export default function Index() {
       <Navbar />
       <Featured type={type} setGenre={setGenre} />
       {lists.map((list) => (
-        <List list={list} />
+        <List list={list} key={list.id}/>
       ))}
     </div>
   )
