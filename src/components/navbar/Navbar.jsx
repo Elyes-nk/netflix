@@ -6,6 +6,7 @@ import { AuthContext } from "../../authContext/AuthContext";
 import { logout } from "../../authContext/AuthActions";
 import logo from "../../../public/logo.png"
 import profile from "../../../public/profile.png"
+import Router from 'next/router'
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -30,10 +31,10 @@ const Navbar = () => {
               <span>Homepage</span>
             </Link>
             <Link href="/browse/series" className={styles.link}>
-              <span className="navbarmainLinks">Series</span>
+              <span>Series</span>
             </Link>
             <Link href="/browse/movies" className={styles.link}>
-              <span className="navbarmainLinks">Movies</span>
+              <span>Movies</span>
             </Link>
             <span>New and Popular</span>
             <span>My List</span>
@@ -50,7 +51,12 @@ const Navbar = () => {
               <ArrowDropDown className={styles.icon} />
               <div className={styles.options}>
                 <span>Settings</span>
-                <span onClick={() => dispatch(logout())}>Logout</span>
+                <span 
+                  onClick={() => {
+                    dispatch(logout())
+                    Router.push('/login')
+                    }
+                  }>Logout</span>
               </div>
             </div>
           </div>

@@ -37,7 +37,7 @@ function index() {
       <Navbar />
       <Featured type={type} setGenre={setGenre} />
       {lists.map((list) => (
-        <List list={list} key={list.id}/>
+        <List list={list} key={list._id}/>
       ))}
     </div>
   )

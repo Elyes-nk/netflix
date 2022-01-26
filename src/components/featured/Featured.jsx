@@ -2,6 +2,7 @@ import { InfoOutlined, PlayArrow } from "@material-ui/icons";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import styles from "./featured.module.scss";
+import Link from "next/link";
 
 export default function Featured({ type, setGenre }) {
   const [content, setContent] = useState({});
@@ -24,7 +25,6 @@ export default function Featured({ type, setGenre }) {
     };
     getRandomContent();
   }, [type]);
-
   return (
     <div className={styles.featured}>
       {type && (
@@ -57,10 +57,12 @@ export default function Featured({ type, setGenre }) {
         <img src={content.imgTitle} alt="" />
         <span className={styles.desc}>{content.desc}</span>
         <div className={styles.buttons}>
-          <button className={styles.play}>
-            <PlayArrow />
-            <span>Play</span>
-          </button>
+          <Link href={`/watch/${content._id}`}>
+            <button className={styles.play}>
+              <PlayArrow />
+              <span>Play</span>
+            </button>
+          </Link>
           <button className={styles.more}>
             <InfoOutlined />
             <span>Info</span>
