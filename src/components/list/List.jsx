@@ -11,8 +11,9 @@ export default function List({ list }) {
   const [slideNumber, setSlideNumber] = useState(0);
   const [clickLimit, setClickLimit] = useState(window.innerWidth / 230);
 
+  console.log("===========");
+console.log(list);
   const listRef = useRef();
-  console.log(list);
 
   const handleClick = (direction) => {
     // setIsMoved(true);

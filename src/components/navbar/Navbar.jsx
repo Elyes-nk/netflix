@@ -56,7 +56,10 @@ const Navbar = () => {
                     dispatch(logout())
                     Router.push('/login')
                     }
-                  }>Logout</span>
+                  }
+                >
+                  Sign Out
+                </span>
               </div>
             </div>
           </div>

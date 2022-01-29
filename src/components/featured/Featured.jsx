@@ -6,11 +6,32 @@ import Link from "next/link";
 
 export default function Featured({ type, setGenre }) {
   const [content, setContent] = useState({});
+  const [categories, setCategories] = useState([]);
+
+
+  useEffect(() => {
+    const getCategories = async () => {
+      try {
+        const res = await axios.get(`http://localhost:3030/api/genres/`
+        // , {
+        //   headers: {
+        //     token:
+        //       "Bearer "+JSON.parse(localStorage.getItem("user")).accessToken,
+        //   },
+        // }
+        );
+        setCategories(res.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getCategories();
+  }, []);
 
   useEffect(() => {
     const getRandomContent = async () => {
       try {
-        const res = await axios.get(`http://localhost:3030/api/movies/random?type=${type}`
+        const res = await axios.get(`http://localhost:3030/api/${type}/random`
         // , {
         //   headers: {
         //     token:
@@ -25,6 +46,8 @@ export default function Featured({ type, setGenre }) {
     };
     getRandomContent();
   }, [type]);
+
+
   return (
     <div className={styles.featured}>
       {type && (
@@ -35,21 +58,11 @@ export default function Featured({ type, setGenre }) {
             id="genre"
             onChange={(e) => setGenre(e.target.value)}
           >
-            <option>Genre</option>
-            <option value="adventure">Adventure</option>
-            <option value="comedy">Comedy</option>
-            <option value="crime">Crime</option>
-            <option value="fantasy">Fantasy</option>
-            <option value="historical">Historical</option>
-            <option value="horror">Horror</option>
-            <option value="romance">Romance</option>
-            <option value="sci-fi">Sci-fi</option>
-            <option value="thriller">Thriller</option>
-            <option value="western">Western</option>
-            <option value="animation">Animation</option>
-            <option value="drama">Drama</option>
-            <option value="documentary">Documentary</option>
+              {categories.map((element)=> (
+                <option key={element.id} value={element.name}>{element.name}</option>
+              ))}
           </select>
+
         </div>
       )}
       <img src={content.img} alt="" />

@@ -11,9 +11,8 @@ import withAuth from '../../../middleware/withAuth'
 function index() {
   const [lists, setLists] = useState([]);
   const [genre, setGenre] = useState(null);
-
   const router = useRouter();
-  const type = (router.query.type === "series") ? "series" : (router.query.type === "movies" ? "movies" : null);
+  const type = (router.query.type === "series") ? "series" : "movies";
   useEffect(() => {
     const getRandomLists = async () => {
       try {
@@ -25,6 +24,7 @@ function index() {
           // }
         );
         setLists(res.data);
+        console.log("ça marche");
       } catch (err) {
         console.log(err);
       }

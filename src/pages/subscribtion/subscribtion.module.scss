@@ -1,0 +1,185 @@
+.subscribtion {
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 1) 100%
+    ),
+    url("../../../public/img2.jpeg");
+  background-size: cover;
+  position: relative;
+
+  .top {
+    .wrapper {
+      padding: 20px 50px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      .logo {
+        height: 40px;
+      }
+
+      .logout__button {
+        width: 15%;
+        height: 40px;
+        background-color: red;
+        color: white;
+        border: none;
+        font-size: 20px;
+        cursor: pointer;
+        align-items: center;
+        border-radius: 5px;
+      }
+    }
+  }
+
+  .container {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 40px;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+
+    h1 {
+      font-size: 50px;
+    }
+
+    h2 {
+      margin: 20px;
+    }
+
+    p {
+      font-size: 20px;
+    }
+
+    .check__icon {
+      transform: scale(1.8);
+      color:red
+    }
+
+    .check__icons {
+      color:red
+    }
+
+    .subscribtion__button{
+      width: 50%;
+      height: 50px;
+      background-color: red;
+      color: white;
+      border: none;
+      font-size: 22px;
+      cursor: pointer;
+      align-items: center;
+      margin-top: 20px;
+      border-radius: 5px;
+    }
+  }
+
+  .second__container{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 15%;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    color: white;
+    h1 {
+      font-size: 50px;
+    }
+
+    h2 {
+      margin: 1%;
+    }
+
+    p {
+      margin: 1%;
+      margin-bottom: 0%;
+      font-size: 18px;
+    }
+
+    .check__icons {
+      color:red
+    }
+
+    .tab__container{
+      top: 20%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      table {
+        text-align: center;
+        width: 100%;
+        tr {
+            border-bottom: 1px solid lightgray;
+            border-color: gray;
+        }
+        thead {
+            width: 20%;
+            height: 20%;
+        }
+        td {
+            padding: 20px 10px;
+            width: 20%;
+        }
+      }
+
+      .users__conditions{
+        font-size: 12px;
+        color: gray;
+      }
+
+      .subscribtion__button{
+        width: 50%;
+        height: 50px;
+        background-color: red;
+        color: white;
+        border: none;
+        font-size: 22px;
+        cursor: pointer;
+        align-items: center;
+        margin-top: 20px;
+        border-radius: 5px;
+      }
+
+      .subscribtion__card{
+        width: 100px;
+        height: 100px;
+        background-color: rgb(255, 96, 96);
+        color: white;
+        border: none;
+        font-size: 22px;
+        cursor: pointer;
+        align-items: center;
+        margin: 10px;
+        border-radius: 5px;
+      }
+      
+      .subscribtion__card__active{
+        width: 100px;
+        height: 100px;
+        background-color: red;
+        color: white;
+        border: none;
+        font-size: 22px;
+        cursor: pointer;
+        align-items: center;
+        margin: 10px;
+        border-radius: 5px;
+      }
+
+      .red{
+        color:red;
+      }
+    }
+  }
+}

@@ -22,14 +22,15 @@
       }
 
       .login__button {
+        width: 15%;
+        height: 40px;
         background-color: red;
-        border: none;
         color: white;
-        border-radius: 5px;
-        padding: 5px 15px;
-        font-size: 16px;
-        font-weight: 500;
+        border: none;
+        font-size: 20px;
         cursor: pointer;
+        align-items: center;
+        border-radius: 5px;
       }
     }
   }

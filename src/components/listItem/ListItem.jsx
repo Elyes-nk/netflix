@@ -31,7 +31,6 @@ export default function ListItem({ index, item }) {
     };
     getMovie();
   }, [item]);
-
   return (
     <Link href={`/watch/${movie._id}`}>
       <div
@@ -65,7 +64,11 @@ export default function ListItem({ index, item }) {
                 <span>{movie.year}</span>
               </div>
               <div className={styles.desc}>{movie.desc}</div>
-              <div className={styles.genre}>{movie.genre}</div>
+              <div className={styles.genre}>
+                {movie.genre.map((element) =>(
+                  <span key={element.id}>{element.name}     </span>
+                ))}
+              </div>
             </div>
           </>
         )
