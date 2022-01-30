@@ -7,6 +7,7 @@ import withAuth from '../../middleware/withAuth'
 import { logout } from "../../authContext/AuthActions";
 import { AuthContext } from "../../authContext/AuthContext";
 import { Check, CheckCircleOutline } from "@material-ui/icons";
+import Footer from "../../../components/footer/Footer";
 // const stripePromise = loadStripe("pk_test_51KHlC8C8XExSuQ3wbpTDJFyWflV64qb3YEwx21M9fUo1S8mv3JUFjs9rYsNe0PLEzFsWoeX4eyJuPgKfRUF2v1fe00BskIzVoI");
 
 
@@ -34,7 +35,8 @@ function index() {
       }
     };
     getSubscribtions();
-  }, [subscribtions]);
+    console.log(subscribtions);
+  }, []);
 
 
   const handleSubmit = async() => {
@@ -80,7 +82,6 @@ function index() {
       {pageOne? 
       (
         <div className={styles.container}>
-          {/* page 1 */}
           <CheckCircleOutline  className={styles.check__icon}/>
           <p>Step 1/3</p>
           <h1>Choose your plan.</h1>
@@ -107,10 +108,12 @@ function index() {
                       <tr>
                         <td></td>
                         {subscribtions.map((element)=> (
-                           <td>
+                           <td 
+                             key={element._id}
+                           >
                               <button 
-                                className={element.id === subscribtionChoosed ? styles.subscribtion__card__active : styles.subscribtion__card}
-                                onClick={()=> subscribtionChoosed(element.id)}
+                                className={element._id === subscribtionChoosed ? styles.subscribtion__card__active : styles.subscribtion__card}
+                                onClick={()=> setSubscribtionChoosed(element._id)}
                               >
                                 {element.name}
                               </button>
@@ -124,7 +127,10 @@ function index() {
                           {/* {item.product.name} */}
                         </td>
                         {subscribtions.map((element)=> (
-                          <td className={element.id === subscribtionChoosed && styles.red}>
+                          <td 
+                            className={element._id === subscribtionChoosed ? styles.red : ""}
+                            key={element._id}
+                          >
                             {element.amount} €
                           </td>
                         ))}
@@ -132,7 +138,10 @@ function index() {
                       <tr>
                         <td>Video quality</td>
                         {subscribtions.map((element)=> (
-                          <td className={element.id === subscribtionChoosed  && styles.red}>
+                          <td 
+                            className={element._id === subscribtionChoosed ? styles.red : ""}
+                            key={element._id}
+                          >
                              {element.quality}
                           </td>       
                         ))}
@@ -140,8 +149,11 @@ function index() {
                       <tr>
                         <td>Resolution</td>
                         {subscribtions.map((element)=> (
-                          <td className={element.id === subscribtionChoosed  && styles.red}>
-                            {element.resolution} p
+                          <td 
+                            className={element._id === subscribtionChoosed ? styles.red : ""}
+                            key={element._id}
+                          >
+                            {element.resolution}
                           </td>
                         ))}
                       </tr>
@@ -160,6 +172,7 @@ function index() {
           </div>
         </div>
       )}
+      <Footer />
     </div>
   );
 }

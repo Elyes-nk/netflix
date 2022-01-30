@@ -3,8 +3,8 @@ import { login } from "../../authContext/apiCalls";
 import { AuthContext } from "../../authContext/AuthContext";
 import withoutAuth from '../../middleware/withoutAuth'
 import styles from "./login.module.scss";
-import Link from "next/link"
-import logo from "../../../public/logo.png"
+import Link from "next/link";
+import logo from "../../../public/logo.png";
 
 function index() {
   const [email, setEmail] = useState("");

@@ -10,7 +10,7 @@ import Router from 'next/router'
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const { dispatch } = useContext(AuthContext);
+  const { dispatch, user } = useContext(AuthContext);
 
   if (typeof window !== "undefined") {
     window.onscroll = () => {
@@ -41,7 +41,7 @@ const Navbar = () => {
           </div>
           <div className={styles.right}>
             <Search className={styles.icon} />
-            <span>KID</span>
+            <span>{user.username}</span>
             <Notifications className={styles.icon} />
             <img
               src={profile.src}

@@ -1,3 +1,5 @@
+@import "../../styles/variables.scss";
+
 .watch {
   width: 100vw;
   height: 100vh;
@@ -8,7 +10,7 @@
     position: absolute;
     top: 10px;
     left: 10px;
-    color: white;
+    color: $netflix__white;
     cursor: pointer;
     z-index: 2;
   }

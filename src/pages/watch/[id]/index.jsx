@@ -5,8 +5,8 @@ import { useRouter } from "next/router";
 import {useState, useEffect} from "react"
 import ReactPlayer from 'react-player/youtube'
 import axios from "axios";
-import withAuth from '../../../middleware/withAuth'
-
+import withAuth from '../../../middleware/withAuth';
+import withSubscribtion from '../../../middleware/withSubscribtion';
 
 function index() {
   const [movie, setMovie] = useState({});
@@ -50,4 +50,4 @@ function index() {
     </div>
   );
 }
-export default withAuth(index)
+export default withAuth(withSubscribtion(index))

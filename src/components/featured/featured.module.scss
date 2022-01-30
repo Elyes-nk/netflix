@@ -1,4 +1,5 @@
 @import "../../styles/mixins.scss";
+@import "../../styles/variables.scss";
 
 .featured {
   height: 82vh;
@@ -8,17 +9,18 @@
     position: absolute;
     top: 80px;
     left: 50px;
-    font-size: 30px;
+    font-size: 40px;
     font-weight: 500;
-    color: white;
+    color: $netflix__white;
     display: flex;
     align-items: center;
+    z-index: 900;
 
     select {
       cursor: pointer;
-      background-color: #0b0b0b;
-      border: 1px solid white;
-      color: white;
+      background-color: $netflix__black;
+      border: 1px solid $netflix__white;
+      color: $netflix__white;
       margin-left: 20px;
       padding: 5px;
     }
@@ -39,7 +41,7 @@
     position: absolute;
     left: 50px;
     bottom: 60px;
-    color: white;
+    color: netflix__white;
     display: flex;
     flex-direction: column;
 
@@ -50,6 +52,7 @@
 
     .desc {
       margin: 20px 0px;
+      color: $netflix__white;
 
       @include mobile {
         width: 60vw;
@@ -60,7 +63,7 @@
       display: flex;
 
       button {
-        padding: 10px 20px;
+        padding: 8px 35px;
         border: none;
         border-radius: 5px;
         display: flex;
@@ -73,12 +76,16 @@
 
         &.play {
           background-color: white;
-          color: #0b0b0b;
+          color: $netflix__black;
+          .icon{
+             transform: scale(1.5);
+          }
         }
 
         &.more {
-          background-color: gray;
+          background-color: $netflix__gray;
           color: white;
+          opacity: 0.7;
         }
 
         span {

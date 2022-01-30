@@ -1,4 +1,6 @@
+@import "../../../styles/variables.scss";
+
 .home{
-    background-color: #0b0b0b;
+    background-color: $netflix__black;
     overflow: hidden;
 }

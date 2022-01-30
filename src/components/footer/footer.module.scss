@@ -1,0 +1,38 @@
+@import "../../styles/variables.scss";
+
+.footer__main {
+  background:$netflix__black;
+  position:relative;
+  margin-top: 100px;
+  margin-left: 20px;
+  bottom:0;
+  height:200px;
+  width: 100%;
+
+  .button {
+    cursor: pointer;
+    margin-left: 10%;
+    background-color: $netflix__black;
+    border: 1px solid $netflix__white;
+    color: $netflix__grey;
+    padding: 5px;
+    &:hover{
+      color:$netflix__white;
+    }
+  }
+
+  table {
+    text-align: center;
+    width: 100%;
+    color:$netflix__gray;
+    font-size: 13px;
+    cursor: pointer;
+ 
+    td {
+        padding: 10px 10px;
+        width: 20%;
+    }
+  }
+
+
+}

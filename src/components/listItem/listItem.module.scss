@@ -1,11 +1,13 @@
+@import "../../styles/variables.scss";
+
 .listItem {
   width: 225px;
   height: 120px;
-  background-color: #0b0b0b;
+  background-color: $netflix__black;
   margin-right: 5px;
   overflow: hidden;
   cursor: pointer;
-  color: white;
+  color: $netflix__white;
 
   img {
     width: 100%;
@@ -58,7 +60,7 @@
         margin-bottom: 10px;
         font-size: 14px;
         font-weight: 600;
-        color: gray;
+        color: $netflix__gray;
 
         .limit {
           border: 1px solid gray;
@@ -74,7 +76,7 @@
 
       .genre {
         font-size: 14px;
-        color: lightgray;
+        color: $netflix__gray;
       }
     }
   }

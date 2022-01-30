@@ -1,13 +1,12 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useContext} from 'react';
 import Router from 'next/router'
 import withAuth from '../middleware/withAuth'
+import { AuthContext } from "../authContext/AuthContext";
 
 function index() {
-    // if user has subscribtion redirect to home
-    // if user has not subscribtion redirect to subscribtions
-
+    const { user } = useContext(AuthContext);
     useEffect(() => {
-        Router.push('/browse/random')
+      user.subscribtion ? Router.push('/browse/random') : Router.push('/subscribtion')
     }, []);
   return <div></div>;
 }

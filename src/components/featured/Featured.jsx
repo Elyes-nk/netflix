@@ -72,8 +72,8 @@ export default function Featured({ type, setGenre }) {
         <div className={styles.buttons}>
           <Link href={`/watch/${content._id}`}>
             <button className={styles.play}>
-              <PlayArrow />
-              <span>Play</span>
+              <PlayArrow className={styles.icon} />
+              <span>  Play</span>
             </button>
           </Link>
           <button className={styles.more}>

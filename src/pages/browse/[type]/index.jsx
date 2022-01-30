@@ -5,8 +5,9 @@ import List from "../../../components/list/List";
 import { useEffect, useState } from "react";
 import { useRouter } from 'next/router';
 import axios from "axios";
-import withAuth from '../../../middleware/withAuth'
-
+import withAuth from '../../../middleware/withAuth';
+import withSubscribtion from '../../../middleware/withSubscribtion';
+import Footer from "../../../components/footer/Footer";
 
 function index() {
   const [lists, setLists] = useState([]);
@@ -39,8 +40,9 @@ function index() {
       {lists.map((list) => (
         <List list={list} key={list._id}/>
       ))}
+      <Footer />
     </div>
   )
 }
 
-export default withAuth(index)
+export default withAuth(withSubscribtion(index))
