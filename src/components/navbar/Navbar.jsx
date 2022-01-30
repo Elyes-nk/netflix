@@ -37,11 +37,13 @@ const Navbar = () => {
               <span>Movies</span>
             </Link>
             <span>New and Popular</span>
-            <span>My List</span>
+            <Link href="/my-list" className={styles.link}>
+              <span>My List</span>
+            </Link>
           </div>
           <div className={styles.right}>
             <Search className={styles.icon} />
-            <span>{user.username}</span>
+            <span>{user?.username}</span>
             <Notifications className={styles.icon} />
             <img
               src={profile.src}

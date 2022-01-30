@@ -1,6 +1,11 @@
-@import "../../../styles/variables.scss";
+@import "../../styles/variables.scss";
 
 .home{
     background-color: $netflix__black;
     overflow: hidden;
+
+    .wichlist{
+        margin-top: 25%;
+        margin-bottom: 25%;
+    }
 }

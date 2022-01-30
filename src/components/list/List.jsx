@@ -35,7 +35,7 @@ export default function List({ list }) {
         />
         <div className={styles.container} ref={listRef}>
           {list.content.map((item, i) => (
-            <ListItem index={i} item={item} key={item.id} />
+            <ListItem index={i} id={item} key={i} />
           ))}
         </div>
         <ArrowForwardIosOutlined

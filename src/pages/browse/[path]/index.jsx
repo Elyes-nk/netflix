@@ -2,7 +2,7 @@ import styles from "./index.module.scss";
 import Navbar from "../../../components/navbar/Navbar";
 import Featured from "../../../components/featured/Featured";
 import List from "../../../components/list/List";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useRouter } from 'next/router';
 import axios from "axios";
 import withAuth from '../../../middleware/withAuth';
@@ -13,13 +13,13 @@ function index() {
   const [lists, setLists] = useState([]);
   const [genre, setGenre] = useState(null);
   const router = useRouter();
-  const type = (router.query.path === "movies") ? 
-                  "movies"
-                  : 
-                  (router.query.path === "series" ? 
-                        "series"
-                        :
-                        null)
+  const type = router.query.path === "movies" ? 
+                    "movies"
+                    : 
+                    (router.query.path === "series" ? 
+                          "series"
+                          :
+                          null)
   useEffect(() => {
     const getRandomLists = async () => {
       try {
