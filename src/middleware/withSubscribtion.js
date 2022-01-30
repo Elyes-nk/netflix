@@ -9,6 +9,7 @@ const withSubscribtion = (WrappedComponent) => {
     const [verify, setVerify] = useState(false);
     const router = useRouter()
     useEffect(() => {
+      // ajouter condition abbonnement valide 
       if(user.subscribtion !== null){
         setVerify(true)
       }else{

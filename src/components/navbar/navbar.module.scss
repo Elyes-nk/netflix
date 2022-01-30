@@ -11,9 +11,11 @@
 
   .scrolled {
     background-color: $netflix__black;
+    transition: all 1s ease;
   }
   .not__scrolled{
     background: linear-gradient(to top, transparent 0%, rgb(0, 0, 0, 0.3) 50%);
+    transition: all 1s ease;
   }
 
   .container {

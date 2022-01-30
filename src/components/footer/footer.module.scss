@@ -6,15 +6,25 @@
   margin-top: 100px;
   margin-left: 20px;
   bottom:0;
-  height:200px;
+  height:300px;
   width: 100%;
+
+  .social__links{
+    color: $netflix__white;
+    margin-left: 12%;
+    justify-content: space-between;
+    .icon{
+      margin-right: 20px;
+      cursor: pointer;
+    }
+
+  }
 
   .button {
     cursor: pointer;
-    margin-left: 10%;
     background-color: $netflix__black;
     border: 1px solid $netflix__white;
-    color: $netflix__grey;
+    color: $netflix__gray;
     padding: 5px;
     &:hover{
       color:$netflix__white;
@@ -25,12 +35,13 @@
     text-align: center;
     width: 100%;
     color:$netflix__gray;
-    font-size: 13px;
-    cursor: pointer;
- 
+    font-size: 13px; 
     td {
         padding: 10px 10px;
         width: 20%;
+        a{
+          cursor: pointer;
+        }
     }
   }
 

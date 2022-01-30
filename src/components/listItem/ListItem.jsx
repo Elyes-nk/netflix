@@ -31,6 +31,11 @@ export default function ListItem({ index, item }) {
     };
     getMovie();
   }, [item]);
+
+  const addToWichlist = async () => {
+    
+  }
+  
   return (
     <Link href={`/watch/${movie._id}`}>
       <div
@@ -54,7 +59,10 @@ export default function ListItem({ index, item }) {
             <div className={styles.itemInfo}>
               <div className={styles.icons}>
                 <PlayArrow className={styles.icon} />
-                <Add className={styles.icon} />
+                <Add 
+                  className={styles.icon} 
+                  onClick={()=> addToWichlist()}
+                />
                 <ThumbUpAltOutlined className={styles.icon} />
                 <ThumbDownOutlined className={styles.icon} />
               </div>
