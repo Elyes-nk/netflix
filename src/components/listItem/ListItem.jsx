@@ -10,15 +10,16 @@ import axios from "axios";
 import Link from 'next/link';
 import ReactPlayer from 'react-player/youtube';
 import { AuthContext } from "../../authContext/AuthContext";
-import { updateFailure } from "../../authContext/AuthActions";
+import { updateFailure, updateSuccess } from "../../authContext/AuthActions";
+import { debounce } from "lodash";
+
 
 export default function ListItem({ index, id }) {
   const { user, dispatch } = useContext(AuthContext);
   const [movie, setMovie] = useState({});
   const [inWichlist, setInWichlist] = useState(false);
   const [isItemHovered, setIsItemHovered] = useState(false);
-  const [wichlist, setWichlist] = useState([]);
-
+  console.log(user);
   useEffect(() => {
     const getMovie = async () => {
       try {
@@ -38,45 +39,57 @@ export default function ListItem({ index, id }) {
   }, []);
 
   useEffect(() => {
-    user?.wichlist && setWichlist(user.wichlist);
-    wichlist.find((item) => item === id) && setInWichlist(true);
+    if(user?.wichlist) {
+      user.wichlist.find((item) => item === id) && setInWichlist(true);
+    }
   }, []);
-console.log(wichlist);
 
-  const updateWichlist = async() => {
+  const updateWichlist = () => {
     if(inWichlist){
-      const wichlistFiltred = wichlist.filter((item) => item !== id)
-      console.log(wichlistFiltred);
-      setWichlist(wichlistFiltred)
+      const wichlistFiltred = user?.wichlist.filter((item) => item !== id)
+      console.log("movie deleted");
+      console.log("wichlistfiltred");
+      updateUser(wichlistFiltred)
       setInWichlist(false);
     }else{
-      setWichlist([...wichlist, id]);
+      console.log("movie aded");
+      updateUser([...user?.wichlist, id]);
       setInWichlist(true);
     }
-    try {
-      const res = await axios.put("http://localhost:3030/api/users/"+ user._id
-      ,{
-        wichlist:wichlist
-      }
-      // , {
-      //   headers: {
-      //     token:JSON.parse(localStorage.getItem("user")).accessToken,
-      //   },
-      // }
-      );
-      dispatch(updateSuccess(res.data));
-      console.log("updated");
-    } catch (err) {
-      dispatch(updateFailure())
-      console.log("echec");
-    }
+    // try {
+    //   const res = await axios.put("http://localhost:3030/api/users/"+ user._id
+    //   ,{
+    //     wichlist:wichlist
+    //   }
+    //   // , {
+    //   //   headers: {
+    //   //     token:JSON.parse(localStorage.getItem("user")).accessToken,
+    //   //   },
+    //   // }
+    //   );
+    //   dispatch(updateSuccess(res.data));
+    //   console.log("updated");
+    // } catch (err) {
+    //   console.log(err);
+    //   dispatch(updateFailure())
+    //   console.log("echec");
+    // }
   }
+  const updateUser = async (wichlist) => {
+    console.log("wichlist");
+
+    console.log(wichlist);
+
+  }
+
   
   return (
       <div
         className={styles.listItem}
         style={{ left: isItemHovered && index * 225 - 50 + index * 2.5 }}
-        onMouseEnter={() => setIsItemHovered(true)}
+        //activate hoover
+        onMouseEnter={() => debounce(() => setIsItemHovered(true), 2000)}
+        //disable hoover
         onMouseLeave={() => setIsItemHovered(false)}
       >
         {isItemHovered ? 
