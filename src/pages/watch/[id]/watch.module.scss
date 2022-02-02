@@ -1,0 +1,26 @@
+@import "../../../styles/variables.scss";
+
+.watch {
+  width: 100vw;
+  height: 100vh;
+
+  .back {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    color: $netflix__white;
+    cursor: pointer;
+    z-index: 2;
+  }
+
+  .video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
+}
