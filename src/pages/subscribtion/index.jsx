@@ -7,8 +7,10 @@ import withAuth from '../../middleware/withAuth'
 import { logout } from "../../authContext/AuthActions";
 import { AuthContext } from "../../authContext/AuthContext";
 import { Check, CheckCircleOutline } from "@material-ui/icons";
-import Footer from "../../../components/footer/Footer";
-// const stripePromise = loadStripe("pk_test_51KHlC8C8XExSuQ3wbpTDJFyWflV64qb3YEwx21M9fUo1S8mv3JUFjs9rYsNe0PLEzFsWoeX4eyJuPgKfRUF2v1fe00BskIzVoI");
+import { loadStripe } from "@stripe/stripe-js";
+import stripeService from "../../services/stripe.service";
+
+const stripePromise = loadStripe("pk_test_51KHlC8C8XExSuQ3wbpTDJFyWflV64qb3YEwx21M9fUo1S8mv3JUFjs9rYsNe0PLEzFsWoeX4eyJuPgKfRUF2v1fe00BskIzVoI");
 
 
 function index() {
@@ -40,22 +42,21 @@ function index() {
 
 
   const handleSubmit = async() => {
-    subscribtionChoosed ? console.log('ça marche') : console.log("ça marche pas");
-    // try {
-    //   const stripe = await stripePromise;
-    //   const response = await stripeService.createSession(
-    //     {
-    //       userId: user.id,
-    //       subscribtionId: subscribtionChoosed,
-    //       subscribtionMounths: 1
-    //     }
-    //   );
-    //   await stripe.redirectToCheckout({
-    //     sessionId: response.id,
-    //   });
-    // } catch (error) {
-    //   console.log(error);
-    // }
+    try {
+      const stripe = await stripePromise;
+      const response = await stripeService.createSession(
+        {
+          userId: user.id,
+          subscribtionId: subscribtionChoosed,
+          subscribtionMounths: 1
+        }
+      );
+      await stripe.redirectToCheckout({
+        sessionId: response.id,
+      });
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return (
@@ -123,9 +124,7 @@ function index() {
                     </thead>
                     <tbody>
                       <tr>
-                        <td>Mounthly subscribtion
-                          {/* {item.product.name} */}
-                        </td>
+                        <td>Mounthly subscribtion</td>
                         {subscribtions.map((element)=> (
                           <td 
                             className={element._id === subscribtionChoosed ? styles.red : ""}
@@ -172,7 +171,6 @@ function index() {
           </div>
         </div>
       )}
-      <Footer />
     </div>
   );
 }

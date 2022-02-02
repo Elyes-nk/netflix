@@ -55,15 +55,15 @@ function index() {
         </p>
         {!email ? (
           <div className={styles.input}>
-            <input type="email" placeholder="email address" ref={emailRef} />
+            <input type="email" placeholder="Email address" ref={emailRef} />
             <button className={styles.register__button} onClick={handleStart}>
               Get Started
             </button>
           </div>
         ) : (
           <form className={styles.input}>
-            <input type="username" placeholder="username" ref={usernameRef} />
-            <input type="password" placeholder="password" ref={passwordRef} />
+            <input type="username" placeholder="Username" ref={usernameRef} />
+            <input type="password" placeholder="Password" ref={passwordRef} />
             <button className={styles.register__button} onClick={handleFinish}>
               Start
             </button>

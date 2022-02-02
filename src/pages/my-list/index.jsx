@@ -9,16 +9,10 @@ import Footer from "../../components/footer/Footer";
 
 function index() {
   const { user } = useContext(AuthContext);
-  const [list, setList] = useState({
-    content:user?.wichlist ? user.wichlist : [],
-    title:"Wichlist"
-  });
+  const [list, setList] = useState({ content:user?.wichlist ? user.wichlist : [], title:"My list"});
   useEffect(() => {
-   setList({
-    content:user?.wichlist ? user.wichlist : [],
-    title:"Wichlist"
-  })
-  }, []);
+   setList({content:user?.wichlist ? user.wichlist : [], title:"My list"})
+  }, [user]);
 
   return (
     <div className={styles.home}>

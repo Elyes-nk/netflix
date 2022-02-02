@@ -52,12 +52,12 @@
       input {
         height: 40px;
         border-radius: 5px;
-        background-color: gray;
+        background-color: $netflix__gray;
         color: $netflix__white;
         padding-left: 10px;
 
         &::placeholder {
-          color: $netflix__gray;
+          color: $netflix__white;
         }
       }
       b{
