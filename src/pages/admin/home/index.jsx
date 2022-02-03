@@ -53,13 +53,19 @@ export default function index() {
   }, []);
 
   return (
-    <div className={styles.home}>
-      <FeaturedInfo />
-      {/* <Chart data={userStats} title="User Analytics" grid dataKey="New User" /> */}
-      <div className={styles.homeWidgets}>
-        <WidgetSm />
-        <WidgetLg />
+    <>
+    <Topbar />
+    <div className={styles.container}>
+      <Sidebar />
+      <div className={styles.home}>
+        <FeaturedInfo />
+        {/* <Chart data={userStats} title="User Analytics" grid dataKey="New User" /> */}
+        <div className={styles.homeWidgets}>
+          <WidgetSm />
+          <WidgetLg />
+        </div>
       </div>
     </div>
+    </>
   );
 }

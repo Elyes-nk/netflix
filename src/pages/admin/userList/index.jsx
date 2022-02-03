@@ -60,14 +60,20 @@ export default function index() {
   ];
 
   return (
-    <div className={styles.userList}>
-      <DataGrid
-        rows={data}
-        disableSelectionOnClick
-        columns={columns}
-        pageSize={8}
-        checkboxSelection
-      />
+    <>
+    <Topbar />
+    <div className={styles.container}>
+      <Sidebar />
+      <div className={styles.userList}>
+        <DataGrid
+          rows={data}
+          disableSelectionOnClick
+          columns={columns}
+          pageSize={8}
+          checkboxSelection
+        />
+      </div>
     </div>
+  </>
   );
 }

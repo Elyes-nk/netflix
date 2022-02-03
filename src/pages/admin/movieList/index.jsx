@@ -80,15 +80,21 @@ const [movies, setMovies] = useState([]);
   ];
 
   return (
-    <div className={styles.productList}>
-      <DataGrid
-        rows={movies}
-        disableSelectionOnClick
-        columns={columns}
-        pageSize={8}
-        checkboxSelection
-        getRowId={(r) => r._id}
-      />
+    <>
+    <Topbar />
+    <div className={styles.container}>
+      <Sidebar />
+      <div className={styles.productList}>
+        <DataGrid
+          rows={movies}
+          disableSelectionOnClick
+          columns={columns}
+          pageSize={8}
+          checkboxSelection
+          getRowId={(r) => r._id}
+        />
+      </div>
     </div>
+  </>
   );
 }
