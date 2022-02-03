@@ -1,25 +1,26 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./index.module.scss";
-import storage from "../../firebase";
-import { createMovie, getMovies } from "../../context/movieContext/apiCalls";
-import { MovieContext } from "../../context/movieContext/MovieContext";
-import { ListContext } from "../../context/listContext/ListContext";
-import { createList } from "../../context/listContext/apiCalls";
-import { useHistory } from "react-router-dom";
 
-export default function NewList() {
+export default function index() {
+  const [movies, setMovies] = useState([]);
   const [list, setList] = useState(null);
-  const history = useHistory()
 
-  const { dispatch } = useContext(ListContext);
-  const { movies, dispatch: dispatchMovie } = useContext(MovieContext);
-
-
-  //edieter get et delte et post
 
   useEffect(() => {
-    getMovies(dispatchMovie);
-  }, [dispatchMovie]);
+    const getMovies = async () =>{
+        try {
+          const res = await axios.get("/movies", {
+            headers: {
+              authorization: JSON.parse(localStorage.getItem("user")).accessToken,
+            },
+          });
+          setMovies(res.data);
+        } catch (err) {
+        }
+    }
+    getMovies()
+  }, []);
+
 
   const handleChange = (e) => {
     const value = e.target.value;
@@ -33,8 +34,19 @@ export default function NewList() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    createList(list, dispatch);
-    history.push("/lists")
+    createList(list);
+    Router.push("/lists")
+  };
+
+  const createList = async (list) => {
+    try {
+      const res = await axios.post("/lists", list, {
+        headers: {
+          token: "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
+        },
+      });
+    } catch (err) {
+    }
   };
 
   return (

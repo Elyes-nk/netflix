@@ -1,3 +1,4 @@
+import react from 'react';
 import styles from "./chart.module.scss";
 import {
   LineChart,

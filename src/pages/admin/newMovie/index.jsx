@@ -1,10 +1,8 @@
 import { useContext, useState } from "react";
 import styles from "./index.module.scss";
 import storage from "../../firebase";
-import { createMovie } from "../../context/movieContext/apiCalls";
-import { MovieContext } from "../../context/movieContext/MovieContext";
 
-export default function NewMovie() {
+export default function index() {
   const [movie, setMovie] = useState(null);
   const [img, setImg] = useState(null);
   const [imgTitle, setImgTitle] = useState(null);
@@ -14,8 +12,6 @@ export default function NewMovie() {
   const [uploaded, setUploaded] = useState(0);
 
 
-  //edieter get et delte post
-  const { dispatch } = useContext(MovieContext);
 
   const handleChange = (e) => {
     const value = e.target.value;
@@ -61,7 +57,18 @@ export default function NewMovie() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    createMovie(movie, dispatch);
+    createMovie(movie);
+  };
+
+  const createMovie = async (movie) => {
+    try {
+      const res = await axios.post("/movies", movie, {
+        headers: {
+          token: JSON.parse(localStorage.getItem("user")).accessToken,
+        },
+      });
+    } catch (err) {
+    }
   };
 
   return (

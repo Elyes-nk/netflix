@@ -1,23 +1,40 @@
 import styles from "./index.module.scss";
 import { DataGrid } from "@material-ui/data-grid";
 import { DeleteOutline } from "@material-ui/icons";
-import { Link } from "react-router-dom";
-import { useContext, useEffect } from "react";
-import { ListContext } from "../../context/listContext/ListContext";
-import { deleteList, getLists } from "../../context/listContext/apiCalls";
+import { Link } from "next/link";
+import { useEffect } from "react";
 
-export default function ListList() {
-  const { lists, dispatch } = useContext(ListContext);
+export default function index() {
+  const [lists, setLists] = useState([]);
 
 
-  // editer le get et delete
   useEffect(() => {
-    getLists(dispatch);
-  }, [dispatch]);
+    const getLists = async () =>{
+        try {
+          const res = await axios.get("/lists", {
+            headers: {
+              token: JSON.parse(localStorage.getItem("user")).accessToken,
+            },
+          });
+          setLists(res.data);
+        } catch (err) {
+        }
+    }
+    getLists()
+  }, []);
 
-  const handleDelete = (id) => {
-    deleteList(id, dispatch);
+
+  const handleDelete = async (id) => {
+    try {
+      await axios.delete("/lists/" + id, {
+        headers: {
+          token: JSON.parse(localStorage.getItem("user")).accessToken,
+        },
+      });
+    } catch (err) {
+    }
   };
+  
 
   const columns = [
     { field: "_id", headerName: "ID", width: 250 },
@@ -33,7 +50,7 @@ export default function ListList() {
           <>
             {/* editer le link */}
             <Link
-              to={{ pathname: "/list/" + params.row._id, list: params.row }}
+              href={{ pathname: "/list/" + params.row._id, list: params.row }}
             >
               <button className={styles.productListEdit}>Edit</button>
             </Link>

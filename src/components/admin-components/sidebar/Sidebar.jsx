@@ -14,7 +14,7 @@ import {
   AddToQueue,
   QueuePlayNext,
 } from "@material-ui/icons";
-import { Link } from "react-router-dom";
+import { Link } from "next/link";
 
 export default function Sidebar() {
   return (
@@ -23,7 +23,7 @@ export default function Sidebar() {
         <div className={styles.sidebarMenu}>
           <h3 className={styles.sidebarTitle}>Dashboard</h3>
           <ul className={styles.sidebarList}>
-            <Link to="/" className={styles.link}>
+            <Link href="/" className={styles.link}>
               <li className={styles.sidebarListItem__active}>
                 <LineStyle className={styles.sidebarIcon}/>
                 Home
@@ -42,31 +42,31 @@ export default function Sidebar() {
         <div className={styles.sidebarMenu}>
           <h3 className={styles.sidebarTitle}>Quick Menu</h3>
           <ul className={styles.sidebarList}>
-            <Link to="/users" className={styles.link}>
+            <Link href="/users" className={styles.link}>
               <li className={styles.sidebarListItem}>
                 <PermIdentity className={styles.sidebarIcon} />
                 Users
               </li>
             </Link>
-            <Link to="/movies" className={styles.link}>
+            <Link href="/movies" className={styles.link}>
               <li className={styles.sidebarListItem}>
                 <PlayCircleOutline className={styles.sidebarIcon} />
                 Movies
               </li>
             </Link>
-            <Link to="/lists" className={styles.link}>
+            <Link href="/lists" className={styles.link}>
               <li className={styles.sidebarListItem}>
                 <List className={styles.sidebarIcon} />
                 Lists
               </li>
             </Link>
-            <Link to="/newMovie" className={styles.link}>
+            <Link href="/newMovie" className={styles.link}>
               <li className={styles.sidebarListItem}>
                 <AddToQueue className={styles.sidebarIcon} />
                 Add Movie
               </li>
             </Link>
-            <Link to="/newList" className={styles.link}>
+            <Link href="/newList" className={styles.link}>
               <li className={styles.sidebarListItem}>
                 <QueuePlayNext className={styles.sidebarIcon} />
               </li>

@@ -1,19 +1,19 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "next/link";
 import styles from "./index.module.scss";
 import { Publish } from "@material-ui/icons";
 
-export default function Movie() {
+export default function index() {
 
-  //editer use location
-  const location = useLocation();
-  const movie = location.movie;
+  // //editer use location
+  // const location = useLocation();
+  // const movie = location.movie;
 
   
   return (
     <div className={styles.product}>
       <div className={styles.productTitleContainer}>
         <h1 className={styles.productTitle}>Movie</h1>
-        <Link to="/newproduct">
+        <Link href="/newproduct">
           <button className={styles.productAddButton}>Create</button>
         </Link>
       </div>

@@ -6,15 +6,15 @@ import {
   PhoneAndroid,
   Publish,
 } from "@material-ui/icons";
-import { Link } from "react-router-dom";
+import { Link } from "next/link";
 import styles from "./index.module.scss";
 
-export default function User() {
+export default function index() {
   return (
     <div className={styles.user}>
       <div className={styles.userTitleContainer}>
         <h1 className={styles.userTitle}>Edit User</h1>
-        <Link to="/newUser">
+        <Link href="/newUser">
           <button className={styles.userAddButton}>Create</button>
         </Link>
       </div>

@@ -2,10 +2,10 @@ import styles from "./index.module.scss";
 import { DataGrid } from "@material-ui/data-grid";
 import { DeleteOutline } from "@material-ui/icons";
 import { userRows } from "../../dummyData";
-import { Link } from "react-router-dom";
+import { Link } from "next/link";
 import { useState } from "react";
 
-export default function UserList() {
+export default function index() {
   const [data, setData] = useState(userRows);
 
   //edieter get et delte
@@ -46,7 +46,7 @@ export default function UserList() {
       renderCell: (params) => {
         return (
           <>
-            <Link to={"/user/" + params.row.id}>
+            <Link href={"/user/" + params.row.id}>
               <button className={styles.userListEdit}>Edit</button>
             </Link>
             <DeleteOutline

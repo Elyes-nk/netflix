@@ -1,6 +1,6 @@
 import styles from "./index.module.scss";
 
-export default function NewUser() {
+export default function index() {
   return (
     <div className={styles.newUser}>
       <h1 className={styles.newUserTitle}>New User</h1>

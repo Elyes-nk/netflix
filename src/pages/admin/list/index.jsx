@@ -1,16 +1,18 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "next/link";
 import styles from "./index.module.scss";
 
-export default function List() {
+export default function index() {
 
   //editer le uselocation
-  const location = useLocation();
-  const list = location.list;
+  // const location = useLocation();
+  // const list = location.list;
+
+  
   return (
     <div className={styles.product}>
         <div className={styles.productTitleContainer}>
           <h1 className={styles.productTitle}>List</h1>
-          <Link to="/newList">
+          <Link href="/newList">
             <button className={styles.productAddButton}>Create</button>
           </Link>
         </div>

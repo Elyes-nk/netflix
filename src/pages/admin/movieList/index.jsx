@@ -1,23 +1,41 @@
 import styles from "./index.module.scss";
 import { DataGrid } from "@material-ui/data-grid";
 import { DeleteOutline } from "@material-ui/icons";
-import { Link } from "react-router-dom";
-import { useContext, useEffect } from "react";
-import { MovieContext } from "../../context/movieContext/MovieContext";
-import { deleteMovie, getMovies } from "../../context/movieContext/apiCalls";
+import { Link } from "next/link";
+import { useState, useEffect } from "react";
 
-export default function MovieList() {
-  const { movies, dispatch } = useContext(MovieContext);
+export default function index() {
 
+const [movies, setMovies] = useState([]);
 
-  //edieter get et delte
   useEffect(() => {
-    getMovies(dispatch);
-  }, [dispatch]);
+    const getMovies = async () =>{
+        try {
+          const res = await axios.get("/movies", {
+            headers: {
+              token: JSON.parse(localStorage.getItem("user")).accessToken,
+            },
+          });
+          setMovies(res.data);
+        } catch (err) {
+        }
+    }
+    getMovies()
+  }, []);
 
-  const handleDelete = (id) => {
-    deleteMovie(id, dispatch);
+
+  const handleDelete = async (id) => {
+    try {
+      await axios.delete("/movies/" + id, {
+        headers: {
+          token: JSON.parse(localStorage.getItem("user")).accessToken,
+        },
+      });
+    } catch (err) {
+    }
   };
+
+  
 
   const columns = [
     { field: "_id", headerName: "ID", width: 90 },
@@ -47,7 +65,7 @@ export default function MovieList() {
         return (
           <>
             <Link
-              to={{ pathname: "/movie/" + params.row._id, movie: params.row }}
+              href={{ pathname: "/movie/" + params.row._id, movie: params.row }}
             >
               <button className={styles.productListEdit} >Edit</button>
             </Link>
