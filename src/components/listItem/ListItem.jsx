@@ -10,7 +10,7 @@ import axios from "axios";
 import Link from 'next/link';
 import ReactPlayer from 'react-player/youtube';
 import { AuthContext } from "../../authContext/AuthContext";
-import { updateFailure, updateSuccess } from "../../authContext/AuthActions";
+import { updateFailure, updateSuccess, updateStart } from "../../authContext/AuthActions";
 
 export default function ListItem({ index, id }) {
   const { user, dispatch } = useContext(AuthContext);
@@ -51,6 +51,7 @@ export default function ListItem({ index, id }) {
   }
 
   const updateUser = async (wichlist) => {
+     dispatch(updateStart())
      try {
       const res = await axios.put("http://localhost:3030/api/users/"+ user._id
       ,{
