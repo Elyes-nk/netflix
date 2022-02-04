@@ -1,3 +1,5 @@
+@import "../../../styles/variables.scss";
+
 .container{
   display: flex;
   margin-top: 10px;
@@ -17,7 +19,7 @@
         background-color: teal;
         border-radius: 5px;
         cursor: pointer;
-        color: white;
+        color: $netflix__white;
         font-size: 16px;
       }
     }
@@ -65,14 +67,14 @@
         .userShowTitle {
           font-size: 14px;
           font-weight: 600;
-          color: rgb(175, 170, 170);
+          color: $netflix__gray;
         }
     
         .userShowInfo{
             display: flex;
             align-items: center;
             margin: 20px 0px;
-            color: #444;
+            color: $netflix__gray;
         }
     
         .userShowIcon{
@@ -150,7 +152,7 @@
             padding: 5px;
             cursor: pointer;
             background-color: darkblue;
-            color: white;
+            color: $netflix__white;
             font-weight: 600;
         }
       }

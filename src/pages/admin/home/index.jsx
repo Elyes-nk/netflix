@@ -3,6 +3,9 @@ import FeaturedInfo from "../../../components/admin-components/featuredInfo/Feat
 import styles from "./index.module.scss";
 import WidgetSm from "../../../components/admin-components/widgetSm/WidgetSm"
 import WidgetLg from "../../../components/admin-components/widgetLg/WidgetLg";
+import Topbar from "../../../components/admin-components/topbar/Topbar";
+import Sidebar from "../../../components/admin-components/sidebar/Sidebar";
+
 import { useEffect, useMemo, useState } from "react";
 import axios from "axios";
 

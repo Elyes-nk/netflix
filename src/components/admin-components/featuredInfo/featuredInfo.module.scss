@@ -1,7 +1,10 @@
+@import "../../../styles/variables.scss";
+
 .featured {
   width: 100%;
   display: flex;
   justify-content: space-between;
+  color: $netflix__white;
 
     .featuredItem {
     flex: 1;
@@ -41,11 +44,11 @@
     }
 
     .featuredIcon.negative{
-        color: red;
+        color: $netflix__red;
     }
 
     .featuredSub{
         font-size: 15px;
-        color: gray;
+        color: $netflix__gray;
     }
 }

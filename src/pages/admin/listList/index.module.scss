@@ -1,3 +1,5 @@
+@import "../../../styles/variables.scss";
+
 .container{
     display: flex;
     margin-top: 10px;
@@ -21,13 +23,13 @@
             border-radius: 10px;
             padding: 5px 10px;
             background-color: #3bb077;
-            color: white;
+            color: $netflix__white;
             cursor: pointer;
             margin-right: 20px;
         }
 
         .productListDelete{
-            color: red;
+            color: $netflix__red;
             cursor: pointer;
         }
     }

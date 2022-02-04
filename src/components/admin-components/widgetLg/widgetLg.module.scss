@@ -1,8 +1,11 @@
+@import "../../../styles/variables.scss";
+
 .widgetLg {
   flex: 2;
   -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
   box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
   padding: 20px;
+  color: $netflix__white;
 
   .widgetLgTitle {
     font-size: 22px;
@@ -43,16 +46,16 @@
   }
 
   .widgetLgButton.Approved{
-      background-color: #e5faf2;
+      background-color: $netflix__white;
       color: #3bb077;
   }
   .widgetLgButton.Declined{
-      background-color: #fff0f1;
+      background-color: $netflix__white;
       color: #d95087;
 
   }
   .widgetLgButton.Pending{
-      background-color: #ebf1fe;
+      background-color: $netflix__white;
       color: #2a7ade;
 
   }

@@ -1,3 +1,5 @@
+@import "../../../styles/variables.scss";
+
 .container{
   display: flex;
   margin-top: 10px;
@@ -16,7 +18,7 @@
         margin-bottom: 10px;
         
         label {
-          color: gray;
+          color: $netflix__gray;
           font-weight: 600;
           margin-bottom: 10px;
         }
@@ -36,8 +38,8 @@
         padding: 7px 10px;
         border: none;
         border-radius: 10px;
-        background-color: darkblue;
-        color: white;
+        background-color: $netflix__gray;
+        color: $netflix__white;
         font-weight: 600;
         cursor: pointer;
         align-self: center;

@@ -1,3 +1,5 @@
+@import "../../../styles/variables.scss";
+
 .container{
   display: flex;
   margin-top: 10px;
@@ -14,17 +16,17 @@
         flex-direction: column;
         margin-top: 10px;
         margin-right: 20px;
-        .newUserItem > label {
+        label {
           margin-bottom: 10px;
           font-size: 14px;
           font-weight: 600;
-          color: rgb(151, 150, 150);
+          color: $netflix__gray;
         }
       
         input {
           height: 20px;
           padding: 10px;
-          border: 1px solid gray;
+          border: 1px solid $netflix__gray;
           border-radius: 5px;
         }
       
@@ -35,7 +37,7 @@
           label{
             margin: 10px;
             font-size: 18px;
-            color: #555;
+            color: $netflix__gray;
           }
         }
       
@@ -52,8 +54,8 @@
     .newUserButton{
         width: 200px;
         border: none;
-        background-color: darkblue;
-        color: white;
+        background-color: $netflix__gray;
+        color: $netflix__white;
         padding: 7px 10px;
         font-weight: 600;
         border-radius: 10px;

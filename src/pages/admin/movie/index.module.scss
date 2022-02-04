@@ -1,3 +1,5 @@
+@import "../../../styles/variables.scss";
+
 .container{
   display: flex;
   margin-top: 10px;
@@ -15,7 +17,7 @@
           border: none;
           padding: 5px;
           background-color: teal;
-          color: white;
+          color: $netflix__white;
           border-radius: 5px;
           font-size: 16px;
           cursor: pointer;
@@ -80,13 +82,13 @@
 
             label {
               margin-bottom: 10px;
-              color: gray;
+              color: $netflix__gray;
             }
             input {
               margin-bottom: 10px;
               border: none;
               padding: 5px;
-              border-bottom: 1px solid gray;
+              border-bottom: 1px solid $netflix__gray;
             }
 
             select{
@@ -101,8 +103,8 @@
               border: none;
               padding: 5px;
               border-radius: 5px;
-              background-color: darkblue;
-              color:white;
+              background-color: $netflix__gray;
+              color:$netflix__white;
               font-weight: 600;
               cursor: pointer;
             }
