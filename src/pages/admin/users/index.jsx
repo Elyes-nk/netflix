@@ -1,17 +1,42 @@
 import styles from "./index.module.scss";
 import { DataGrid } from "@material-ui/data-grid";
 import { DeleteOutline } from "@material-ui/icons";
-import { userRows } from "../../dummyData";
 import { Link } from "next/link";
 import { useState } from "react";
+import Topbar from "../../../components/admin-components/topbar/Topbar";
+import Sidebar from "../../../components/admin-components/sidebar/Sidebar";
 
 export default function index() {
-  const [data, setData] = useState(userRows);
+  const [users, setUsers] = useState(null);
 
-  //edieter get et delte
-  const handleDelete = (id) => {
-    setData(data.filter((item) => item.id !== id));
+  useEffect(() => {
+    const getUsers = async () =>{
+        try {
+          const res = await axios.get("http://localhost:3030/api/users", {
+            headers: {
+              token: JSON.parse(localStorage.getItem("user")).accessToken,
+            },
+          });
+          setUsers(res.data);
+        } catch (err) {
+        }
+    }
+    getUsers()
+  }, []);
+
+
+
+  const handleDelete = async (id) => {
+    try {
+      await axios.delete("http://localhost:3030/api/users/" + id, {
+        headers: {
+          token: JSON.parse(localStorage.getItem("user")).accessToken,
+        },
+      });
+    } catch (err) {
+    }
   };
+
   
   const columns = [
     { field: "id", headerName: "ID", width: 90 },
@@ -46,7 +71,7 @@ export default function index() {
       renderCell: (params) => {
         return (
           <>
-            <Link href={"/user/" + params.row.id}>
+            <Link href={`/admin/user/${params.row.id}`}>
               <button className={styles.userListEdit}>Edit</button>
             </Link>
             <DeleteOutline
@@ -66,7 +91,7 @@ export default function index() {
       <Sidebar />
       <div className={styles.userList}>
         <DataGrid
-          rows={data}
+          rows={users}
           disableSelectionOnClick
           columns={columns}
           pageSize={8}

@@ -8,8 +8,30 @@ import {
 } from "@material-ui/icons";
 import { Link } from "next/link";
 import styles from "./index.module.scss";
+import Topbar from "../../../components/admin-components/topbar/Topbar";
+import Sidebar from "../../../components/admin-components/sidebar/Sidebar";
 
 export default function index() {
+
+  const router = useRouter();
+  const id = router.query.id;
+  const [user, setUser] = useState(null);
+  useEffect(() => {
+    const getUser = async () =>{
+        try {
+          const res = await axios.get(`http://localhost:3030/api/users/${id}`
+          , {
+            headers: {
+              token: JSON.parse(localStorage.getItem("user")).accessToken,
+            },
+          });
+          setUser(res.data);
+        } catch (err) {
+        }
+    }
+    getUser()
+  }, []);
+
   return (
     <>
     <Topbar />

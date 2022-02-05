@@ -5,6 +5,7 @@ import WidgetSm from "../../../components/admin-components/widgetSm/WidgetSm"
 import WidgetLg from "../../../components/admin-components/widgetLg/WidgetLg";
 import Topbar from "../../../components/admin-components/topbar/Topbar";
 import Sidebar from "../../../components/admin-components/sidebar/Sidebar";
+import Chart from "../../../components/admin-components/chart/Chart";
 
 import { useEffect, useMemo, useState } from "react";
 import axios from "axios";
@@ -62,7 +63,7 @@ export default function index() {
       <Sidebar />
       <div className={styles.home}>
         <FeaturedInfo />
-        {/* <Chart data={userStats} title="User Analytics" grid dataKey="New User" /> */}
+        <Chart data={userStats} title="User Analytics" grid dataKey="New User" />
         <div className={styles.homeWidgets}>
           <WidgetSm />
           <WidgetLg />

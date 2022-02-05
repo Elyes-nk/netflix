@@ -1,6 +1,8 @@
 import { useContext, useState } from "react";
 import styles from "./index.module.scss";
 import storage from "../../firebase";
+import Topbar from "../../../components/admin-components/topbar/Topbar";
+import Sidebar from "../../../components/admin-components/sidebar/Sidebar";
 
 export default function index() {
   const [movie, setMovie] = useState(null);
@@ -62,7 +64,7 @@ export default function index() {
 
   const createMovie = async (movie) => {
     try {
-      const res = await axios.post("/movies", movie, {
+      const res = await axios.post("http://localhost:3030/api/movies", movie, {
         headers: {
           token: JSON.parse(localStorage.getItem("user")).accessToken,
         },

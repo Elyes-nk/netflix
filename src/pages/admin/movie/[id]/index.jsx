@@ -1,12 +1,31 @@
 import { Link } from "next/link";
 import styles from "./index.module.scss";
 import { Publish } from "@material-ui/icons";
+import { useRouter } from "next/router";
+import Topbar from "../../../components/admin-components/topbar/Topbar";
+import Sidebar from "../../../components/admin-components/sidebar/Sidebar";
 
 export default function index() {
+  
+  const router = useRouter();
+  const id = router.query.id;
+  const [movie, setMovie] = useState(null);
+  useEffect(() => {
+    const getMovie = async () =>{
+        try {
+          const res = await axios.get(`http://localhost:3030/api/movies/${id}`
+          , {
+            headers: {
+              token: JSON.parse(localStorage.getItem("user")).accessToken,
+            },
+          });
+          setMovie(res.data);
+        } catch (err) {
+        }
+    }
+    getMovie()
+  }, []);
 
-  // //editer use location
-  // const location = useLocation();
-  // const movie = location.movie;
 
   
   return (

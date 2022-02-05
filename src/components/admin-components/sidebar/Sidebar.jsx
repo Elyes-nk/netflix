@@ -17,26 +17,19 @@ import {
 import Link from "next/link";
 
 export default function Sidebar() {
+  console.log(process.env.API_URL);
   return (
     <div className={styles.sidebar}>
       <div className={styles.sidebarWrapper}>
         <div className={styles.sidebarMenu}>
           <h3 className={styles.sidebarTitle}>Dashboard</h3>
           <ul className={styles.sidebarList}>
-            <Link href="/admin/" className={styles.link}>
-              <li className={styles.sidebarListItem__active}>
+            <Link href="/admin/home" className={styles.link}>
+              <li className={styles.sidebarListItem}>
                 <LineStyle className={styles.sidebarIcon}/>
                 Home
               </li>
             </Link>
-            <li className={styles.sidebarListItem}>
-              <Timeline className={styles.sidebarIcon}/>
-              Analytics
-            </li>
-            <li className={styles.sidebarListItem}>
-              <TrendingUp className={styles.sidebarIcon} />
-              Sales
-            </li>
           </ul>
         </div>
         <div className={styles.sidebarMenu}>

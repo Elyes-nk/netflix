@@ -3,6 +3,8 @@ import { DataGrid } from "@material-ui/data-grid";
 import { DeleteOutline } from "@material-ui/icons";
 import { Link } from "next/link";
 import { useState, useEffect } from "react";
+import Topbar from "../../../components/admin-components/topbar/Topbar";
+import Sidebar from "../../../components/admin-components/sidebar/Sidebar";
 
 export default function index() {
 
@@ -11,7 +13,7 @@ const [movies, setMovies] = useState([]);
   useEffect(() => {
     const getMovies = async () =>{
         try {
-          const res = await axios.get("/movies", {
+          const res = await axios.get("http://localhost:3030/api/movies", {
             headers: {
               token: JSON.parse(localStorage.getItem("user")).accessToken,
             },
@@ -26,7 +28,7 @@ const [movies, setMovies] = useState([]);
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete("/movies/" + id, {
+      await axios.delete("http://localhost:3030/api/movies/" + id, {
         headers: {
           token: JSON.parse(localStorage.getItem("user")).accessToken,
         },
@@ -64,9 +66,7 @@ const [movies, setMovies] = useState([]);
       renderCell: (params) => {
         return (
           <>
-            <Link
-              href={{ pathname: "/movie/" + params.row._id, movie: params.row }}
-            >
+            <Link href={`/admin/movie/${params.row._id}`}>
               <button className={styles.productListEdit} >Edit</button>
             </Link>
             <DeleteOutline

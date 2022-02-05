@@ -7,7 +7,7 @@ export default function Topbar() {
     <div className={styles.topbar}>
       <div className={styles.topbarWrapper}>
         <div className={styles.topLeft}>
-          <span className={styles.logo}>Netflix</span>
+          <span className={styles.logo}>NETFLIX</span>
         </div>
         <div className={styles.topRight}>
           {/* <div className={styles.topbarIconContainer}>

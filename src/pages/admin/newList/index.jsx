@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import styles from "./index.module.scss";
+import Topbar from "../../../components/admin-components/topbar/Topbar";
+import Sidebar from "../../../components/admin-components/sidebar/Sidebar";
 
 export default function index() {
   const [movies, setMovies] = useState([]);
@@ -9,7 +11,7 @@ export default function index() {
   useEffect(() => {
     const getMovies = async () =>{
         try {
-          const res = await axios.get("/movies", {
+          const res = await axios.get("http://localhost:3030/api/movies", {
             headers: {
               authorization: JSON.parse(localStorage.getItem("user")).accessToken,
             },
@@ -40,7 +42,7 @@ export default function index() {
 
   const createList = async (list) => {
     try {
-      const res = await axios.post("/lists", list, {
+      const res = await axios.post("http://localhost:3030/api/lists", list, {
         headers: {
           token: "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
         },

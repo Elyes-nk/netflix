@@ -1,11 +1,30 @@
 import { Link } from "next/link";
 import styles from "./index.module.scss";
+import { useRouter } from "next/router";
+import Topbar from "../../../components/admin-components/topbar/Topbar";
+import Sidebar from "../../../components/admin-components/sidebar/Sidebar";
 
 export default function index() {
+  
+  const router = useRouter();
+  const id = router.query.id;
+  const [list, setList] = useState(null);
+  useEffect(() => {
+    const getList = async () =>{
+        try {
+          const res = await axios.get(`http://localhost:3030/api/lists/${id}`
+          , {
+            headers: {
+              token: JSON.parse(localStorage.getItem("user")).accessToken,
+            },
+          });
+          setList(res.data);
+        } catch (err) {
+        }
+    }
+    getList()
+  }, []);
 
-  //editer le uselocation
-  // const location = useLocation();
-  // const list = location.list;
 
   
   return (

@@ -2,7 +2,9 @@ import styles from "./index.module.scss";
 import { DataGrid } from "@material-ui/data-grid";
 import { DeleteOutline } from "@material-ui/icons";
 import { Link } from "next/link";
-import { useEffect } from "react";
+import Topbar from "../../../components/admin-components/topbar/Topbar";
+import Sidebar from "../../../components/admin-components/sidebar/Sidebar";
+import { useState, useEffect } from "react";
 
 export default function index() {
   const [lists, setLists] = useState([]);
@@ -11,7 +13,7 @@ export default function index() {
   useEffect(() => {
     const getLists = async () =>{
         try {
-          const res = await axios.get("/lists", {
+          const res = await axios.get("http://localhost:3030/api/lists", {
             headers: {
               token: JSON.parse(localStorage.getItem("user")).accessToken,
             },
@@ -26,7 +28,7 @@ export default function index() {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete("/lists/" + id, {
+      await axios.delete("http://localhost:3030/api/lists/" + id, {
         headers: {
           token: JSON.parse(localStorage.getItem("user")).accessToken,
         },
@@ -38,7 +40,7 @@ export default function index() {
 
   const columns = [
     { field: "_id", headerName: "ID", width: 250 },
-    { field: "title", headerName: "title", width: 250 },
+    { field: "title", headerName: "title", width: 250  },
     { field: "genre", headerName: "Genre", width: 150 },
     { field: "type", headerName: "type", width: 150 },
     {
@@ -48,10 +50,7 @@ export default function index() {
       renderCell: (params) => {
         return (
           <>
-            {/* editer le link */}
-            <Link
-              href={{ pathname: "/list/" + params.row._id, list: params.row }}
-            >
+            <Link href={`/admin/list/${params.row._id}`}>
               <button className={styles.productListEdit}>Edit</button>
             </Link>
             <DeleteOutline

@@ -1,4 +1,6 @@
 import styles from "./index.module.scss";
+import Topbar from "../../../components/admin-components/topbar/Topbar";
+import Sidebar from "../../../components/admin-components/sidebar/Sidebar";
 
 export default function index() {
   return (
