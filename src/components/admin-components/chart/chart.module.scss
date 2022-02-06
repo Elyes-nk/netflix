@@ -1,3 +1,5 @@
+@import "../../../styles/variables.scss";
+
 .chart {
   margin: 20px;
   padding: 20px;
@@ -6,5 +8,6 @@
 
   .chartTitle {
     margin-bottom: 20px;
+    color: $netflix__white;
   }
 }

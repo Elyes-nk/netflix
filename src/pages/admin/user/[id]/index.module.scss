@@ -1,4 +1,4 @@
-@import "../../../styles/variables.scss";
+@import "../../../../styles/variables.scss";
 
 .container{
   display: flex;
@@ -7,16 +7,20 @@
     flex: 4;
     padding: 20px;
 
-    .userTitleContainer {
+    .title__container {
       display: flex;
       align-items: center;
       justify-content: space-between;
+      .title {
+        color: $netflix__white;
+      }
 
-      .userAddButton {
+      .add__button {
         width: 80px;
         border: none;
         padding: 5px;
-        background-color: teal;
+        background-color: $netflix__gray;
+        color: $netflix__white;
         border-radius: 5px;
         cursor: pointer;
         color: $netflix__white;
@@ -25,88 +29,90 @@
     }
 
 
-    .userContainer {
+    .user__container {
       display: flex;
       margin-top: 20px;
     
-      .userShow {
+      .user__show {
         flex: 1;
         padding: 20px;
         -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
         box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
-        .userShowTop {
+        .user__show__top {
           display: flex;
           align-items: center;
         }
     
-        .userShowImg {
+        .user__show__img {
           width: 40px;
           height: 40px;
           border-radius: 50%;
           object-fit: cover;
         }
     
-        .userShowTopTitle {
+        .user__show__top__title {
           display: flex;
           flex-direction: column;
           margin-left: 20px;
+          color: $netflix__white;
+          .user__show__username {
+            font-weight: 600;
+          }
+      
+          .user__show__user__title {
+            font-weight: 300;
+          }
         }
     
-        .userShowUsername {
-          font-weight: 600;
-        }
+      
     
-        .userShowUserTitle {
-          font-weight: 300;
-        }
-    
-        .userShowBottom{
+        .user__show__bottom{
             margin-top: 20px;
         }
     
-        .userShowTitle {
+        .user__show__title {
           font-size: 14px;
           font-weight: 600;
           color: $netflix__gray;
         }
     
-        .userShowInfo{
+        .user__show__info{
             display: flex;
             align-items: center;
             margin: 20px 0px;
-            color: $netflix__gray;
+            .user__show__icon{
+              font-size: 16px !important;
+              color: $netflix__red;
+            }
         }
-    
-        .userShowIcon{
-            font-size: 16px !important;
-        }
-    
-        .userShowInfoTitle{
-            margin-left: 10px;
-        }
+        .user__show__info__title{
+          margin-left: 10px;
+        }    
       }
 
-      .userUpdate {
+      .user__update {
         flex: 2;
         padding: 20px;
         -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
         box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
         margin-left: 20px;
-        .userUpdateTitle{
+        .user__update__title{
           font-size: 24px;
           font-weight: 600;
+          color: $netflix__white;
         }
 
-        .userUpdateForm{
+        .user__update__form{
             display: flex;
             justify-content: space-between;
             margin-top: 20px;
         }
 
-        .userUpdateItem{
+        .user__update__item{
             display: flex;
             flex-direction: column;
             margin-top: 10px;
+            color: $netflix__gray;
 
             label{
               margin-bottom: 5px;
@@ -116,25 +122,30 @@
 
         
 
-        .userUpdateInput{
+        .user__update__input{
             border: none;
             width: 250px;
             height: 30px;
-            border-bottom: 1px solid gray;
+            background-color: $netflix__gray;
+            border-bottom: 1px solid $netflix__gray;
+            color: $netflix__white;
+            &::placeholder {
+              color: $netflix__white;
+            }
         }
 
-        .userUpdateRight{
+        .user__update__right{
             display: flex;
             flex-direction: column;
             justify-content: space-between;
         }
 
-        .userUpdateUpload{
+        .user__update__upload{
             display: flex;
             align-items: center;
         }
 
-        .userUpdateImg{
+        .user__update__img{
             width: 100px;
             height: 100px;
             border-radius: 10px;
@@ -142,16 +153,16 @@
             margin-right: 20px;
         }
 
-        .userUpdateIcon{
+        .user__update__icon{
             cursor: pointer;
         }
 
-        .userUpdateButton{
+        .user__update__button{
             border-radius: 5px;
             border: none;
             padding: 5px;
             cursor: pointer;
-            background-color: darkblue;
+            background-color: $netflix__gray;
             color: $netflix__white;
             font-weight: 600;
         }

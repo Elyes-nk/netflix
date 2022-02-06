@@ -6,140 +6,134 @@ import {
   PhoneAndroid,
   Publish,
 } from "@material-ui/icons";
-import { Link } from "next/link";
+import Link from "next/link";
 import styles from "./index.module.scss";
-import Topbar from "../../../components/admin-components/topbar/Topbar";
-import Sidebar from "../../../components/admin-components/sidebar/Sidebar";
+import Topbar from "../../../../components/admin-components/topbar/Topbar";
+import Sidebar from "../../../../components/admin-components/sidebar/Sidebar";
+import { useRouter } from 'next/router';
+import {useState, useEffect} from 'react';
+import axios from 'axios';
 
 export default function index() {
 
   const router = useRouter();
   const id = router.query.id;
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState({});
   useEffect(() => {
     const getUser = async () =>{
         try {
-          const res = await axios.get(`${process.env.API_URL}/users/${id}`
-          , {
-            headers: {
-              token: JSON.parse(localStorage.getItem("user")).accessToken,
-            },
-          });
+          const res = await axios.get(`${process.env.API_URL}/users/find/${id}`
+          // , {
+          //   headers: {
+          //     token: JSON.parse(localStorage.getItem("user")).accessToken,
+          //   },
+          // }
+          );
           setUser(res.data);
         } catch (err) {
         }
     }
     getUser()
-  }, []);
+  }, [id]);
 
+  const updateUser = async () => {
+    try {
+     const res = await axios.put(`${process.env.API_URL}/users/${id}`
+     ,{
+       user
+     }
+     // , {
+     //   headers: {
+     //     token:JSON.parse(localStorage.getItem("user")).accessToken,
+     //   },
+     // }
+     );
+   } catch (err) {
+   }
+ }
+ 
   return (
     <>
     <Topbar />
     <div className={styles.container}>
       <Sidebar />
       <div className={styles.user}>
-        <div className={styles.userTitleContainer}>
-          <h1 className={styles.userTitle}>Edit User</h1>
+        <div className={styles.title__container}>
+          <h1 className={styles.title}>Edit User</h1>
           <Link href="/newUser">
-            <button className={styles.userAddButton}>Create</button>
+            <button className={styles.add__button}>Create</button>
           </Link>
         </div>
-        <div className={styles.userContainer}>
-          <div className={styles.userShow}>
-                    <div className={styles.userShowTop}>
+        <div className={styles.user__container}>
+          <div className={styles.user__show}>
+                    <div className={styles.user__show__top}>
                         <img
                           src="https://images.pexels.com/photos/1152994/pexels-photo-1152994.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
                           alt=""
-                          className={styles.userShowImg}
+                          className={styles.user__show__img}
                         />
-                        <div className={styles.userShowTopTitle}>
-                          <span className={styles.userShowUsername}>Anna Becker</span>
-                          <span className={styles.userShowUserTitle}>Software Engineer</span>
+                        <div className={styles.user__show__top__title}>
+                          <span className={styles.user__show__username}>{user.username}</span>
+                          <span className={styles.user__show__user__title}>{user.isAdmin ? "Administrator" : "User"}</span>
                         </div>
                     </div>
-                    <div className={styles.userShowBottom}>
-                      <span className={styles.userShowTitle}>Account Details</span>
-                      <div className={styles.userShowInfo}>
-                        <PermIdentity className={styles.userShowIcon} />
-                        <span className={styles.userShowInfoTitle}>annabeck99</span>
+                    <div className={styles.user__show__bottom}>
+                      <span className={styles.user__show__title}>Account Details</span>
+                      <div className={styles.user__show__info}>
+                        <PermIdentity className={styles.user__show__icon} />
+                        <span className={styles.user__show__title}>{user.username}</span>
                       </div>
-                      <div className={styles.userShowInfo}>
-                        <CalendarToday className={styles.userShowIcon} />
-                        <span className={styles.userShowInfoTitle}>10.12.1999</span>
+                      <div className={styles.user__show__info}>
+                        <CalendarToday className={styles.user__show__icon} />
+                        <span className={styles.user__show__title}>{user.createdAt}</span>
                       </div>
-                      <span className={styles.userShowTitle}>Contact Details</span>
-                      <div className={styles.userShowInfo}>
-                        <PhoneAndroid className={styles.userShowIcon} />
-                        <span className={styles.userShowInfoTitle}>+1 123 456 67</span>
-                      </div>
-                      <div className={styles.userShowInfo}>
-                        <MailOutline className={styles.userShowIcon} />
-                        <span className={styles.userShowInfoTitle}>annabeck99@gmail.com</span>
-                      </div>
-                      <div className={styles.userShowInfo}>
-                        <LocationSearching className={styles.userShowIcon} />
-                        <span className={styles.userShowInfoTitle}>New York | USA</span>
+
+                      <span className={styles.user__show__title}>Contact Details</span>
+                      <div className={styles.user__show__info}>
+                        <MailOutline className={styles.user__show__icon} />
+                        <span className={styles.user__show__title}>{user.email}</span>
                       </div>
                     </div>
           </div>
-          <div className={styles.userUpdate}>
-            <span className={styles.userUpdateTitle}>Edit</span>
-            <form className={styles.userUpdateForm}>
+          <div className={styles.user__update}>
+            <span className={styles.user__update__title}>Edit</span>
+            <form className={styles.user__update__form}>
               <div className={styles.userUpdateLeft}>
-                <div className={styles.userUpdateItem}>
+                <div className={styles.user__update__item}>
                   <label>Username</label>
                   <input
                     type="text"
-                    placeholder="annabeck99"
-                    className={styles.userUpdateInput}
+                    placeholder={user.username}
+                    onChange={(e) => setUser({...user, username:e.target.value})}
+                    className={styles.user__update__input}
                   />
                 </div>
-                <div className={styles.userUpdateItem}>
-                  <label>Full Name</label>
-                  <input
-                    type="text"
-                    placeholder="Anna Becker"
-                    className={styles.userUpdateInput}
-                  />
-                </div>
-                <div className={styles.userUpdateItem}>
+                <div className={styles.user__update__item}>
                   <label>Email</label>
                   <input
-                    type="text"
-                    placeholder="annabeck99@gmail.com"
-                    className={styles.userUpdateInput}
-                  />
-                </div>
-                <div className={styles.userUpdateItem}>
-                  <label>Phone</label>
-                  <input
-                    type="text"
-                    placeholder="+1 123 456 67"
-                    className={styles.userUpdateInput}
-                  />
-                </div>
-                <div className={styles.userUpdateItem}>
-                  <label>Address</label>
-                  <input
-                    type="text"
-                    placeholder="New York | USA"
-                    className={styles.userUpdateInput}
+                    type="email"
+                    placeholder={user.email}
+                    onChange={(e) => setUser({...user, email:e.target.value})}
+                    className={styles.user__update__input}
                   />
                 </div>
               </div>
-              <div className={styles.userUpdateRight}>
-                <div className={styles.userUpdateUpload}>
+              <div className={styles.user__update__right}>
+                <div className={styles.user__update__upload}>
                   <img
-                    className={styles.userUpdateImg}
+                    className={styles.user__update__img}
                     src="https://images.pexels.com/photos/1152994/pexels-photo-1152994.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
                     alt=""
                   />
                   <label htmlFor="file">
-                    <Publish className={styles.userUpdateIcon} />
+                    <Publish className={styles.user__update__icon} />
                   </label>
                   <input type="file" id="file" style={{ display: "none" }} />
                 </div>
-                <button className={styles.userUpdateButton}>Update</button>
+                <button 
+                  className={styles.user__update__button}
+                  onClick={()=>updateUser()}
+                >Update</button>
               </div>
             </form>
           </div>

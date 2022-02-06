@@ -1,5 +1,3 @@
-// import Chart from "../../../components/admin-components/chart/Chart";
-import FeaturedInfo from "../../../components/admin-components/featuredInfo/FeaturedInfo";
 import styles from "./index.module.scss";
 import WidgetSm from "../../../components/admin-components/widgetSm/WidgetSm"
 import WidgetLg from "../../../components/admin-components/widgetLg/WidgetLg";
@@ -40,6 +38,7 @@ export default function index() {
           //  token: JSON.parse(localStorage.getItem("user")).accessToken,
         // }
         );
+        console.log('res data = ',res.data);
         const statsList = res.data.sort(function (a, b) {
           return a._id - b._id;
         });
@@ -54,6 +53,7 @@ export default function index() {
       }
     };
     getStats();
+    console.log(userStats);
   }, []);
 
   return (
@@ -62,7 +62,6 @@ export default function index() {
     <div className={styles.container}>
       <Sidebar />
       <div className={styles.home}>
-        <FeaturedInfo />
         <Chart data={userStats} title="User Analytics" grid dataKey="New User" />
         <div className={styles.homeWidgets}>
           <WidgetSm />

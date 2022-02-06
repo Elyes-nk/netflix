@@ -1,8 +1,8 @@
 import { Link } from "next/link";
 import styles from "./index.module.scss";
 import { useRouter } from "next/router";
-import Topbar from "../../../components/admin-components/topbar/Topbar";
-import Sidebar from "../../../components/admin-components/sidebar/Sidebar";
+import Topbar from "../../../../components/admin-components/topbar/Topbar";
+import Sidebar from "../../../../components/admin-components/sidebar/Sidebar";
 
 export default function index() {
   
@@ -12,7 +12,7 @@ export default function index() {
   useEffect(() => {
     const getList = async () =>{
         try {
-          const res = await axios.get(`${process.env.API_URL}/lists/${id}`
+          const res = await axios.get(`${process.env.API_URL}/lists/find/${id}`
           , {
             headers: {
               token: JSON.parse(localStorage.getItem("user")).accessToken,
@@ -23,9 +23,23 @@ export default function index() {
         }
     }
     getList()
-  }, []);
+  }, [id]);
 
-
+  const updateList = async () => {
+    try {
+     const res = await axios.put(`${process.env.API_URL}/lists/${id}`
+     ,{
+       list
+     }
+     // , {
+     //   headers: {
+     //     token:JSON.parse(localStorage.getItem("user")).accessToken,
+     //   },
+     // }
+     );
+   } catch (err) {
+   }
+ }
   
   return (
     <>
@@ -35,7 +49,7 @@ export default function index() {
       <div className={styles.product}>
           <div className={styles.productTitleContainer}>
             <h1 className={styles.productTitle}>List</h1>
-            <Link href="/newList">
+            <Link href="/admin/newList">
               <button className={styles.productAddButton}>Create</button>
             </Link>
           </div>
@@ -64,14 +78,29 @@ export default function index() {
           <form className={styles.productForm}>
             <div className={styles.productFormLeft}>
               <label>List Title</label>
-              <input type="text" placeholder={list.title} />
+              <input 
+                type="text" 
+                placeholder={list.title} 
+                onChange={(e) => setList({...list, title:e.target.value})}
+              />
               <label>Type</label>
-              <input type="text" placeholder={list.type} />
+              <input 
+                type="text" 
+                placeholder={list.type}
+                onChange={(e) => setList({...type, type:e.target.value})}
+              />
               <label>Genre</label>
-              <input type="text" placeholder={list.genre} />
+              <input 
+                type="text" 
+                placeholder={list.genre} 
+                onChange={(e) => setList({...genre, genre:e.target.value})}
+              />
             </div>
             <div className={styles.productFormRight}>
-              <button className={styles.productButton}>Update</button>
+              <button 
+                className={styles.productButton}
+                onClick={()=>updateList()}
+              >Update</button>
             </div>
           </form>
         </div>

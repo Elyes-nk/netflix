@@ -2,8 +2,8 @@ import { Link } from "next/link";
 import styles from "./index.module.scss";
 import { Publish } from "@material-ui/icons";
 import { useRouter } from "next/router";
-import Topbar from "../../../components/admin-components/topbar/Topbar";
-import Sidebar from "../../../components/admin-components/sidebar/Sidebar";
+import Topbar from "../../../../components/admin-components/topbar/Topbar";
+import Sidebar from "../../../../components/admin-components/sidebar/Sidebar";
 
 export default function index() {
   
@@ -13,7 +13,7 @@ export default function index() {
   useEffect(() => {
     const getMovie = async () =>{
         try {
-          const res = await axios.get(`${process.env.API_URL}/movies/${id}`
+          const res = await axios.get(`${process.env.API_URL}/movies/find/${id}`
           , {
             headers: {
               token: JSON.parse(localStorage.getItem("user")).accessToken,
@@ -24,8 +24,23 @@ export default function index() {
         }
     }
     getMovie()
-  }, []);
+  }, [id]);
 
+  const updateMovie = async () => {
+    try {
+     const res = await axios.put(`${process.env.API_URL}/movies/${id}`
+     ,{
+       movie
+     }
+     // , {
+     //   headers: {
+     //     token:JSON.parse(localStorage.getItem("user")).accessToken,
+     //   },
+     // }
+     );
+   } catch (err) {
+   }
+ }
 
   
   return (
@@ -70,18 +85,37 @@ export default function index() {
           <form className={styles.productForm}>
             <div className={styles.productFormLeft}>
               <label>Movie Title</label>
-              <input type="text" placeholder={movie.title} />
+              <input 
+                type="text"
+                placeholder={movie.title} 
+                onChange={(e) => setMovie({...movie, title:e.target.value})}
+              />
               <label>Year</label>
-              <input type="text" placeholder={movie.year} />
+              <input 
+                type="text"
+                placeholder={movie.year} 
+                onChange={(e) => setMovie({...movie, year:e.target.value})}
+              />
               <label>Genre</label>
-              <input type="text" placeholder={movie.genre} />
-              <label>Limit</label>
-              <input type="text" placeholder={movie.limit} />
+              <input 
+                type="text"
+                placeholder={movie.genre} 
+                onChange={(e) => setMovie({...genre, genre:e.target.value})}
+              />
               <label>Trailer</label>
-              <input type="file" placeholder={movie.trailer} />
+              <input 
+                type="text"
+                placeholder={movie.trailer} 
+                onChange={(e) => setMovie({...movie, trailer:e.target.value})}
+              />
               <label>Video</label>
-              <input type="file" placeholder={movie.video} />
+              <input 
+                type="text"
+                placeholder={movie.video} 
+                onChange={(e) => setMovie({...movie, video:e.target.value})}
+              />
             </div>
+
             <div className={styles.productFormRight}>
               <div className={styles.productUpload}>
                 <img
@@ -89,12 +123,11 @@ export default function index() {
                   alt=""
                   className={styles.productUploadImg}
                 />
-                <label for="file">
-                  <Publish />
-                </label>
-                <input type="file" id="file" style={{ display: "none" }} />
               </div>
-              <button className={styles.productButton}>Update</button>
+              <button 
+                onClick={()=>updateMovie()}
+                className={styles.productButton}
+              >Update</button>
             </div>
           </form>
         </div>
