@@ -53,7 +53,7 @@ export default function ListItem({ index, id }) {
   const updateUser = async (wichlist) => {
      dispatch(updateStart())
      try {
-      const res = await axios.put("http://localhost:3030/api/users/"+ user._id
+      const res = await axios.put(`${process.env.API_URL}/users/${user._id}`
       ,{
         wichlist:wichlist
       }

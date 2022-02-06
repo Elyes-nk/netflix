@@ -16,7 +16,7 @@ function index() {
   useEffect(() => {
     const findMovie = async () => {
       try{
-        const res = await axios.get(`http://localhost:3030/api/movies/find/${id}`
+        const res = await axios.get(`${process.env.API_URL}/movies/find/${id}`
           // , {
           //   headers: {
           //     token:JSON.parse(localStorage.getItem("user")).accessToken,

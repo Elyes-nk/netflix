@@ -24,7 +24,7 @@ function index() {
     setPassword(passwordRef.current.value);
     setUsername(usernameRef.current.value);
     try {
-      await axios.post("http://localhost:3030/api/auth/register"
+      await axios.post(`${process.env.API_URL}/auth/register`
       ,{ 
         email, 
         username, 

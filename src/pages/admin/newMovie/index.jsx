@@ -64,7 +64,9 @@ export default function index() {
 
   const createMovie = async (movie) => {
     try {
-      const res = await axios.post("http://localhost:3030/api/movies", movie, {
+      const res = await axios.post(`${process.env.API_URL}/movies`
+      , movie
+      , {
         headers: {
           token: JSON.parse(localStorage.getItem("user")).accessToken,
         },

@@ -31,11 +31,10 @@ export default function Featured({ type, setGenre }) {
   useEffect(() => {
     const getRandomContent = async () => {
       try {
-        const res = await axios.get(`http://localhost:3030/api/${type ? type : "movies"}/random`
+        const res = await axios.get(`${process.env.API_URL}/${type ? type : "movies"}/random`
         // , {
         //   headers: {
-        //     token:
-        //       "Bearer "+JSON.parse(localStorage.getItem("user")).accessToken,
+        //     token:JSON.parse(localStorage.getItem("user")).accessToken,
         //   },
         // }
         );

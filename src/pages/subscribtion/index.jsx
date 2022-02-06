@@ -10,10 +10,11 @@ import { Check, CheckCircleOutline } from "@material-ui/icons";
 import { loadStripe } from "@stripe/stripe-js";
 import stripeService from "../../services/stripe.service";
 
-const stripePromise = loadStripe("pk_test_51KHlC8C8XExSuQ3wbpTDJFyWflV64qb3YEwx21M9fUo1S8mv3JUFjs9rYsNe0PLEzFsWoeX4eyJuPgKfRUF2v1fe00BskIzVoI");
+const stripePromise = loadStripe(process.env.STRIPE_KEY);
 
 
 function index() {
+  console.log("stripe key = ",process.env.STRIPE_KEY);
   const { dispatch, user } = useContext(AuthContext);
   const [pageOne, setPageOne] = useState(true);
   const [subscribtions, setSubscribtions] = useState([]);
@@ -23,11 +24,10 @@ function index() {
   useEffect(() => {
     const getSubscribtions = async () => {
       try {
-        const res = await axios.get(`http://localhost:3030/api/subscribtions/`
+        const res = await axios.get(`${process.env.API_URL}/subscribtions/`
         // , {
         //   headers: {
-        //     token:
-        //       "Bearer "+JSON.parse(localStorage.getItem("user")).accessToken,
+        //     token: JSON.parse(localStorage.getItem("user")).accessToken,
         //   },
         // }
         );

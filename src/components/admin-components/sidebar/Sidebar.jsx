@@ -17,7 +17,6 @@ import {
 import Link from "next/link";
 
 export default function Sidebar() {
-  console.log(process.env.API_URL);
   return (
     <div className={styles.sidebar}>
       <div className={styles.sidebarWrapper}>

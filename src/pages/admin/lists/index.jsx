@@ -13,7 +13,7 @@ export default function index() {
   useEffect(() => {
     const getLists = async () =>{
         try {
-          const res = await axios.get("http://localhost:3030/api/lists", {
+          const res = await axios.get(`${process.env.API_URL}/lists`, {
             headers: {
               token: JSON.parse(localStorage.getItem("user")).accessToken,
             },
@@ -28,7 +28,8 @@ export default function index() {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete("http://localhost:3030/api/lists/" + id, {
+      await axios.delete(`${process.env.API_URL}/lists/${id}`
+      , {
         headers: {
           token: JSON.parse(localStorage.getItem("user")).accessToken,
         },

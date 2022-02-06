@@ -13,7 +13,7 @@ export default function index() {
   useEffect(() => {
     const getMovie = async () =>{
         try {
-          const res = await axios.get(`http://localhost:3030/api/movies/${id}`
+          const res = await axios.get(`${process.env.API_URL}/movies/${id}`
           , {
             headers: {
               token: JSON.parse(localStorage.getItem("user")).accessToken,

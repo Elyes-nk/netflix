@@ -23,7 +23,7 @@ function index() {
   useEffect(() => {
     const getRandomLists = async () => {
       try {
-        const res = await axios.get(`http://localhost:3030/api/lists${type ? "?type=" + type : ""}${genre ? "&genre=" + genre : ""}`
+        const res = await axios.get(`${process.env.API_URL}/lists${type ? "?type=" + type : ""}${genre ? "&genre=" + genre : ""}`
           // ,{
           //   headers: {
           //     token:JSON.parse(localStorage.getItem("user")).accessToken,

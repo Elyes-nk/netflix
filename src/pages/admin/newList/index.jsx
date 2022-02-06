@@ -11,9 +11,10 @@ export default function index() {
   useEffect(() => {
     const getMovies = async () =>{
         try {
-          const res = await axios.get("http://localhost:3030/api/movies", {
+          const res = await axios.get(`${process.env.API_URL}/movies`
+          , {
             headers: {
-              authorization: JSON.parse(localStorage.getItem("user")).accessToken,
+              token: JSON.parse(localStorage.getItem("user")).accessToken,
             },
           });
           setMovies(res.data);
@@ -42,9 +43,11 @@ export default function index() {
 
   const createList = async (list) => {
     try {
-      const res = await axios.post("http://localhost:3030/api/lists", list, {
+      const res = await axios.post(`${process.env.API_URL}/lists`
+      , list
+      , {
         headers: {
-          token: "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
+          token: JSON.parse(localStorage.getItem("user")).accessToken,
         },
       });
     } catch (err) {

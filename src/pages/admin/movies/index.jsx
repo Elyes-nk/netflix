@@ -13,7 +13,7 @@ const [movies, setMovies] = useState([]);
   useEffect(() => {
     const getMovies = async () =>{
         try {
-          const res = await axios.get("http://localhost:3030/api/movies", {
+          const res = await axios.get(`${process.env.API_URL}/movies`, {
             headers: {
               token: JSON.parse(localStorage.getItem("user")).accessToken,
             },
@@ -28,7 +28,7 @@ const [movies, setMovies] = useState([]);
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete("http://localhost:3030/api/movies/" + id, {
+      await axios.delete(`${process.env.API_URL}/movies/${id}`, {
         headers: {
           token: JSON.parse(localStorage.getItem("user")).accessToken,
         },
