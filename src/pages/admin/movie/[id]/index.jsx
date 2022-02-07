@@ -1,9 +1,11 @@
-import { Link } from "next/link";
+import Link from "next/link";
 import styles from "./index.module.scss";
 import { Publish } from "@material-ui/icons";
 import { useRouter } from "next/router";
 import Topbar from "../../../../components/admin-components/topbar/Topbar";
 import Sidebar from "../../../../components/admin-components/sidebar/Sidebar";
+import {useState, useEffect} from 'react';
+import axios from "axios";
 
 export default function index() {
   
@@ -18,9 +20,12 @@ export default function index() {
             headers: {
               token: JSON.parse(localStorage.getItem("user")).accessToken,
             },
-          });
+          }
+          );
           setMovie(res.data);
+          console.log(res.data);
         } catch (err) {
+          console.log(err);
         }
     }
     getMovie()
@@ -29,23 +34,23 @@ export default function index() {
   const updateMovie = async () => {
     try {
      const res = await axios.put(`${process.env.API_URL}/movies/${id}`
-     ,{
+     , {
        movie
      }
-     // , {
-     //   headers: {
-     //     token:JSON.parse(localStorage.getItem("user")).accessToken,
-     //   },
-     // }
+     , {
+       headers: {
+         token:JSON.parse(localStorage.getItem("user")).accessToken,
+       },
+     }
      );
    } catch (err) {
    }
  }
 
-  
   return (
       <>
     <Topbar />
+    {movie ? (
     <div className={styles.container}>
       <Sidebar />
       <div className={styles.product}>
@@ -63,19 +68,19 @@ export default function index() {
             </div>
             <div className={styles.productInfoBottom}>
               <div className={styles.productInfoItem}>
-                <span className={styles.productInfoKey}>id:</span>
+                <span className={styles.productInfoKey}>Id:</span>
                 <span className={styles.productInfoValue}>{movie._id}</span>
               </div>
               <div className={styles.productInfoItem}>
-                <span className={styles.productInfoKey}>genre:</span>
-                <span className={styles.productInfoValue}>{movie.genre}</span>
+                <span className={styles.productInfoKey}>Genre:</span>
+                {/* <span className={styles.productInfoValue}>{movie.genre}</span> */}
               </div>
               <div className={styles.productInfoItem}>
-                <span className={styles.productInfoKey}>year:</span>
+                <span className={styles.productInfoKey}>Year:</span>
                 <span className={styles.productInfoValue}>{movie.year}</span>
               </div>
               <div className={styles.productInfoItem}>
-                <span className={styles.productInfoKey}>limit:</span>
+                <span className={styles.productInfoKey}>Limit:</span>
                 <span className={styles.productInfoValue}>{movie.limit}</span>
               </div>
             </div>
@@ -99,8 +104,8 @@ export default function index() {
               <label>Genre</label>
               <input 
                 type="text"
-                placeholder={movie.genre} 
-                onChange={(e) => setMovie({...genre, genre:e.target.value})}
+                // placeholder={movie.genre} 
+                // onChange={(e) => setMovie({...genre, genre:e.target.value})}
               />
               <label>Trailer</label>
               <input 
@@ -133,6 +138,10 @@ export default function index() {
         </div>
       </div>
     </div>
+    )
+    :
+    <h1>Chargement</h1>
+    }
   </>
   );
 }

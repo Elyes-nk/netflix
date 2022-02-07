@@ -1,8 +1,10 @@
-import { Link } from "next/link";
+import Link from "next/link";
 import styles from "./index.module.scss";
 import { useRouter } from "next/router";
 import Topbar from "../../../../components/admin-components/topbar/Topbar";
 import Sidebar from "../../../../components/admin-components/sidebar/Sidebar";
+import {useState, useEffect} from 'react';
+import axios from "axios";
 
 export default function index() {
   

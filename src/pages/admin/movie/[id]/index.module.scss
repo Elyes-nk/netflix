@@ -3,6 +3,8 @@
 .container{
   display: flex;
   margin-top: 10px;
+  color: $netflix__white;
+
  .product {
     flex: 4;
     padding: 20px;
@@ -16,7 +18,7 @@
           width: 80px;
           border: none;
           padding: 5px;
-          background-color: teal;
+          background-color: $netflix__gray;
           color: $netflix__white;
           border-radius: 5px;
           font-size: 16px;
@@ -30,6 +32,14 @@
         .productTopLeft,
         .productTopRight {
           flex: 1;
+          .productInfoImg{
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 20px;
+          }
+
         }
 
         .productTopRight {
@@ -94,6 +104,8 @@
             select{
               margin-bottom: 10px;
             }
+
+           
           }
           .productFormRight{
             display: flex;
@@ -107,6 +119,17 @@
               color:$netflix__white;
               font-weight: 600;
               cursor: pointer;
+            }
+            .productUpload{
+              display: flex;
+              align-items: center;
+              .productUploadImg{
+                width: 100px;
+                height: 100px;
+                border-radius: 10px;
+                object-fit: cover;
+                margin-right: 20px;
+              }
             }
           }
         }

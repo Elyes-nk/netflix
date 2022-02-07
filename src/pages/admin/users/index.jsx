@@ -1,10 +1,11 @@
 import styles from "./index.module.scss";
 import { DataGrid } from "@material-ui/data-grid";
 import { DeleteOutline } from "@material-ui/icons";
-import { Link } from "next/link";
-import { useState } from "react";
+import Link from "next/link";
+import { useState, useEffect } from "react";
 import Topbar from "../../../components/admin-components/topbar/Topbar";
 import Sidebar from "../../../components/admin-components/sidebar/Sidebar";
+import axios from "axios";
 
 export default function index() {
   const [users, setUsers] = useState(null);
@@ -98,6 +99,7 @@ export default function index() {
           columns={columns}
           pageSize={8}
           checkboxSelection
+          style={{color:"#e5e5e5"}}
         />
       </div>
     </div>
