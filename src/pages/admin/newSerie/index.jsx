@@ -5,21 +5,23 @@ import Topbar from "../../../components/admin-components/topbar/Topbar";
 import Sidebar from "../../../components/admin-components/sidebar/Sidebar";
 
 export default function index() {
-  const [movie, setMovie] = useState(null);
+  const [serie, setSerie] = useState(null);
+  
 
   const handleChange = (e) => {
-    setMovie({ ...movie, [e.target.name]: e.target.value });
+    setSerie({ ...serie, [e.target.name]: e.target.value });
   };
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    createMovie(movie);
+    createSerie(serie);
   };
 
-  const createMovie = async (movie) => {
+  const createSerie = async (serie) => {
     try {
-      const res = await axios.post(`${process.env.API_URL}/movies`
-      , movie
+      const res = await axios.post(`${process.env.API_URL}/series`
+      , serie
       , {
         headers: {
           token: JSON.parse(localStorage.getItem("user")).accessToken,
@@ -35,7 +37,7 @@ export default function index() {
     <div className={styles.container}>
       <Sidebar />
       <div className={styles.newProduct}>
-        <h1 className={styles.addProductTitle}>New Movie</h1>
+        <h1 className={styles.addProductTitle}>New Serie(</h1>
         <form className={styles.addProductForm}>
           <div className={styles.addProductItem}>
             <label>Image</label>
@@ -107,6 +109,7 @@ export default function index() {
 
 
 
+
           <div className={styles.addProductItem}>
             <label>Duration</label>
             <input
@@ -140,6 +143,12 @@ export default function index() {
               onChange={handleChange}
             />
           </div>
+
+
+
+
+
+          {/* choice of movies*/}
           <div className={styles.addProductItem}>
             <label>Video</label>
             <input
@@ -148,6 +157,10 @@ export default function index() {
               onChange={handleChange}
             />
           </div>
+
+
+
+
           <button className={styles.addProductButton} onClick={handleSubmit}>
             Upload
           </button>

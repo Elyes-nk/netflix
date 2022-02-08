@@ -26,8 +26,7 @@ export default function index() {
 
 
   const handleChange = (e) => {
-    const value = e.target.value;
-    setList({ ...list, [e.target.name]: value });
+    setList({ ...list, [e.target.name]: e.target.value });
   };
 
   const handleSelect = (e) => {
@@ -72,6 +71,11 @@ export default function index() {
                 onChange={handleChange}
               />
             </div>
+
+
+
+
+            {/* lists of genres */}
             <div className={styles.addProductItem}>
               <label>Genre</label>
               <input
@@ -81,6 +85,12 @@ export default function index() {
                 onChange={handleChange}
               />
             </div>
+
+
+
+
+
+            {/* delete? */}
             <div className={styles.addProductItem}>
               <label>Type</label>
               <select name="type" onChange={handleChange}>
@@ -89,7 +99,15 @@ export default function index() {
                 <option value="series">Series</option>
               </select>
             </div>
+
+
+
+
           </div>
+
+
+
+          {/* copie this? */}
           <div className={styles.formRight}>
             <div className={styles.addProductItem}>
               <label>Content</label>
@@ -107,6 +125,10 @@ export default function index() {
               </select>
             </div>
           </div>
+
+
+
+
           <button className={styles.addProductButton} onClick={handleSubmit}>
             Create
           </button>

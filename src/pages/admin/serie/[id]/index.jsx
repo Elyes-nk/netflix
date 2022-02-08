@@ -1,6 +1,5 @@
 import Link from "next/link";
 import styles from "./index.module.scss";
-import { Publish } from "@material-ui/icons";
 import { useRouter } from "next/router";
 import Topbar from "../../../../components/admin-components/topbar/Topbar";
 import Sidebar from "../../../../components/admin-components/sidebar/Sidebar";
@@ -11,31 +10,31 @@ export default function index() {
   
   const router = useRouter();
   const id = router.query.id;
-  const [movie, setMovie] = useState(null);
+  const [serie, setSerie] = useState(null);
   useEffect(() => {
-    const getMovie = async () =>{
+    const getSerie = async () =>{
         try {
-          const res = await axios.get(`${process.env.API_URL}/movies/find/${id}`
+          const res = await axios.get(`${process.env.API_URL}/series/find/${id}`
           , {
             headers: {
               token: JSON.parse(localStorage.getItem("user")).accessToken,
             },
           }
           );
-          setMovie(res.data);
+          setSerie(res.data);
           console.log(res.data);
         } catch (err) {
           console.log(err);
         }
     }
-    getMovie()
+    getSerie()
   }, [id]);
 
-  const updateMovie = async () => {
+  const updateSerie = async () => {
     try {
-     const res = await axios.put(`${process.env.API_URL}/movies/${id}`
+     const res = await axios.put(`${process.env.API_URL}/series/${id}`
      , {
-       movie
+       serie
      }
      , {
        headers: {
@@ -50,45 +49,47 @@ export default function index() {
   return (
       <>
     <Topbar />
-    {movie ? (
+    {serie ? (
     <div className={styles.container}>
       <Sidebar />
       <div className={styles.product}>
         <div className={styles.productTitleContainer}>
-          <h1 className={styles.productTitle}>Movie</h1>
-          <Link href="/newMovie">
+          <h1 className={styles.productTitle}>Serie</h1>
+          <Link href="/newSerie">
             <button className={styles.productAddButton}>Create</button>
           </Link>
         </div>
         <div className={styles.productTop}>
           <div className={styles.productTopRight}>
             <div className={styles.productInfoTop}>
-              <img src={movie.img} alt="" className={styles.productInfoImg}/>
-              <span className={styles.productName}>{movie.title}</span>
+              <img src={serie.img} alt="" className={styles.productInfoImg}/>
+              <span className={styles.productName}>{serie.title}</span>
             </div>
             <div className={styles.productInfoBottom}>
               <div className={styles.productInfoItem}>
                 <span className={styles.productInfoKey}>Id:</span>
-                <span className={styles.productInfoValue}>{movie._id}</span>
+                <span className={styles.productInfoValue}>{serie._id}</span>
               </div>
+
 
 
               {/* importer les genres */}
               <div className={styles.productInfoItem}>
                 <span className={styles.productInfoKey}>Genre:</span>
-                {/* <span className={styles.productInfoValue}>{movie.genre}</span> */}
+                {/* <span className={styles.productInfoValue}>{serie.genre}</span> */}
               </div>
+
 
 
 
 
               <div className={styles.productInfoItem}>
                 <span className={styles.productInfoKey}>Year:</span>
-                <span className={styles.productInfoValue}>{movie.year}</span>
+                <span className={styles.productInfoValue}>{serie.year}</span>
               </div>
               <div className={styles.productInfoItem}>
                 <span className={styles.productInfoKey}>Limit:</span>
-                <span className={styles.productInfoValue}>{movie.limit}</span>
+                <span className={styles.productInfoValue}>{serie.limit}</span>
               </div>
             </div>
           </div>
@@ -96,19 +97,18 @@ export default function index() {
         <div className={styles.productBottom}>
           <form className={styles.productForm}>
             <div className={styles.productFormLeft}>
-              <label>Movie Title</label>
+              <label>serie Title</label>
               <input 
                 type="text"
-                placeholder={movie.title} 
-                onChange={(e) => setMovie({...movie, title:e.target.value})}
+                placeholder={serie.title} 
+                onChange={(e) => setSerie({...serie, title:e.target.value})}
               />
               <label>Year</label>
               <input 
                 type="text"
-                placeholder={movie.year} 
-                onChange={(e) => setMovie({...movie, year:e.target.value})}
+                placeholder={serie.year} 
+                onChange={(e) => setSerie({...serie, year:e.target.value})}
               />
-
 
 
 
@@ -116,38 +116,47 @@ export default function index() {
               <label>Genre</label>
               <input 
                 type="text"
-                // placeholder={movie.genre} 
-                // onChange={(e) => setMovie({...genre, genre:e.target.value})}
+                // placeholder={serie.genre} 
+                // onChange={(e) => setSerie({...genre, genre:e.target.value})}
+              />
+              {/* fin modifs  */}
+
+
+
+
+              <label>Trailer</label>
+              <input 
+                type="text"
+                placeholder={serie.trailer} 
+                onChange={(e) => setSerie({...serie, trailer:e.target.value})}
               />
 
+
+
+              {/* changer video en movies  */}
+              <label>Video</label>
+              <input 
+                type="text"
+                placeholder={serie.video} 
+                onChange={(e) => setSerie({...serie, video:e.target.value})}
+              />
+              {/* fin modifs */}
 
 
 
               
-              <label>Trailer</label>
-              <input 
-                type="text"
-                placeholder={movie.trailer} 
-                onChange={(e) => setMovie({...movie, trailer:e.target.value})}
-              />
-              <label>Video</label>
-              <input 
-                type="text"
-                placeholder={movie.video} 
-                onChange={(e) => setMovie({...movie, video:e.target.value})}
-              />
             </div>
 
             <div className={styles.productFormRight}>
               <div className={styles.productUpload}>
                 <img
-                  src={movie.img}
+                  src={serie.img}
                   alt=""
                   className={styles.productUploadImg}
                 />
               </div>
               <button 
-                onClick={()=>updateMovie()}
+                onClick={()=>updateSerie()}
                 className={styles.productButton}
               >Update</button>
             </div>

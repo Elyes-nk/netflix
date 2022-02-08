@@ -45,18 +45,27 @@
     border-radius: 10px;
   }
 
-  .widgetLgButton.Approved{
-      background-color: $netflix__white;
-      color: #3bb077;
+  .widgetLgButton__approved{
+      padding: 5px 7px;
+      border: none;
+      border-radius: 10px;
+      background-color: #3bb077;
+      color: $netflix__white;
   }
-  .widgetLgButton.Declined{
-      background-color: $netflix__white;
-      color: #d95087;
+  .widgetLgButton__declined{
+      padding: 5px 7px;
+      border: none;
+      border-radius: 10px;
+      background-color: $netflix__red;
+      color: $netflix__white;
+
 
   }
-  .widgetLgButton.Pending{
-      background-color: $netflix__white;
-      color: #2a7ade;
-
+  .widgetLgButton__pending{
+      padding: 5px 7px;
+      border: none;
+      border-radius: 10px;
+      background-color: $netflix__gray;
+      color: $netflix__white;
   }
 }
