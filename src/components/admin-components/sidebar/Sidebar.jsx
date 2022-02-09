@@ -34,67 +34,67 @@ export default function Sidebar() {
         <div className={styles.sidebarMenu}>
           <h3 className={styles.sidebarTitle}>Quick Menu</h3>
           <ul className={styles.sidebarList}>
-            <Link href="/admin/users" className={styles.link}>
+            <Link href="/admin/users/users" className={styles.link}>
               <li className={styles.sidebarListItem}>
                 <PermIdentity className={styles.sidebarIcon} />
                 Users
               </li>
             </Link>
-            <Link href="/admin/movies" className={styles.link}>
+            <Link href="/admin/movies/movies" className={styles.link}>
               <li className={styles.sidebarListItem}>
                 <PlayCircleOutline className={styles.sidebarIcon} />
                 Movies
               </li>
             </Link>
-            <Link href="/admin/series" className={styles.link}>
+            <Link href="/admin/series/series" className={styles.link}>
               <li className={styles.sidebarListItem}>
                 <PlayCircleOutline className={styles.sidebarIcon} />
                 Series
               </li>
             </Link>
-            <Link href="/admin/lists" className={styles.link}>
+            <Link href="/admin/lists/lists" className={styles.link}>
               <li className={styles.sidebarListItem}>
                 <List className={styles.sidebarIcon} />
                 Lists
               </li>
             </Link>
-            <Link href="/admin/categories" className={styles.link}>
+            <Link href="/admin/genres/genres" className={styles.link}>
               <li className={styles.sidebarListItem}>
                 <List className={styles.sidebarIcon} />
                 Categories
               </li>
             </Link>
-            <Link href="/admin/subscribtions" className={styles.link}>
+            <Link href="/admin/subscribtions/subscribtions" className={styles.link}>
               <li className={styles.sidebarListItem}>
                 <List className={styles.sidebarIcon} />
                 Subscribtions
               </li>
             </Link>
-            <Link href="/admin/newMovie" className={styles.link}>
+            <Link href="/admin/movies/newMovie" className={styles.link}>
               <li className={styles.sidebarListItem}>
                 <AddToQueue className={styles.sidebarIcon} />
                 Add Serie
               </li>
             </Link>
-            <Link href="/admin/newSerie" className={styles.link}>
+            <Link href="/admin/series/newSerie" className={styles.link}>
               <li className={styles.sidebarListItem}>
                 <AddToQueue className={styles.sidebarIcon} />
                 Add Movie
               </li>
             </Link>
-            <Link href="/admin/newList" className={styles.link}>
+            <Link href="/admin/lists/newList" className={styles.link}>
               <li className={styles.sidebarListItem}>
                 <QueuePlayNext className={styles.sidebarIcon} />
                 Add List
               </li>
             </Link>
-            <Link href="/admin/newCategory" className={styles.link}>
+            <Link href="/admin/genres/newGenre" className={styles.link}>
               <li className={styles.sidebarListItem}>
                 <QueuePlayNext className={styles.sidebarIcon} />
-                Add Category
+                Add Genre
               </li>
             </Link>
-            <Link href="/admin/newSubscribtion" className={styles.link}>
+            <Link href="/admin/subscribtions/newSubscribtion" className={styles.link}>
               <li className={styles.sidebarListItem}>
                 <QueuePlayNext className={styles.sidebarIcon} />
                 Add Subscribtion

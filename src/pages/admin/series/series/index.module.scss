@@ -1,0 +1,41 @@
+@import "../../../styles/variables.scss";
+
+.container{
+    display: flex;
+    margin-top: 10px;
+    .productList{
+        flex: 4;
+
+        .color {
+            color: $netflix__white;
+        }
+
+        .productListItem{
+            display: flex;
+            align-items: center;
+        }
+
+        .productListImg {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 10px;
+        }
+
+        .productListEdit{
+            border: none;
+            border-radius: 10px;
+            padding: 5px 10px;
+            background-color: $netflix__gray;
+            color: $netflix__white;
+            cursor: pointer;
+            margin-right: 20px;
+        }
+
+        .productListDelete{
+            color: $netflix__red;
+            cursor: pointer;
+        }
+    }
+}
