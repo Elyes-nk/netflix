@@ -52,7 +52,14 @@ const Navbar = () => {
             <div className={styles.profile}>
               <ArrowDropDown className={styles.icon} />
               <div className={styles.options}>
-                <span>Settings</span>
+                {user?.isAdmin && ( 
+                  <Link href="/admin/home" className={styles.link}>
+                    <span>Admin</span>
+                  </Link>
+                )}
+                <Link href="/profile" className={styles.link}>
+                  <span>Settings</span>
+                </Link>
                 <span 
                   onClick={() => {
                     dispatch(logout())

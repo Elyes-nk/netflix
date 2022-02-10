@@ -4,11 +4,13 @@ import WidgetLg from "../../../components/admin-components/widgetLg/WidgetLg";
 import Topbar from "../../../components/admin-components/topbar/Topbar";
 import Sidebar from "../../../components/admin-components/sidebar/Sidebar";
 import Chart from "../../../components/admin-components/chart/Chart";
+import withAuth from '../../../middleware/withAuth';
+import withAdmin from '../../../middleware/withAdmin';
 
 import { useEffect, useMemo, useState } from "react";
 import axios from "axios";
 
-export default function index() {
+function index() {
   const MONTHS = useMemo(
     () => [
       "Jan",
@@ -72,3 +74,4 @@ export default function index() {
     </>
   );
 }
+export default withAuth(withAdmin(index))

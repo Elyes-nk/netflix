@@ -5,9 +5,10 @@ import Topbar from "../../../../../components/admin-components/topbar/Topbar";
 import Sidebar from "../../../../../components/admin-components/sidebar/Sidebar";
 import {useState, useEffect} from 'react';
 import axios from "axios";
+import withAuth from '../../../../middleware/withAuth';
+import withAdmin from '../../../../middleware/withAdmin';
 
-export default function index() {
-  
+function index() {
   const router = useRouter();
   const id = router.query.id;
   const [list, setList] = useState(null);
@@ -111,3 +112,4 @@ export default function index() {
     </>
   );
 }
+export default withAuth(withAdmin(index))

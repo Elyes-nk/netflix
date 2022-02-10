@@ -1,8 +1,33 @@
 import styles from "./index.module.scss";
 import Topbar from "../../../../components/admin-components/topbar/Topbar";
 import Sidebar from "../../../../components/admin-components/sidebar/Sidebar";
+import withAuth from '../../../../middleware/withAuth';
+import withAdmin from '../../../../middleware/withAdmin';
 
-export default function index() {
+function index() {
+  const [user, setUser] = useState(null);
+
+  const handleChange = (e) => {
+    setUser({ ...user, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    createUser(user);
+  };
+
+  const createUser = async (user) => {
+    try {
+      const res = await axios.post(`${process.env.API_URL}/users`
+      , user
+      , {
+        headers: {
+          token: JSON.parse(localStorage.getItem("user")).accessToken,
+        },
+      });
+    } catch (err) {
+    }
+  };
   return (
     <>
     <Topbar />
@@ -13,50 +38,47 @@ export default function index() {
         <form className={styles.newUserForm}>
           <div className={styles.newUserItem}>
             <label>Username</label>
-            <input type="text" placeholder="john" />
-          </div>
-          <div className={styles.newUserItem}>
-            <label>Full Name</label>
-            <input type="text" placeholder="John Smith" />
+            <input 
+            type="text" 
+            placeholder="Username"
+            name="username"
+            onChange={handleChange}
+            />
           </div>
           <div className={styles.newUserItem}>
             <label>Email</label>
-            <input type="email" placeholder="john@gmail.com" />
+            <input 
+              type="email" 
+              placeholder="john@gmail.com" 
+              name="email"
+              onChange={handleChange}/>
           </div>
           <div className={styles.newUserItem}>
             <label>Password</label>
-            <input type="password" placeholder="password" />
+            <input 
+              type="password" 
+              placeholder="password" 
+              name="password"
+              onChange={handleChange}/>
           </div>
           <div className={styles.newUserItem}>
-            <label>Phone</label>
-            <input type="text" placeholder="+1 123 456 78" />
-          </div>
-          <div className={styles.newUserItem}>
-            <label>Address</label>
-            <input type="text" placeholder="New York | USA" />
-          </div>
-          <div className={styles.newUserItem}>
-            <label>Gender</label>
-            <div className={styles.newUserGender}>
-              <input type="radio" name="gender" id="male" value="male" />
-              <label for="male">Male</label>
-              <input type="radio" name="gender" id="female" value="female" />
-              <label for="female">Female</label>
-              <input type="radio" name="gender" id="other" value="other" />
-              <label for="other">Other</label>
-            </div>
-          </div>
-          <div className={styles.newUserItem}>
-            <label>Active</label>
-            <select className={styles.newUserSelect} name="active" id="active">
-              <option value="yes">Yes</option>
-              <option value="no">No</option>
+            <label>Admin</label>
+            <select 
+              className={styles.newUserSelect} 
+              name="isAdmin" 
+              id="active">
+              <option value="true">Yes</option>
+              <option value="false">No</option>
             </select>
           </div>
-          <button className={styles.newUserButton}>Create</button>
+          <button 
+            className={styles.newUserButton}
+            onClick={handleSubmit}
+          >Create</button>
         </form>
       </div>
     </div>
   </>
   );
 }
+export default withAuth(withAdmin(index))

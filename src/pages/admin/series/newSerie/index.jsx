@@ -2,8 +2,10 @@ import { useState } from "react";
 import styles from "./index.module.scss";
 import Topbar from "../../../../components/admin-components/topbar/Topbar";
 import Sidebar from "../../../../components/admin-components/sidebar/Sidebar";
+import withAuth from '../../../../middleware/withAuth';
+import withAdmin from '../../../../middleware/withAdmin';
 
-export default function index() {
+function index() {
   const [serie, setSerie] = useState(null);
   
 
@@ -169,3 +171,4 @@ export default function index() {
   </>
   );
 }
+export default withAuth(withAdmin(index))

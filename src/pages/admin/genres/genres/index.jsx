@@ -6,8 +6,10 @@ import { useState, useEffect } from "react";
 import Topbar from "../../../../components/admin-components/topbar/Topbar";
 import Sidebar from "../../../../components/admin-components/sidebar/Sidebar";
 import axios from "axios";
+import withAuth from '../../../../middleware/withAuth';
+import withAdmin from '../../../../middleware/withAdmin';
 
-export default function index() {
+function index() {
 
 const [genres, setGenres] = useState([]);
   useEffect(() => {
@@ -99,3 +101,4 @@ const [genres, setGenres] = useState([]);
   </>
   );
 }
+export default withAuth(withAdmin(index))

@@ -1,10 +1,11 @@
 import { useContext, useState } from "react";
 import styles from "./index.module.scss";
-import storage from "../../firebase";
 import Topbar from "../../../../components/admin-components/topbar/Topbar";
 import Sidebar from "../../../../components/admin-components/sidebar/Sidebar";
+import withAuth from '../../../../middleware/withAuth';
+import withAdmin from '../../../../middleware/withAdmin';
 
-export default function index() {
+function index() {
   const [movie, setMovie] = useState(null);
 
   const handleChange = (e) => {
@@ -157,3 +158,4 @@ export default function index() {
   </>
   );
 }
+export default withAuth(withAdmin(index))
