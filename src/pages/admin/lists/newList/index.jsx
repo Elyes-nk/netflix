@@ -4,9 +4,12 @@ import Topbar from "../../../../components/admin-components/topbar/Topbar";
 import Sidebar from "../../../../components/admin-components/sidebar/Sidebar";
 import withAuth from '../../../../middleware/withAuth';
 import withAdmin from '../../../../middleware/withAdmin';
+import axios from 'axios';
+import Router from 'next/router';
 
 function index() {
   const [movies, setMovies] = useState([]);
+  const [genres, setGenres] = useState([]);
   const [list, setList] = useState(null);
 
 
@@ -26,6 +29,22 @@ function index() {
     getMovies()
   }, []);
 
+  useEffect(() => {
+    const getGenres = async () =>{
+        try {
+          const res = await axios.get(`${process.env.API_URL}/genres`
+          , {
+            headers: {
+              token: JSON.parse(localStorage.getItem("user")).accessToken,
+            },
+          });
+          setGenres(res.data);
+        } catch (err) {
+        }
+    }
+    getGenres()
+  }, []);
+
 
   const handleChange = (e) => {
     setList({ ...list, [e.target.name]: e.target.value });
@@ -39,7 +58,7 @@ function index() {
   const handleSubmit = (e) => {
     e.preventDefault();
     createList(list);
-    Router.push("/lists")
+    Router.push("/admin/lists/lists")
   };
 
   const createList = async (list) => {
@@ -51,9 +70,11 @@ function index() {
           token: JSON.parse(localStorage.getItem("user")).accessToken,
         },
       });
+      console.log(res.data);
     } catch (err) {
     }
   };
+
 
   return (
     <>
@@ -68,51 +89,30 @@ function index() {
               <label>Title</label>
               <input
                 type="text"
-                placeholder="Popular Movies"
+                placeholder="Exemple : Populare Movies"
                 name="title"
                 onChange={handleChange}
               />
             </div>
-
-
-
-
-            {/* lists of genres */}
             <div className={styles.addProductItem}>
-              <label>Genre</label>
-              <input
-                type="text"
-                placeholder="action"
+              <label>Genre (ctrl + click to select multiple)</label>
+              <select
+                multiple
                 name="genre"
-                onChange={handleChange}
-              />
-            </div>
-
-
-
-
-
-            {/* delete? */}
-            <div className={styles.addProductItem}>
-              <label>Type</label>
-              <select name="type" onChange={handleChange}>
-                <option>Type</option>
-                <option value="movie">Movie</option>
-                <option value="series">Series</option>
+                onChange={handleSelect}
+                style={{ height: "200px" }}
+              >
+                {genres.map((genre) => (
+                  <option key={genre._id} value={genre._id}>
+                    {genre.name}
+                  </option>
+                ))}
               </select>
             </div>
-
-
-
-
           </div>
-
-
-
-          {/* copie this? */}
           <div className={styles.formRight}>
             <div className={styles.addProductItem}>
-              <label>Content</label>
+              <label>Content (ctrl + click to select multiple)</label>
               <select
                 multiple
                 name="content"
@@ -127,10 +127,6 @@ function index() {
               </select>
             </div>
           </div>
-
-
-
-
           <button className={styles.addProductButton} onClick={handleSubmit}>
             Create
           </button>

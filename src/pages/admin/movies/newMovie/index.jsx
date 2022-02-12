@@ -1,12 +1,38 @@
-import { useContext, useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./index.module.scss";
 import Topbar from "../../../../components/admin-components/topbar/Topbar";
 import Sidebar from "../../../../components/admin-components/sidebar/Sidebar";
 import withAuth from '../../../../middleware/withAuth';
 import withAdmin from '../../../../middleware/withAdmin';
+import axios from "axios";
+import Router from 'next/router';
 
 function index() {
   const [movie, setMovie] = useState(null);
+  const [genres, setGenres] = useState(null);
+
+  useEffect(() => {
+    const getGenres = async () =>{
+        try {
+          const res = await axios.get(`${process.env.API_URL}/genres`
+          , {
+            headers: {
+              token: JSON.parse(localStorage.getItem("user")).accessToken,
+            },
+          });
+          console.log(res.data);
+          setGenres(res.data);
+        } catch (err) {
+          console.log(err);
+        }
+    }
+    getGenres()
+  }, []);
+
+  const handleSelect = (e) => {
+    let value = Array.from(e.target.selectedOptions, (option) => option.value);
+    setMovie({ ...movie, [e.target.name]: value });
+  };
 
   const handleChange = (e) => {
     setMovie({ ...movie, [e.target.name]: e.target.value });
@@ -15,6 +41,7 @@ function index() {
   const handleSubmit = (e) => {
     e.preventDefault();
     createMovie(movie);
+    Router.push("/admin/movies/movies")
   };
 
   const createMovie = async (movie) => {
@@ -44,6 +71,7 @@ function index() {
               type="text"
               id="img"
               name="img"
+              placeholder="Url of the image"
               onChange={handleChange}
             />
           </div>
@@ -53,6 +81,7 @@ function index() {
               type="text"
               id="imgTitle"
               name="imgTitle"
+              placeholder="Url of the title"
               onChange={handleChange}
             />
           </div>
@@ -62,6 +91,7 @@ function index() {
               type="text"
               id="imgSm"
               name="imgSm"
+              placeholder="Url of the small image"
               onChange={handleChange}
             />
           </div>
@@ -69,7 +99,7 @@ function index() {
             <label>Title</label>
             <input
               type="text"
-              placeholder="John Wick"
+              placeholder="Exemple : John Wick"
               name="title"
               onChange={handleChange}
             />
@@ -78,7 +108,7 @@ function index() {
             <label>Description</label>
             <input
               type="text"
-              placeholder="description"
+              placeholder="Description"
               name="desc"
               onChange={handleChange}
             />
@@ -92,21 +122,22 @@ function index() {
               onChange={handleChange}
             />
           </div>
-
-
-
-          {/* choice of genres*/}
+        
           <div className={styles.addProductItem}>
-            <label>Genre</label>
-            <input
-              type="text"
-              placeholder="Genre"
-              name="genre"
-              onChange={handleChange}
-            />
+              <label>Genre (ctrl + click to select multiple)</label>
+              <select
+                multiple
+                name="genre"
+                onChange={handleSelect}
+                style={{ height: "200px" }}
+              >
+                {genres?.map((genre) => (
+                  <option key={genre._id} value={genre._id}>
+                    {genre.name}
+                  </option>
+                ))}
+              </select>
           </div>
-
-
 
           <div className={styles.addProductItem}>
             <label>Duration</label>
@@ -118,10 +149,10 @@ function index() {
             />
           </div>
           <div className={styles.addProductItem}>
-            <label>Limit</label>
+            <label>Age Limit</label>
             <input
               type="text"
-              placeholder="limit"
+              placeholder="Age limit"
               name="limit"
               onChange={handleChange}
             />
@@ -138,6 +169,7 @@ function index() {
             <input
               type="text"
               name="trailer"
+              placeholder="Url of the trailer"
               onChange={handleChange}
             />
           </div>
@@ -146,6 +178,7 @@ function index() {
             <input
               type="text"
               name="video"
+              placeholder="Url of the video"
               onChange={handleChange}
             />
           </div>

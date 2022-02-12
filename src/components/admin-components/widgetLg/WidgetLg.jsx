@@ -55,7 +55,7 @@ export default function WidgetLg() {
             <tr className={styles.widgetLgTr} key={transaction._id}>
               <td className={styles.widgetLgUser}>
                 <img
-                  src={transaction.user.profilePic}
+                  src={transaction.user.profilePic ? transaction.user.profilePic : "https://images.pexels.com/photos/4172933/pexels-photo-4172933.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" }
                   alt=""
                   className={styles.widgetLgImg}
                 />

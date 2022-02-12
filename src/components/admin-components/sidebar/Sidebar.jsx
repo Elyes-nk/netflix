@@ -73,13 +73,13 @@ export default function Sidebar() {
             <Link href="/admin/movies/newMovie" className={styles.link}>
               <li className={styles.sidebarListItem}>
                 <AddToQueue className={styles.sidebarIcon} />
-                Add Serie
+                Add Movie
               </li>
             </Link>
             <Link href="/admin/series/newSerie" className={styles.link}>
               <li className={styles.sidebarListItem}>
                 <AddToQueue className={styles.sidebarIcon} />
-                Add Movie
+                Add Serie
               </li>
             </Link>
             <Link href="/admin/lists/newList" className={styles.link}>

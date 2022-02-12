@@ -16,7 +16,7 @@ function index() {
     const getList = async () =>{
         try {
           const res = await axios.get(`${process.env.API_URL}/lists/find/${id}`
-          , {
+          ,{
             headers: {
               token: JSON.parse(localStorage.getItem("user")).accessToken,
             },
@@ -34,11 +34,11 @@ function index() {
      ,{
        list
      }
-     // , {
-     //   headers: {
-     //     token:JSON.parse(localStorage.getItem("user")).accessToken,
-     //   },
-     // }
+     ,{
+       headers: {
+         token:JSON.parse(localStorage.getItem("user")).accessToken,
+       },
+     }
      );
    } catch (err) {
    }
@@ -86,18 +86,41 @@ function index() {
                 placeholder={list.title} 
                 onChange={(e) => setList({...list, title:e.target.value})}
               />
-              <label>Type</label>
-              <input 
-                type="text" 
-                placeholder={list.type}
-                onChange={(e) => setList({...type, type:e.target.value})}
-              />
+            
+
+
+
+
               <label>Genre</label>
               <input 
                 type="text" 
                 placeholder={list.genre} 
                 onChange={(e) => setList({...genre, genre:e.target.value})}
               />
+
+
+
+            <div className={styles.addProductItem}>
+              <label>Genre</label>
+              <select
+                multiple
+                name="genre"
+                onChange={handleSelect}
+                style={{ height: "280px" }}
+              >
+                {genres.map((genre) => (
+                  <option key={genre._id} value={genre._id}>
+                    {genre.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+
+
+
+
+
             </div>
             <div className={styles.productFormRight}>
               <button 

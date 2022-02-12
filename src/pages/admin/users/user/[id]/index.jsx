@@ -25,11 +25,11 @@ function index() {
     const getUser = async () =>{
         try {
           const res = await axios.get(`${process.env.API_URL}/users/find/${id}`
-          // , {
-          //   headers: {
-          //     token: JSON.parse(localStorage.getItem("user")).accessToken,
-          //   },
-          // }
+          , {
+            headers: {
+              token: JSON.parse(localStorage.getItem("user")).accessToken,
+            },
+          }
           );
           setUser(res.data);
         } catch (err) {
@@ -44,11 +44,11 @@ function index() {
      ,{
        user
      }
-     // , {
-     //   headers: {
-     //     token:JSON.parse(localStorage.getItem("user")).accessToken,
-     //   },
-     // }
+     , {
+       headers: {
+         token:JSON.parse(localStorage.getItem("user")).accessToken,
+       },
+     }
      );
    } catch (err) {
    }
