@@ -1,7 +1,7 @@
 import axios from "axios";
-import { useRef, useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 import Router from 'next/router'
-import styles from "./index.module.scss";
+import styles from "./subscribtion.module.scss";
 import logo from "../../../public/logo.png";
 import withAuth from '../../middleware/withAuth'
 import { logout } from "../../authContext/AuthActions";

@@ -86,36 +86,6 @@ function index() {
         <form className={styles.addProductForm}>
         <div className={styles.formLeft}>
               <div className={styles.addProductItem}>
-                <label>Image</label>
-                <input
-                  type="text"
-                  id="img"
-                  name="img"
-                  placeholder="Url of the image"
-                  onChange={handleChange}
-                />
-              </div>
-              <div className={styles.addProductItem}>
-                <label>Title image</label>
-                <input
-                  type="text"
-                  id="imgTitle"
-                  name="imgTitle"
-                  placeholder="Url of the title"
-                  onChange={handleChange}
-                />
-              </div>
-              <div className={styles.addProductItem}>
-                <label>Thumbnail image</label>
-                <input
-                  type="text"
-                  id="imgSm"
-                  name="imgSm"
-                  placeholder="Url of the small image"
-                  onChange={handleChange}
-                />
-              </div>
-              <div className={styles.addProductItem}>
                 <label>Title</label>
                 <input
                   type="text"
@@ -166,6 +136,36 @@ function index() {
                   type="text"
                   name="trailer"
                   placeholder="Url of the trailer"
+                  onChange={handleChange}
+                />
+              </div>
+              <div className={styles.addProductItem}>
+                <label>Image</label>
+                <input
+                  type="text"
+                  id="img"
+                  name="img"
+                  placeholder="Url of the image"
+                  onChange={handleChange}
+                />
+              </div>
+              <div className={styles.addProductItem}>
+                <label>Title image</label>
+                <input
+                  type="text"
+                  id="imgTitle"
+                  name="imgTitle"
+                  placeholder="Url of the title"
+                  onChange={handleChange}
+                />
+              </div>
+              <div className={styles.addProductItem}>
+                <label>Thumbnail image</label>
+                <input
+                  type="text"
+                  id="imgSm"
+                  name="imgSm"
+                  placeholder="Url of the small image"
                   onChange={handleChange}
                 />
               </div>

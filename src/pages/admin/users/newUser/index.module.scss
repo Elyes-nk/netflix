@@ -5,7 +5,9 @@
   margin-top: 10px;
   .newUser {
     flex: 4;
-
+    .addUserTitle{
+      color: $netflix__white;
+    }
     .newUserForm {
       display: flex;
       flex-wrap: wrap;
