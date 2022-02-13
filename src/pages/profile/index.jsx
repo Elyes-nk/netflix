@@ -1,73 +1,80 @@
 import axios from "axios";
 import { useState, useEffect, useContext } from "react";
 import Router from 'next/router'
-import styles from "./subscribtion.module.scss";
+import styles from "./index.module.scss";
 import logo from "../../../public/logo.png";
+import profile from "../../../public/profile.png"
 import withAuth from '../../middleware/withAuth'
 import { logout } from "../../authContext/AuthActions";
 import { AuthContext } from "../../authContext/AuthContext";
-import { Check, CheckCircleOutline } from "@material-ui/icons";
-import { loadStripe } from "@stripe/stripe-js";
-import stripeService from "../../services/stripe.service";
-
-const stripePromise = loadStripe(process.env.STRIPE_KEY);
-
+import Link from "next/link";
+import { updateFailure, updateSuccess, updateStart } from "../../authContext/AuthActions";
 
 function index() {
-  console.log("stripe key = ",process.env.STRIPE_KEY);
   const { dispatch, user } = useContext(AuthContext);
-  const [pageOne, setPageOne] = useState(true);
-  const [subscribtions, setSubscribtions] = useState([]);
-  const [subscribtionChoosed, setSubscribtionChoosed] = useState("");
+  const [editedUser, setEditedUser] = useState(user);
+  const [editMode, setEditMode] = useState(false);
+  const [subscribtion, setSubscribtion] = useState(null);
 
 
   useEffect(() => {
-    const getSubscribtions = async () => {
+    const getSubscribtion = async () => {
       try {
         const res = await axios.get(`${process.env.API_URL}/subscribtions/`
-        // , {
-        //   headers: {
-        //     token: JSON.parse(localStorage.getItem("user")).accessToken,
-        //   },
-        // }
+        , {
+          headers: {
+            token: JSON.parse(localStorage.getItem("user")).accessToken,
+          },
+        }
         );
-        setSubscribtions(res.data);
+        setSubscribtion(res.data.find((sub)=> sub._id === user.subscribtion));
       } catch (err) {
         console.log(err);
       }
     };
-    getSubscribtions();
-    console.log(subscribtions);
+    getSubscribtion();
+    console.log(subscribtion);
   }, []);
 
 
-  const handleSubmit = async() => {
-    try {
-      const stripe = await stripePromise;
-      const response = await stripeService.createSession(
-        {
-          userId: user.id,
-          subscribtionId: subscribtionChoosed,
-          subscribtionMounths: 1
-        }
+  const handleChange = (e) => {
+    setEditedUser({ ...editedUser, [e.target.name]: e.target.value });
+  };
+  
+  const handleUpdate = async() => {
+    dispatch(updateStart())
+     try {
+      const res = await axios.put(`${process.env.API_URL}/users/${user._id}`
+      ,editedUser
+      , {
+        headers: {
+           token:JSON.parse(localStorage.getItem("user")).accessToken,
+        },
+      }
       );
-      await stripe.redirectToCheckout({
-        sessionId: response.id,
-      });
-    } catch (error) {
-      console.log(error);
+      setEditMode(false);
+      dispatch(updateSuccess(res.data));
+    } catch (err) {
+      dispatch(updateFailure());
     }
+  }
+
+  const cancelSubscribtion = () => {
+    setEditedUser({ ...editedUser, subscribtion:null, subscribtionDate:null, subscribtionMounths:0 });
+    handleUpdate();
   }
 
   return (
     <div className={styles.subscribtion}>
       <div className={styles.top}>
         <div className={styles.wrapper}>
-          <img
-            className={styles.logo}
-            src={logo.src}
-            alt=""
-          />
+          <Link href="/browse/random">
+            <img
+              className={styles.logo}
+              src={logo.src}
+              alt=""
+            />
+          </Link>
           <button 
             className={styles.logout__button}
             onClick={() => {
@@ -80,98 +87,79 @@ function index() {
           </button>
         </div>
       </div>
-      {pageOne? 
+      {!editMode? 
       (
         <div className={styles.container}>
-          <CheckCircleOutline  className={styles.check__icon}/>
-          <p>Step 1/3</p>
-          <h1>Choose your plan.</h1>
-          <p><Check className={styles.check__icons}/> Without engagement. Cancelable at any time.</p>
-          <p><Check className={styles.check__icons}/> All Netflix programs for a very attractive subscription.</p>
-          <p><Check className={styles.check__icons}/> Unlimited access across all your devices.</p>
+          <img
+              src={user.profilePic ? user.profilePic : profile.src}
+              className={styles.profile__pic}
+          />
+          <div className={styles.informations}>
+            <h1>Profile</h1>
+            <p>Username : {user.username}</p>
+            <p>Email : {user.email}</p>
+            <p>Subscribtion : {subscribtion ? subscribtion.name : "You don't have a subscribtion"}</p>
+            {subscribtion &&
+              <button 
+                onClick={cancelSubscribtion}
+                className={styles.subscribtion__button}
+              >
+                Cancel subscribtion
+              </button>
+            }
+          </div>
           <button 
-            className={styles.subscribtion__button} 
-            onClick={()=> setPageOne(false)}
+            className={styles.button} 
+            onClick={()=> setEditMode(true)}
           >
-            Next
+            Edit
           </button>
         </div>
       ):(
-        <div className={styles.second__container}>
-          <p>Step 2/3</p>
-          <h2>Select the package that suits you.</h2>
-          <p><Check className={styles.check__icons}/> Watch as much as you want. Without advertising.</p>
-          <p><Check className={styles.check__icons}/> Personalized recommendations.</p>
-          <p><Check className={styles.check__icons}/> Change or cancel your plan at any time.</p>
-          <div className={styles.tab__container}>
-                    <table>
-                    <thead>
-                      <tr>
-                        <td></td>
-                        {subscribtions.map((element)=> (
-                           <td 
-                             key={element._id}
-                           >
-                              <button 
-                                className={element._id === subscribtionChoosed ? styles.subscribtion__card__active : styles.subscribtion__card}
-                                onClick={()=> setSubscribtionChoosed(element._id)}
-                              >
-                                {element.name}
-                              </button>
-                            </td>
-                        ))}
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>Mounthly subscribtion</td>
-                        {subscribtions.map((element)=> (
-                          <td 
-                            className={element._id === subscribtionChoosed ? styles.red : ""}
-                            key={element._id}
-                          >
-                            {element.amount} €
-                          </td>
-                        ))}
-                      </tr>
-                      <tr>
-                        <td>Video quality</td>
-                        {subscribtions.map((element)=> (
-                          <td 
-                            className={element._id === subscribtionChoosed ? styles.red : ""}
-                            key={element._id}
-                          >
-                             {element.quality}
-                          </td>       
-                        ))}
-                      </tr>
-                      <tr>
-                        <td>Resolution</td>
-                        {subscribtions.map((element)=> (
-                          <td 
-                            className={element._id === subscribtionChoosed ? styles.red : ""}
-                            key={element._id}
-                          >
-                            {element.resolution}
-                          </td>
-                        ))}
-                      </tr>
-                    </tbody>
-                  </table>
-                  <p className={styles.users__conditions}>Changez ou annulez votre forfait à tout moment.</p>
-                  <span className={styles.users__conditions}>Availability of HD (720p), Full HD (1080p), Ultra HD (4K), and HDR depends on your internet connection and device capabilities. Not all content is available in all resolutions. For more information, please see our Terms of Service.
-                  Only people who live with you can use your account. Watch Netflix simultaneously on 4 different devices with the Premium plan, on 2 with the Standard plan, and on 1 with the Essential plan. </span>
-
-                  <button 
-                    className={styles.subscribtion__button} 
-                    onClick={()=> handleSubmit()}
-                  >
-                    Next
-                  </button>
+        <div className={styles.edit__container}>
+          <img
+              src={user.profilePic ? user.profilePic : profile.src}
+              className={styles.profile__pic}
+          />
+          <div className={styles.form}>
+            <h1>Edit Profile</h1>
+            <div className={styles.addProductItem}>
+              <label>Username</label>
+              <input
+                type="text"
+                placeholder={user.username}
+                name="username"
+                onChange={handleChange}
+              />
+            </div>
+            <div className={styles.addProductItem}>
+              <label>Email</label>
+              <input
+                type="text"
+                placeholder={user.email}
+                name="email"
+                onChange={handleChange}
+              />
+            </div>
+            <div className={styles.addProductItem}>
+              <label>Profile picture</label>
+              <input
+                type="text"
+                placeholder={user.profilePic}
+                name="profilePic"
+                onChange={handleChange}
+              />
+            </div>
           </div>
+          <button 
+            className={styles.button} 
+            onClick={handleUpdate}
+          >
+            Save
+          </button>
         </div>
       )}
     </div>
-  );
+  )
 }
 export default withAuth(index);

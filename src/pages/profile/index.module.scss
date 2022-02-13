@@ -1,7 +1,7 @@
 @import "../../styles/variables.scss";
 
 .subscribtion {
-  width: 100vw;
+  max-width: 100%;
   height: 140vh;
   background-color: $netflix__black;
   background-size: cover;
@@ -16,6 +16,7 @@
 
       .logo {
         height: 40px;
+        cursor: pointer;
       }
 
       .logout__button {
@@ -32,39 +33,57 @@
     }
   }
 
-  .container {
-    width: 100%;
+  .container{
     position: relative;
     top: 20px;
-    left: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     color: $netflix__white;
 
-    h1 {
-      font-size: 50px;
+    .profile__pic {
+      width: 60px;
+      height: 60px;
+      border-radius: 5px;
+      object-fit: cover;
+      cursor: pointer;
     }
 
-    h2 {
-      margin: 20px;
+
+    .informations {
+      position: relative;
+      top: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: $netflix__white;
+
+      h1 {
+        font-size: 50px;
+      }
+
+      h2 {
+        margin: 20px;
+      }
+
+      p {
+        font-size: 20px;
+      }  
+      .subscribtion__button {
+        cursor: pointer;
+        background-color: $netflix__black;
+        border: 1px solid $netflix__white;
+        color: $netflix__gray;
+        padding: 5px;
+        &:hover{
+          color:$netflix__white;
+        }
+      }    
     }
 
-    p {
-      font-size: 20px;
-    }
-
-    .check__icon {
-      transform: scale(1.8);
-      color:$netflix__red
-    }
-
-    .check__icons {
-      color:$netflix__red
-    }
-
-    .subscribtion__button{
+    .button{
       width: 50%;
       height: 50px;
       background-color: $netflix__red;
@@ -73,109 +92,80 @@
       font-size: 22px;
       cursor: pointer;
       align-items: center;
-      margin-top: 20px;
+      margin-top: 50px;
       border-radius: 5px;
     }
+   
   }
-
-  .second__container{
-    width: 100%;
-    position: absolute;
-    top: 15%;
-    left: 0;
+  .edit__container{
+    position: relative;
+    top: 20px;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
     color: $netflix__white;
-    h1 {
-      font-size: 50px;
+
+    .profile__pic {
+      width: 60px;
+      height: 60px;
+      border-radius: 5px;
+      object-fit: cover;
+      cursor: pointer;
     }
 
-    h2 {
-      margin: 1%;
-    }
 
-    p {
-      margin: 1%;
-      margin-bottom: 0%;
-      font-size: 18px;
-    }
-
-    .check__icons {
-      color:$netflix__red
-    }
-
-    .tab__container{
+    .form {
+      position: relative;
+      top: 20px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-
-      table {
-        text-align: center;
-        width: 100%;
-        tr {
-            border-bottom: 1px solid lightgray;
-            border-color: $netflix__gray;
+      color: $netflix__white;
+      .addProductItem {
+        width: 400px;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 10px;
+        margin-right: 10px;
+        
+        label {
+          color: $netflix__gray;
+          font-weight: 600;
+          margin-bottom: 10px;
         }
-        thead {
-            width: 20%;
-            height: 20%;
+    
+        input {
+          padding: 10px;
+          background-color: $netflix__gray;
         }
-        td {
-            padding: 20px 10px;
-            width: 20%;
+    
+        select {
+          padding: 10px;
+          background-color: $netflix__gray;
         }
-      }
+      } 
 
-      .users__conditions{
-        font-size: 12px;
-        color: $netflix__gray;
-        margin-left: 2%;
-        margin-right: 2%;
-      }
-
-      .subscribtion__button{
-        width: 50%;
-        height: 50px;
-        background-color: $netflix__red;
-        color: $netflix__white;
-        border: none;
-        font-size: 22px;
-        cursor: pointer;
-        align-items: center;
-        margin-top: 20px;
-        border-radius: 5px;
-      }
-
-      .subscribtion__card{
-        width: 100px;
-        height: 100px;
-        background-color:#ef6b72;
-        color: $netflix__white;
-        border: none;
-        font-size: 18px;
-        cursor: pointer;
-        align-items: center;
-        margin: 10px;
-        border-radius: 5px;
-      }
-      
-      .subscribtion__card__active{
-        width: 100px;
-        height: 100px;
-        background-color: $netflix__red;
-        color: $netflix__white;
-        border: none;
-        font-size: 19px;
-        cursor: pointer;
-        align-items: center;
-        margin: 10px;
-        border-radius: 5px;
-      }
-
-      .red{
-        color:$netflix__red;
-      }
     }
+
+    .button{
+      width: 50%;
+      height: 50px;
+      background-color: $netflix__red;
+      color: $netflix__white;
+      border: none;
+      font-size: 22px;
+      cursor: pointer;
+      align-items: center;
+      margin-top: 50px;
+      border-radius: 5px;
+    }
+   
   }
+
+
+ 
+
+ 
 }

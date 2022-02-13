@@ -45,10 +45,12 @@ const Navbar = () => {
             <Search className={styles.icon} />
             <span>{user?.username}</span>
             <Notifications className={styles.icon} />
-            <img
-              src={profile.src}
-              alt=""
-            />
+            <Link href="/profile">
+              <img
+                src={user?.profilePic ? user.profilePic : profile.src}
+                alt=""
+              />
+            </Link>
             <div className={styles.profile}>
               <ArrowDropDown className={styles.icon} />
               <div className={styles.options}>
