@@ -14,7 +14,6 @@ const stripePromise = loadStripe(process.env.STRIPE_KEY);
 
 
 function index() {
-  console.log("stripe key = ",process.env.STRIPE_KEY);
   const { dispatch, user } = useContext(AuthContext);
   const [pageOne, setPageOne] = useState(true);
   const [subscribtions, setSubscribtions] = useState([]);
@@ -37,7 +36,6 @@ function index() {
       }
     };
     getSubscribtions();
-    console.log(subscribtions);
   }, []);
 
 
@@ -46,9 +44,9 @@ function index() {
       const stripe = await stripePromise;
       const response = await stripeService.createSession(
         {
-          userId: user.id,
-          subscribtionId: subscribtionChoosed,
-          subscribtionMounths: 1
+          userId: user._id,
+          subscribtionMounths: 1,
+          subscribtion: subscribtions.find((element)=> element._id === subscribtionChoosed)
         }
       );
       await stripe.redirectToCheckout({

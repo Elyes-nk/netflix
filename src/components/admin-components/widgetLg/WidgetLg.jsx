@@ -1,6 +1,7 @@
 import styles from "./widgetLg.module.scss";
 import {useState, useEffect} from "react";
 import axios from "axios";
+import profile from "../../../../public/profile.png";
 
 export default function WidgetLg() {
 
@@ -50,12 +51,13 @@ export default function WidgetLg() {
             <th className={styles.widgetLgTh}>Subscribtion</th>
             <th className={styles.widgetLgTh}>Status</th>
           </tr>
-
-          {/* {transactions.map((transaction)=> 
+          
+          {transactions? (
+          transactions.map((transaction)=> 
             <tr className={styles.widgetLgTr} key={transaction._id}>
               <td className={styles.widgetLgUser}>
                 <img
-                  src={transaction.user.profilePic ? transaction.user.profilePic : "https://images.pexels.com/photos/4172933/pexels-photo-4172933.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" }
+                  src={transaction.user.profilePic ? transaction.user.profilePic : profile.src}
                   alt=""
                   className={styles.widgetLgImg}
                 />
@@ -67,82 +69,25 @@ export default function WidgetLg() {
                 <Button type={transaction.status} />
               </td>
           </tr>
-          )} */}
-
-
-          <tr className={styles.widgetLgTr}>
+          )
+          ):(
+            <tr className={styles.widgetLgTr}>
             <td className={styles.widgetLgUser}>
               <img
-                src="https://images.pexels.com/photos/4172933/pexels-photo-4172933.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+                src={profile.src}
                 alt=""
                 className={styles.widgetLgImg}
               />
-              <span className={styles.widgetLgName}>Susan Carol</span>
+              <span className={styles.widgetLgName}>None</span>
             </td>
             <td className={styles.widgetLgDate}>2 Jun 2021</td>
-            <td className={styles.widgetLgAmount}>$122.00</td>
-            <td className={styles.widgetLgStatus}>
-              <Button type="Approved" />
-            </td>
-          </tr>
-
-
-
-          <tr className={styles.widgetLgTr}>
-            <td className={styles.widgetLgUser}>
-              <img
-                src="https://images.pexels.com/photos/4172933/pexels-photo-4172933.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
-                alt=""
-                className={styles.widgetLgImg}
-              />
-              <span className={styles.widgetLgName}>Susan Carol</span>
-            </td>
-            <td className={styles.widgetLgDate}>2 Jun 2021</td>
-            <td className={styles.widgetLgAmount}>$122.00</td>
-            <td className={styles.widgetLgStatus}>
-              <Button type="Declined" />
-            </td>
-          </tr>
-
-
-
-
-          <tr className={styles.widgetLgTr}>
-            <td className={styles.widgetLgUser}>
-              <img
-                src="https://images.pexels.com/photos/4172933/pexels-photo-4172933.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
-                alt=""
-                className={styles.widgetLgImg}
-              />
-              <span className={styles.widgetLgName}>Susan Carol</span>
-            </td>
-            <td className={styles.widgetLgDate}>2 Jun 2021</td>
-            <td className={styles.widgetLgAmount}>$122.00</td>
+            <td className={styles.widgetLgAmount}>00.00 €</td>
             <td className={styles.widgetLgStatus}>
               <Button type="Pending" />
             </td>
           </tr>
-
-
-
-          <tr className={styles.widgetLgTr}>
-            <td className={styles.widgetLgUser}>
-              <img
-                src="https://images.pexels.com/photos/4172933/pexels-photo-4172933.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
-                alt=""
-                className={styles.widgetLgImg}
-              />
-              <span className={styles.widgetLgName}>Susan Carol</span>
-            </td>
-            <td className={styles.widgetLgDate}>2 Jun 2021</td>
-            <td className={styles.widgetLgAmount}>$122.00</td>
-            <td className={styles.widgetLgStatus}>
-              <Button type="Approved" />
-            </td>
-          </tr>
-
-
-
+          )
+          }
 
         </tbody>
       </table>
