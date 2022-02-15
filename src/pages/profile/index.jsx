@@ -33,7 +33,6 @@ function index() {
       }
     };
     getSubscribtion();
-    console.log(subscribtion);
   }, []);
 
 
@@ -58,12 +57,6 @@ function index() {
       dispatch(updateFailure());
     }
   }
-
-  const cancelSubscribtion = () => {
-    setEditedUser({ ...editedUser, subscribtion:null, subscribtionDate:null, subscribtionMounths:0 });
-    handleUpdate();
-  }
-
   return (
     <div className={styles.subscribtion}>
       <div className={styles.top}>
@@ -98,19 +91,11 @@ function index() {
             <h1>Profile</h1>
             <p>Username : {user.username}</p>
             <p>Email : {user.email}</p>
-            <p>Subscribtion : {subscribtion ? subscribtion.name : "You don't have a subscribtion"}</p>
-            {subscribtion &&
-              <button 
-                onClick={cancelSubscribtion}
-                className={styles.subscribtion__button}
-              >
-                Cancel subscribtion
-              </button>
-            }
+            <p>Subscribtion : {editedUser.subscribtion ? subscribtion?.name : "You don't have a subscribtion"}</p>
           </div>
           <button 
             className={styles.button} 
-            onClick={()=> setEditMode(true)}
+            onClick={() => setEditMode(true)}
           >
             Edit
           </button>
@@ -150,10 +135,23 @@ function index() {
                 onChange={handleChange}
               />
             </div>
+             {editedUser.subscribtion ? (
+                <button 
+                  onClick={() => setEditedUser({ ...editedUser, subscribtion:null, subscribtionDate:null, subscribtionMounths:0 })}
+                  className={styles.subscribtion__button}
+                >
+                  Cancel subscribtion
+                </button>
+              ):(
+                <div className={styles.addProductItem}>
+                <label>You no longer have a subscribtion.</label>
+                </div>
+              )
+              }
           </div>
           <button 
             className={styles.button} 
-            onClick={handleUpdate}
+            onClick={() => handleUpdate(editedUser)}
           >
             Save
           </button>

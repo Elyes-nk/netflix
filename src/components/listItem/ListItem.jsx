@@ -26,11 +26,11 @@ export default function ListItem({ index, id }) {
     const getMovie = async () => {
       try {
         const res = await axios.get("http://localhost:3030/api/movies/find/" + id
-        // , {
-        //   headers: {
-        //     token:JSON.parse(localStorage.getItem("user")).accessToken,
-        //   },
-        // }
+        , {
+          headers: {
+            token:JSON.parse(localStorage.getItem("user")).accessToken,
+          },
+        }
         );
         setMovie(res.data);
       } catch (err) {

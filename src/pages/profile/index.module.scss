@@ -2,7 +2,7 @@
 
 .subscribtion {
   max-width: 100%;
-  height: 140vh;
+  height: 100%;
   background-color: $netflix__black;
   background-size: cover;
   position: relative;
@@ -71,16 +71,6 @@
       p {
         font-size: 20px;
       }  
-      .subscribtion__button {
-        cursor: pointer;
-        background-color: $netflix__black;
-        border: 1px solid $netflix__white;
-        color: $netflix__gray;
-        padding: 5px;
-        &:hover{
-          color:$netflix__white;
-        }
-      }    
     }
 
     .button{
@@ -146,7 +136,16 @@
           background-color: $netflix__gray;
         }
       } 
-
+      .subscribtion__button {
+        cursor: pointer;
+        background-color: $netflix__black;
+        border: 1px solid $netflix__white;
+        color: $netflix__gray;
+        padding: 5px;
+        &:hover{
+          color:$netflix__white;
+        }
+      }    
     }
 
     .button{

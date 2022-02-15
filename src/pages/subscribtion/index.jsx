@@ -24,11 +24,11 @@ function index() {
     const getSubscribtions = async () => {
       try {
         const res = await axios.get(`${process.env.API_URL}/subscribtions/`
-        // , {
-        //   headers: {
-        //     token: JSON.parse(localStorage.getItem("user")).accessToken,
-        //   },
-        // }
+        , {
+          headers: {
+            token: JSON.parse(localStorage.getItem("user")).accessToken,
+          },
+        }
         );
         setSubscribtions(res.data);
       } catch (err) {

@@ -13,6 +13,7 @@ function index() {
 
   const handleLogin = (e) => {
     e.preventDefault();
+    console.log("login");
     login({ email, password }, dispatch);
   };
   return (

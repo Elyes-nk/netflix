@@ -57,14 +57,14 @@ export default function WidgetLg() {
             <tr className={styles.widgetLgTr} key={transaction._id}>
               <td className={styles.widgetLgUser}>
                 <img
-                  src={transaction.user.profilePic ? transaction.user.profilePic : profile.src}
+                  src={ profile.src}
                   alt=""
                   className={styles.widgetLgImg}
                 />
-                <span className={styles.widgetLgName}>{transaction.user.username}</span>
+                <span className={styles.widgetLgName}>{transaction.user?.username}</span>
               </td>
               <td className={styles.widgetLgDate}>{transaction.date}</td>
-              <td className={styles.widgetLgAmount}>{transaction.subscribtion.name}</td>
+              <td className={styles.widgetLgAmount}>{transaction.subscribtion?.name}</td>
               <td className={styles.widgetLgStatus}>
                 <Button type={transaction.status} />
               </td>
