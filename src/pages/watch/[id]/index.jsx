@@ -17,11 +17,11 @@ function index() {
     const findMovie = async () => {
       try{
         const res = await axios.get(`${process.env.API_URL}/movies/find/${id}`
-          // , {
-          //   headers: {
-          //     token:JSON.parse(localStorage.getItem("user")).accessToken,
-          //   },
-          // }
+          , {
+            headers: {
+              token:JSON.parse(localStorage.getItem("user")).accessToken,
+            },
+          }
           );
           setMovie(res.data);
       }catch(err){

@@ -63,7 +63,7 @@ export default function WidgetLg() {
                 />
                 <span className={styles.widgetLgName}>{transaction.user?.username}</span>
               </td>
-              <td className={styles.widgetLgDate}>{transaction.date}</td>
+              <td className={styles.widgetLgDate}>{transaction.createdAt.substring(0,10)}</td>
               <td className={styles.widgetLgAmount}>{transaction.subscribtion?.name}</td>
               <td className={styles.widgetLgStatus}>
                 <Button type={transaction.status} />
@@ -78,9 +78,9 @@ export default function WidgetLg() {
                 alt=""
                 className={styles.widgetLgImg}
               />
-              <span className={styles.widgetLgName}>None</span>
+              <span className={styles.widgetLgName}>-</span>
             </td>
-            <td className={styles.widgetLgDate}>2 Jun 2021</td>
+            <td className={styles.widgetLgDate}>-</td>
             <td className={styles.widgetLgAmount}>00.00 €</td>
             <td className={styles.widgetLgStatus}>
               <Button type="Pending" />

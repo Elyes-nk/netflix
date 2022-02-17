@@ -9,11 +9,11 @@ import { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import Link from 'next/link';
 import ReactPlayer from 'react-player/youtube';
-import { AuthContext } from "../../authContext/AuthContext";
-import { updateFailure, updateSuccess, updateStart } from "../../authContext/AuthActions";
+import { Context } from "../../Context/Context";
+import { updateFailure, updateSuccess, updateStart } from "../../Context/Actions";
 
 export default function ListItem({ index, id }) {
-  const { user, dispatch } = useContext(AuthContext);
+  const { user, dispatch } = useContext(Context);
   const [movie, setMovie] = useState({});
   const [inWichlist, setInWichlist] = useState(user?.wichlist.find((item) => item === id) ? true : false );
   const [isItemHovered, setIsItemHovered] = useState(false);
@@ -25,7 +25,7 @@ export default function ListItem({ index, id }) {
   useEffect(() => {
     const getMovie = async () => {
       try {
-        const res = await axios.get("http://localhost:3030/api/movies/find/" + id
+        const res = await axios.get(`${process.env.API_URL}/movies/find/${id}`
         , {
           headers: {
             token:JSON.parse(localStorage.getItem("user")).accessToken,
@@ -57,11 +57,11 @@ export default function ListItem({ index, id }) {
       ,{
         wichlist:wichlist
       }
-      // , {
-      //   headers: {
-      //     token:JSON.parse(localStorage.getItem("user")).accessToken,
-      //   },
-      // }
+      , {
+        headers: {
+          token:JSON.parse(localStorage.getItem("user")).accessToken,
+        },
+      }
       );
       setInWichlist(!inWichlist);
       dispatch(updateSuccess(res.data));
@@ -70,14 +70,15 @@ export default function ListItem({ index, id }) {
     }
   }
   
+  const handleMouse = () => {
+    setIsItemHovered(!isItemHovered)
+  }
   return (
       <div
         className={styles.listItem}
-        style={{ left: isItemHovered && index * 225 - 50 + index * 2.5 }}
-        //activate hoover
-        onMouseEnter={() => setIsItemHovered(true)}
-        //disable hoover
-        onMouseLeave={() => setIsItemHovered(false)}
+        style={{ left: isItemHovered && index * 230 - 50 + index * 2.5 }}
+        onMouseEnter={handleMouse}
+        onMouseLeave={handleMouse}
       >
         {isItemHovered ? 
         (
@@ -109,14 +110,14 @@ export default function ListItem({ index, id }) {
                 <ThumbUpAltOutlined className={styles.icon} />
                 <ThumbDownOutlined className={styles.icon} />
               </div>
+              <div className={styles.desc}>98% Match</div>
               <div className={styles.itemInfoTop}>
                 <span>{movie.duration}</span>
                 <span className={styles.limit}>+{movie.limit}</span>
                 <span>{movie.year}</span>
               </div>
-              <div className={styles.desc}>{movie.desc}</div>
               <div className={styles.genre}>
-                {movie.genre.map((element, i) =>(
+                {movie?.genre.map((element, i) =>(
                   <span key={i}>{element.name}     </span>
                 ))}
               </div>

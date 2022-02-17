@@ -23,11 +23,14 @@ export default function List({ list }) {
       setSlideNumber(slideNumber + 3);
       listRef.current.style.transform = `translateX(${-690 + distance}px)`;
     }
+    if(slideNumber === 0 || slideNumber === 10 - clickLimit){
+      setIsMoved(false)
+    }
   };
   return (
     <div className={styles.list}>
-      <span className={styles.list__title}>{list.title}</span>
       <div className={styles.wrapper}>
+        <span className={styles.list__title}>{list.title}</span>
         <ArrowBackIosOutlined
           className={styles.slider__arrow__left}
           onClick={() => handleClick("left")}

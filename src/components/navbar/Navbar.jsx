@@ -2,15 +2,16 @@ import { ArrowDropDown, Notifications, Search } from "@material-ui/icons";
 import { useContext, useState } from "react";
 import styles from "./navbar.module.scss";
 import Link from 'next/link'
-import { AuthContext } from "../../authContext/AuthContext";
-import { logout } from "../../authContext/AuthActions";
+import { Context } from "../../Context/Context";
+import { logout } from "../../Context/Actions";
 import logo from "../../../public/logo.png"
 import profile from "../../../public/profile.png"
 import Router from 'next/router'
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const { dispatch, user } = useContext(AuthContext);
+  const [searchBar, setSearchBar] = useState(false);
+  const { dispatch, user, setSearch } = useContext(Context);
 
   if (typeof window !== "undefined") {
     window.onscroll = () => {
@@ -42,7 +43,18 @@ const Navbar = () => {
             </Link>
           </div>
           <div className={styles.right}>
-            <Search className={styles.icon} />
+            <Search 
+              className={styles.icon} 
+              onClick={()=>setSearchBar(!searchBar)}
+            />
+            {searchBar && 
+                <input
+                  className={styles.search} 
+                  placeholder="Titles, movies, genres"
+                  onBlur={()=>setSearchBar(false)}
+                  onChange={(e)=>setSearch(e.target.value)}
+                /> 
+            }
             <span>{user?.username}</span>
             <Notifications className={styles.icon} />
             <Link href="/profile">

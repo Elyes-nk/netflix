@@ -58,6 +58,26 @@
       display: flex;
       align-items: center;
 
+      .search {
+        cursor: pointer;
+        background-color: $netflix__black;
+        opacity: 0.9;
+        border: 1px solid $netflix__white;
+        padding: 5px;
+        margin-right: 15px;
+        width: 240px;
+        height: 20px;
+        &::placeholder{
+          color: $netflix__gray;
+        }
+        &:hover{
+          color:$netflix__white;
+        }
+        @include tablet {
+          width: 120px;
+        }
+      }
+
       .icon {
         margin: 0px 15px;
         cursor: pointer;

@@ -4,8 +4,8 @@ import Router from 'next/router'
 import styles from "./index.module.scss";
 import logo from "../../../public/logo.png";
 import withAuth from '../../middleware/withAuth'
-import { logout } from "../../authContext/AuthActions";
-import { AuthContext } from "../../authContext/AuthContext";
+import { logout } from "../../Context/Actions";
+import { Context } from "../../Context/Context";
 import { Check, CheckCircleOutline } from "@material-ui/icons";
 import { loadStripe } from "@stripe/stripe-js";
 import stripeService from "../../services/stripe.service";
@@ -14,7 +14,7 @@ const stripePromise = loadStripe(process.env.STRIPE_KEY);
 
 
 function index() {
-  const { dispatch, user } = useContext(AuthContext);
+  const { dispatch, user } = useContext(Context);
   const [pageOne, setPageOne] = useState(true);
   const [subscribtions, setSubscribtions] = useState([]);
   const [subscribtionChoosed, setSubscribtionChoosed] = useState("");

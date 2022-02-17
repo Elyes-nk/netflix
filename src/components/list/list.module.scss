@@ -1,39 +1,40 @@
 @import "../../styles/variables.scss";
+@import "../../styles/mixins.scss";
 
 .list {
   width: 100%;
   margin-top: 50px;
   
   .list__title {
-    color: white;
-    font-size: 17px;
-    font-weight: 500;
+    color: $netflix__white;
     margin-left: 50px;
+    font-size: 1.4vw;
+    @include tablet {
+      font-size: 12px;
+    }
   }
 
   .wrapper {
     position: relative;
     .slider__arrow__left {
-      width: 50px;
-      height: 100%;
+      width: 40px;
+      height: 120px;
       background-color: rgb(22, 22, 22, 0.5);
       color: $netflix__white;
       position: absolute;
       z-index: 99;
-      top: 0;
       bottom: 0;
       margin: auto;
       cursor: pointer;
       left: 0;
     }
     .slider__arrow__right {
-      width: 50px;
-      height: 100%;
+      width: 40px;
+      height: 120px;
       background-color: rgb(22, 22, 22, 0.5);
       color: $netflix__white;
       position: absolute;
       z-index: 99;
-      top: 0;
       bottom: 0;
       margin: auto;
       cursor: pointer;

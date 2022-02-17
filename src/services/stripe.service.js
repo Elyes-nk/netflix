@@ -1,6 +1,6 @@
 export default {
     createSession(body) {
-        return fetch("http://localhost:3030/api/checkout/", {
+        return fetch(`${process.env.API_URL}/checkout/`, {
             method: "POST",
             headers: {
                 "content-type": "application/json",

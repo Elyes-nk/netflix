@@ -1,11 +1,11 @@
 import "../styles/global.scss"
-import { AuthContextProvider } from "../authContext/AuthContext";
+import { ContextProvider } from "../Context/Context";
 
 function MyApp({ Component, pageProps }) {
   return (
-    <AuthContextProvider>
+    <ContextProvider>
         <Component {...pageProps} />
-    </AuthContextProvider>
+    </ContextProvider>
   )
 }
 

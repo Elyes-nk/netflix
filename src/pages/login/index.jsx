@@ -1,20 +1,30 @@
 import { useContext, useState } from "react";
-import { login } from "../../authContext/apiCalls";
-import { AuthContext } from "../../authContext/AuthContext";
+import { Context } from "../../Context/Context";
 import withoutAuth from '../../middleware/withoutAuth'
 import styles from "./login.module.scss";
 import Link from "next/link";
 import logo from "../../../public/logo.png";
+import Router from 'next/router'
+import { loginFailure, loginStart, loginSuccess } from "../../Context/Actions";
+import axios from "axios";
 
 function index() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { dispatch } = useContext(AuthContext);
+  const { dispatch } = useContext(Context);
 
   const handleLogin = (e) => {
     e.preventDefault();
-    console.log("login");
-    login({ email, password }, dispatch);
+    dispatch(loginStart());
+    try {
+      const res = await axios.post(`${process.env.API_URL}/auth/login`
+      , {email, password}
+      );
+      dispatch(loginSuccess(res.data));
+      Router.push('/')
+    } catch (err) {
+      dispatch(loginFailure());
+    }
   };
   return (
     <div className={styles.login}>

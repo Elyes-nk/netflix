@@ -1,10 +1,10 @@
 import React, {useEffect, useContext} from 'react';
 import Router from 'next/router'
 import withAuth from '../middleware/withAuth'
-import { AuthContext } from "../authContext/AuthContext";
+import { Context } from "../Context/Context";
 
 function index() {
-    const { user } = useContext(AuthContext);
+    const { user } = useContext(Context);
     useEffect(() => {
       user.subscribtion ? Router.push('/browse/random') : Router.push('/subscribtion')
     }, []);

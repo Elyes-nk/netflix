@@ -1,11 +1,11 @@
 import { useContext, useState, useEffect } from "react";
-import { AuthContext } from "../authContext/AuthContext";
+import { Context } from "../Context/Context";
 import { useRouter } from 'next/router';
 
 const withSubscribtion = (WrappedComponent) => {
   return (props) => {
 
-    const { user } = useContext(AuthContext);
+    const { user } = useContext(Context);
     const [verify, setVerify] = useState(false);
     const router = useRouter()
     useEffect(() => {

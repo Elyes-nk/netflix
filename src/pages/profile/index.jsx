@@ -5,13 +5,13 @@ import styles from "./index.module.scss";
 import logo from "../../../public/logo.png";
 import profile from "../../../public/profile.png"
 import withAuth from '../../middleware/withAuth'
-import { logout } from "../../authContext/AuthActions";
-import { AuthContext } from "../../authContext/AuthContext";
+import { logout } from "../../Context/Actions";
+import { Context } from "../../Context/Context";
 import Link from "next/link";
-import { updateFailure, updateSuccess, updateStart } from "../../authContext/AuthActions";
+import { updateFailure, updateSuccess, updateStart } from "../../Context/Actions";
 
 function index() {
-  const { dispatch, user } = useContext(AuthContext);
+  const { dispatch, user } = useContext(Context);
   const [editedUser, setEditedUser] = useState(user);
   const [editMode, setEditMode] = useState(false);
   const [subscribtion, setSubscribtion] = useState(null);

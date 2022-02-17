@@ -35,12 +35,11 @@ function index() {
     const getStats = async () => {
       try {
         const res = await axios.get(`${process.env.API_URL}/users/stats`
-        // ,{
-        //   headers: {
-          //  token: JSON.parse(localStorage.getItem("user")).accessToken,
-        // }
-        );
-        console.log('res data = ',res.data);
+        ,{
+          headers: {
+           token: JSON.parse(localStorage.getItem("user")).accessToken,
+        }
+        });
         const statsList = res.data.sort(function (a, b) {
           return a._id - b._id;
         });

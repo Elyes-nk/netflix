@@ -8,21 +8,18 @@ export default function Featured({ type, setGenre }) {
   const [content, setContent] = useState({});
   const [categories, setCategories] = useState([]);
 
-
   useEffect(() => {
     const getCategories = async () => {
       try {
-        const res = await axios.get(`http://localhost:3030/api/genres/`
-        // , {
-        //   headers: {
-        //     token:
-        //       "Bearer "+JSON.parse(localStorage.getItem("user")).accessToken,
-        //   },
-        // }
+        const res = await axios.get(`${process.env.API_URL}/genres/`
+        , {
+          headers: {
+            token: JSON.parse(localStorage.getItem("user")).accessToken,
+          },
+        }
         );
         setCategories(res.data);
       } catch (err) {
-        console.log(err);
       }
     };
     getCategories();
@@ -32,15 +29,14 @@ export default function Featured({ type, setGenre }) {
     const getRandomContent = async () => {
       try {
         const res = await axios.get(`${process.env.API_URL}/${type ? type : "movies"}/random`
-        // , {
-        //   headers: {
-        //     token:JSON.parse(localStorage.getItem("user")).accessToken,
-        //   },
-        // }
+        , {
+          headers: {
+            token: JSON.parse(localStorage.getItem("user")).accessToken,
+          },
+        }
         );
         setContent(res.data[0]);
       } catch (err) {
-        console.log(err);
       }
     };
     getRandomContent();
@@ -57,14 +53,14 @@ export default function Featured({ type, setGenre }) {
             id="genre"
             onChange={(e) => setGenre(e.target.value)}
           >
-              {categories.map((element)=> (
+              {categories?.map((element)=> (
                 <option key={element.id} value={element.name}>{element.name}</option>
               ))}
           </select>
 
         </div>
       )}
-      <img src={content.img} alt="" />
+      <img src={content.img} className={styles.img} alt=""/> 
       <div className={styles.info}>
         <img src={content.imgTitle} alt="" />
         <span className={styles.desc}>{content.desc}</span>
