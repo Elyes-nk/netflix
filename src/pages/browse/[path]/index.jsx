@@ -12,11 +12,12 @@ import { Context } from "../../../Context/Context";
 
 function index() {
   const { search } = useContext(Context);
-  var listFiltred = [];
+  const [listsFiltred, setListsFiltred] = useState([]);
+  const [moviesSearched, setMoviesSearched] = useState([]);
+
 
   const [lists, setLists] = useState([]);
   const [genre, setGenre] = useState(null);
-  const [moviesSearched, setMoviesSearched] = useState([]);
   const router = useRouter();
   const type = router.query.path === "movies" ? 
                     "movies"
@@ -35,6 +36,7 @@ function index() {
             },
           }
         );
+        console.log("lists=",res.data);
         setLists(res.data);
       } catch (err) {
         console.log(err);
@@ -43,7 +45,7 @@ function index() {
     getRandomLists();
   }, [type, genre]);
 
-  const getMovies = async () => {
+  const getMoviesFiltred = async () => {
     try {
       const res = await axios.get(`${process.env.API_URL}/movies`
         ,{
@@ -52,7 +54,8 @@ function index() {
           },
         }
       );
-      setMoviesSearched(res.data.filter((element) => element.title.includes(search)));
+      setMoviesSearched(res.data.filter((element) => element.title.toLowerCase().includes(search.toLowerCase())));
+      console.log("filtred",res.data.filter((element) => element.title.toLowerCase().includes(search.toLowerCase())));
     } catch (err) {
       console.log(err);
     }
@@ -60,16 +63,12 @@ function index() {
 
   // change this
   if(search){
-    getMovies();
-    for(let i = 0; i < moviesFiltred.length; i+=5){
-      let list = []
-      for(let j = i; j < i+5; j++){
-        list.push(moviesSearched[j])
-      }
-      listFiltred.push(list)
-    }
+    getMoviesFiltred();
+    // for(let i = 0; i < moviesSearched.length; i+=10){
+    //   setListsFiltred()
+
+    // }
   }
-  console.log(lists);
 
   return (
     <div className={styles.home}>
@@ -83,7 +82,9 @@ function index() {
         </>
         :
         <>
-          {/* change this */}
+          {moviesSearched.map((movie)=>(
+            <ListItem index={i} id={movie._id} key={i} />
+          ))}
         </>
       } 
       <Footer />
