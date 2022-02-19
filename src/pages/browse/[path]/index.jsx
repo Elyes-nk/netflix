@@ -2,6 +2,8 @@ import styles from "./index.module.scss";
 import Navbar from "../../../components/navbar/Navbar";
 import Featured from "../../../components/featured/Featured";
 import List from "../../../components/list/List";
+import ListItem from "../../../components/listItem/ListItem";
+
 import { useEffect, useState, useContext } from "react";
 import { useRouter } from 'next/router';
 import axios from "axios";
@@ -55,20 +57,24 @@ function index() {
         }
       );
       setMoviesSearched(res.data.filter((element) => element.title.toLowerCase().includes(search.toLowerCase())));
-      console.log("filtred",res.data.filter((element) => element.title.toLowerCase().includes(search.toLowerCase())));
     } catch (err) {
       console.log(err);
     }
   };
 
-  // change this
-  if(search){
-    getMoviesFiltred();
-    // for(let i = 0; i < moviesSearched.length; i+=10){
-    //   setListsFiltred()
-
-    // }
-  }
+  useEffect(() => {
+    if(search){
+      getMoviesFiltred();
+      for(let i = 0; i < moviesSearched.length; i+=10){
+        let content = [];
+        for(let j = i; j < moviesSearched.length; j++){
+          content.push(moviesSearched[j]._id)
+        }
+        setListsFiltred([...listsFiltred, {content}])
+        console.log([...listsFiltred, {content}]);
+      }
+    }
+  }, [search]);
 
   return (
     <div className={styles.home}>
@@ -81,11 +87,9 @@ function index() {
           ))}
         </>
         :
-        <>
-          {moviesSearched.map((movie)=>(
-            <ListItem index={i} id={movie._id} key={i} />
-          ))}
-        </>
+        listsFiltred.map((list, i)=>(
+          <List list={list} key={i}/>
+        ))
       } 
       <Footer />
     </div>
