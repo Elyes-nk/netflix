@@ -50,7 +50,7 @@ const Navbar = () => {
             {searchBar && 
                 <input
                   className={styles.search} 
-                  value={search}
+                  value={search ? search : ""}
                   placeholder="Titles, movies, series"
                   onBlur={()=> setSearchBar(false)}
                   onChange={(e)=>setSearch(e.target.value)}

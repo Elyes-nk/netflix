@@ -80,8 +80,8 @@ export default function ListItem({ index, id }) {
         onMouseEnter={handleMouse}
         onMouseLeave={handleMouse}
       >
-        {isItemHovered ? 
-        (
+        <img src={movie?.imgSm} alt=""/>
+        {isItemHovered && (
           <>
             <ReactPlayer
               className={styles.video} 
@@ -123,13 +123,7 @@ export default function ListItem({ index, id }) {
               </div>
             </div>
           </>
-        )
-        :
-        <img 
-          src={movie?.imgSm} 
-          alt=""
-        />
-        }
+        )}
       </div>
   );
 }
