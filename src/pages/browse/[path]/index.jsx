@@ -38,7 +38,6 @@ function index() {
             },
           }
         );
-        console.log("lists=",res.data);
         setLists(res.data);
       } catch (err) {
         console.log(err);
@@ -65,14 +64,17 @@ function index() {
   useEffect(() => {
     if(search){
       getMoviesFiltred();
+      let list = [];
       for(let i = 0; i < moviesSearched.length; i+=10){
         let content = [];
         for(let j = i; j < moviesSearched.length; j++){
           content.push(moviesSearched[j]._id)
         }
-        setListsFiltred([...listsFiltred, {content}])
-        console.log([...listsFiltred, {content}]);
+        list.push({content})
+        console.log({content});
       }
+      console.log(list);
+      setListsFiltred(list)
     }
   }, [search]);
 
@@ -87,9 +89,11 @@ function index() {
           ))}
         </>
         :
-        listsFiltred.map((list, i)=>(
-          <List list={list} key={i}/>
-        ))
+        <div className={styles.search__container}>
+          {listsFiltred.map((list, i)=>(
+            <List list={list} key={i}/>
+          ))}
+        </div>
       } 
       <Footer />
     </div>

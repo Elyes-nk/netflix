@@ -11,7 +11,7 @@ import Router from 'next/router'
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [searchBar, setSearchBar] = useState(false);
-  const { dispatch, user, setSearch } = useContext(Context);
+  const { dispatch, user, search, setSearch } = useContext(Context);
 
   if (typeof window !== "undefined") {
     window.onscroll = () => {
@@ -50,6 +50,7 @@ const Navbar = () => {
             {searchBar && 
                 <input
                   className={styles.search} 
+                  value={search}
                   placeholder="Titles, movies, series"
                   onBlur={()=> setSearchBar(false)}
                   onChange={(e)=>setSearch(e.target.value)}

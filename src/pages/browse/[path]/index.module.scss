@@ -3,10 +3,8 @@
 .home{
     background-color: $netflix__black;
     overflow: hidden;
-    .container {
-        margin-left: 50px;
-        display: flex;
+    .search__container {
         margin-top: 15%;
-        width: max-content;
+        margin-bottom: 15%;
       }
 }
