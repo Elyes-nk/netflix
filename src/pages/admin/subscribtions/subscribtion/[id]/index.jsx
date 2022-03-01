@@ -23,9 +23,7 @@ function index() {
           }
           );
           setSubscribtion(res.data);
-          console.log(res.data);
         } catch (err) {
-          console.log(err);
         }
     }
     getSubscribtion()
@@ -60,7 +58,7 @@ function index() {
       <div className={styles.product}>
         <div className={styles.productTitleContainer}>
           <h1 className={styles.productTitle}>Subscribtion</h1>
-          <Link href="/subscribtions/newSubscribtion">
+          <Link href="/admin/subscribtions/newSubscribtion">
             <button className={styles.productAddButton}>Create</button>
           </Link>
         </div>

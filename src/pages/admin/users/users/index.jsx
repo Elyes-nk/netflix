@@ -76,7 +76,7 @@ function index() {
       renderCell: (params) => {
         return (
           <>
-            <Link href={`/admin/user/${params.row.id}`}>
+            <Link href={`/admin/users/user/${params.row.id}`}>
               <button className={styles.userListEdit}>Edit</button>
             </Link>
             <DeleteOutline

@@ -62,7 +62,7 @@ function index() {
       <div className={styles.user}>
         <div className={styles.title__container}>
           <h1 className={styles.title}>Edit User</h1>
-          <Link href="/newUser">
+          <Link href="/admin/users/newUser">
             <button className={styles.add__button}>Create</button>
           </Link>
         </div>

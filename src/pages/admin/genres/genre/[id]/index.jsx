@@ -23,9 +23,7 @@ function index() {
           }
           );
           setGenre(res.data);
-          console.log(res.data);
         } catch (err) {
-          console.log(err);
         }
     }
     getGenre()
@@ -56,7 +54,7 @@ function index() {
       <div className={styles.product}>
         <div className={styles.productTitleContainer}>
           <h1 className={styles.productTitle}>Genre</h1>
-          <Link href="/genres/newGenre">
+          <Link href="/admin/genres/newGenre">
             <button className={styles.productAddButton}>Create</button>
           </Link>
         </div>

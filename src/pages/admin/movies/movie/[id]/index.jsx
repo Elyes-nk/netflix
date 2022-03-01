@@ -24,9 +24,7 @@ function index() {
           }
           );
           setMovie(res.data);
-          console.log(res.data);
         } catch (err) {
-          console.log(err);
         }
     }
     getMovie()
@@ -57,7 +55,7 @@ function index() {
       <div className={styles.product}>
         <div className={styles.productTitleContainer}>
           <h1 className={styles.productTitle}>Movie</h1>
-          <Link href="/newMovie">
+          <Link href="/admin/movies/newMovie">
             <button className={styles.productAddButton}>Create</button>
           </Link>
         </div>

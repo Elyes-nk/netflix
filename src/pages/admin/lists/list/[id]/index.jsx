@@ -52,7 +52,7 @@ function index() {
       <div className={styles.product}>
           <div className={styles.productTitleContainer}>
             <h1 className={styles.productTitle}>List</h1>
-            <Link href="/admin/newList">
+            <Link href="/admin/lists/newList">
               <button className={styles.productAddButton}>Create</button>
             </Link>
           </div>

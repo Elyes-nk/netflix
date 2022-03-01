@@ -23,9 +23,7 @@ function index() {
           }
           );
           setSerie(res.data);
-          console.log(res.data);
         } catch (err) {
-          console.log(err);
         }
     }
     getSerie()
@@ -56,7 +54,7 @@ function index() {
       <div className={styles.product}>
         <div className={styles.productTitleContainer}>
           <h1 className={styles.productTitle}>Serie</h1>
-          <Link href="/newSerie">
+          <Link href="/admin/series/newSerie">
             <button className={styles.productAddButton}>Create</button>
           </Link>
         </div>
