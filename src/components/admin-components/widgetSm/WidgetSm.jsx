@@ -11,15 +11,14 @@ export default function WidgetSm() {
     const getNewUsers = async () => {
       try {
         const res = await axios.get(`${process.env.API_URL}/users?new=true`
-        // ,{
-        //   headers: {
-        //       token:JSON.parse(localStorage.getItem("user")).accessToken,
-        //   },
-        // }
+        ,{
+          headers: {
+              token:JSON.parse(localStorage.getItem("user")).accessToken,
+          },
+        }
         );
         setNewUsers(res.data);
       } catch (err) {
-        console.log(err);
       }
     };
     getNewUsers();

@@ -34,12 +34,12 @@ export default function Sidebar() {
         <div className={styles.sidebarMenu}>
           <h3 className={styles.sidebarTitle}>Quick Menu</h3>
           <ul className={styles.sidebarList}>
-            <Link href="/admin/users/users" className={styles.link}>
+            {/* <Link href="/admin/users/users" className={styles.link}>
               <li className={styles.sidebarListItem}>
                 <PermIdentity className={styles.sidebarIcon} />
                 Users
               </li>
-            </Link>
+            </Link> */}
             <Link href="/admin/movies/movies" className={styles.link}>
               <li className={styles.sidebarListItem}>
                 <PlayCircleOutline className={styles.sidebarIcon} />

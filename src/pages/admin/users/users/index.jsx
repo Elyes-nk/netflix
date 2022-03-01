@@ -52,7 +52,7 @@ function index() {
       renderCell: (params) => {
         return (
           <div className={styles.userListUser}>
-            <img className={styles.userListImg} src={params.row.avatar} alt="" />
+            <img className={styles.userListImg} src={params.row.profilePic} alt="" />
             {params.row.username}
           </div>
         );
@@ -60,28 +60,18 @@ function index() {
     },
     { field: "email", headerName: "Email", width: 200 },
     {
-      field: "status",
-      headerName: "Status",
-      width: 120,
-    },
-    {
-      field: "transaction",
-      headerName: "Transaction Volume",
-      width: 160,
-    },
-    {
       field: "action",
       headerName: "Action",
       width: 150,
       renderCell: (params) => {
         return (
           <>
-            <Link href={`/admin/users/user/${params.row.id}`}>
+            <Link href={`/admin/users/user/${params.row._id}`}>
               <button className={styles.userListEdit}>Edit</button>
             </Link>
             <DeleteOutline
               className={styles.userListDelete}
-              onClick={() => handleDelete(params.row.id)}
+              onClick={() => handleDelete(params.row._id)}
             />
           </>
         );

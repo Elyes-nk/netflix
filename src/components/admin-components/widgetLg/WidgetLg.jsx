@@ -18,9 +18,7 @@ export default function WidgetLg() {
         }
         );
         setTransactions(res.data);
-        console.log(res.data)
       } catch (err) {
-        console.log(err);
       }
     };
     getTransactions();
