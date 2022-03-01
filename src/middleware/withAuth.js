@@ -9,7 +9,7 @@ const withAuth = (WrappedComponent) => {
     useEffect(() => {
       const verifyToken = async() => {
         try{
-          await axios.post(`${process.env.API_URL}/auth/verify` ,{
+          const res = await axios.get(`${process.env.API_URL}/auth/verify` ,{
             headers: {
               token:JSON.parse(localStorage.getItem("user")).accessToken,
             },
