@@ -2,8 +2,6 @@ import styles from "./index.module.scss";
 import Navbar from "../../../components/navbar/Navbar";
 import Featured from "../../../components/featured/Featured";
 import List from "../../../components/list/List";
-import ListItem from "../../../components/listItem/ListItem";
-
 import { useEffect, useState, useContext } from "react";
 import { useRouter } from 'next/router';
 import axios from "axios";
@@ -20,6 +18,7 @@ function index() {
 
   const [lists, setLists] = useState([]);
   const [genre, setGenre] = useState(null);
+
   const router = useRouter();
   const type = router.query.path === "movies" ? 
                     "movies"
@@ -28,24 +27,27 @@ function index() {
                           "series"
                           :
                           null)
+
+  //GET LIST AND FILTER IT WITH TYPE AND GENRE
   useEffect(() => {
     const getRandomLists = async () => {
       try {
-        const res = await axios.get(`${process.env.API_URL}/lists${type ? "?type=" + type : ""}${genre ? "&genre=" + genre : ""}`
+        const res = await axios.get(`${process.env.API_URL}/lists${type ? "?type=" + type : ""}`
           ,{
             headers: {
               token:JSON.parse(localStorage.getItem("user")).accessToken,
             },
           }
         );
-        setLists(res.data);
+        setLists(genre ? res.data.filter((el) => el.genre.includes(genre)) : res.data);
       } catch (err) {
-        console.log(err);
       }
     };
     getRandomLists();
   }, [type, genre]);
 
+ 
+  //SEARCH MOVIES SERIES AND CREAT LISTS OF IT
   const getMoviesFiltred = async () => {
     try {
       const res = await axios.get(`${process.env.API_URL}/movies`
@@ -57,7 +59,6 @@ function index() {
       );
       setMoviesSearched(res.data.filter((element) => element.title.toLowerCase().includes(search.toLowerCase())));
     } catch (err) {
-      console.log(err);
     }
   };
 
@@ -71,9 +72,7 @@ function index() {
           content.push(moviesSearched[j]._id)
         }
         list.push({content})
-        console.log({content});
       }
-      console.log(list);
       setListsFiltred(list)
     }
   }, [search]);

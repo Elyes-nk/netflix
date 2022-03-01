@@ -117,7 +117,7 @@ export default function ListItem({ index, id }) {
                 <span>{movie.year}</span>
               </div>
               <div className={styles.genre}>
-                {movie?.genre.map((element, i) =>(
+                {movie?.genre?.map((element, i) =>(
                   <span key={i}>{element.name}     </span>
                 ))}
               </div>

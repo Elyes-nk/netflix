@@ -16,15 +16,18 @@ function index() {
   const handleLogin = (e) => {
     e.preventDefault();
     dispatch(loginStart());
-    try {
-      const res = await axios.post(`${process.env.API_URL}/auth/login`
-      , {email, password}
-      );
-      dispatch(loginSuccess(res.data));
-      Router.push('/')
-    } catch (err) {
-      dispatch(loginFailure());
+    const login = async() => {
+      try {
+        const res = await axios.post(`${process.env.API_URL}/auth/login`
+        , {email, password}
+        );
+        dispatch(loginSuccess(res.data));
+        Router.push('/')
+      } catch (err) {
+        dispatch(loginFailure());
+      }
     }
+    login()
   };
   return (
     <div className={styles.login}>
