@@ -1,4 +1,4 @@
-This is a clone of netflix created by [Elyes Nait kaci]
+This is a clone of netflix created by `Elyes Nait kaci`
 
 ## Demo
 
