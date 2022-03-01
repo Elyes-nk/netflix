@@ -53,7 +53,7 @@ export default function Featured({ type, setGenre }) {
             id="genre"
             onChange={(e) => setGenre(e.target.value)}
           >
-              <option value={null}>Genres</option>
+              <option value="">Genres</option>
               {categories?.map((element)=> (
                 <option key={element._id} value={element._id}>{element.name}</option>
               ))}
