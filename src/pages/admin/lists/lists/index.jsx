@@ -44,8 +44,6 @@ function index() {
   const columns = [
     { field: "_id", headerName: "ID", width: 250 },
     { field: "title", headerName: "Title", width: 250  },
-    //import genres .name
-    { field: "genre", headerName: "Genre", width: 150 },
     { field: "type", headerName: "Type", width: 150 },
     {
       field: "action",

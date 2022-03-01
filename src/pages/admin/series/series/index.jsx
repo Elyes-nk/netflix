@@ -58,8 +58,6 @@ const [series, setSeries] = useState([]);
         );
       },
     },
-    //import genres .name
-    { field: "genre", headerName: "Genre", width: 120 },
     { field: "year", headerName: "Year", width: 110 },
     { field: "limit", headerName: "Limit", width: 110 },
     {

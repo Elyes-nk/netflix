@@ -50,11 +50,9 @@ function index() {
           ])
         );
       } catch (err) {
-        console.log(err);
       }
     };
     getStats();
-    console.log(userStats);
   }, []);
 
   return (
