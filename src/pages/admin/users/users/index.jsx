@@ -15,7 +15,7 @@ function index() {
   useEffect(() => {
     const getUsers = async () =>{
         try {
-          const res = await axios.get(`${process.env.API_URL}/api/users`
+          const res = await axios.get(`${process.env.API_URL}/users`
           , {
             headers: {
               token: JSON.parse(localStorage.getItem("user")).accessToken,
