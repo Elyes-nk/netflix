@@ -13,8 +13,8 @@ import Sidebar from "../../../../../components/admin-components/sidebar/Sidebar"
 import { useRouter } from 'next/router';
 import {useState, useEffect} from 'react';
 import axios from 'axios';
-import withAuth from '../../../../middleware/withAuth';
-import withAdmin from '../../../../middleware/withAdmin';
+import withAuth from '../../../../../middleware/withAuth';
+import withAdmin from '../../../../../middleware/withAdmin';
 
 function index() {
 
