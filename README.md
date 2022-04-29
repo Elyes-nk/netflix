@@ -2,7 +2,7 @@
     <img height="250" src="https://icones.pro/wp-content/uploads/2021/04/icone-netflix-symbole-logo-original.png">
 </h1>
 
-# 📝 🕊 Pigeon mobile app
+# 🎬 Netflix clone
 *Clone of netflix created by `Elyes Nait kaci.`*
 
 Demo : [https://netflix-coral-eta.vercel.app/login]
@@ -10,8 +10,10 @@ Demo : [https://netflix-coral-eta.vercel.app/login]
 
 
 ## Technos
-- React native
-- Redux
+- React Js
+- Next Js
+- Stripe
+- Sass
 
 ## Backend
 - Custom Node Js server hosted in Heroku : [https://github.com/Elyes-nk/netflix-api]
@@ -19,29 +21,39 @@ Demo : [https://netflix-coral-eta.vercel.app/login]
 # Project content
 
 ## Authentification 
-*Persistent User Login Authentication with Redux, JWT Tokens And AsyncStorage.*
+*Persistent User Login Authentication with Context, JWT Tokens And AsyncStorage.*
 - Login
 - Register
 
 ## Features 
-- View all users
+#### User
+- View lists of movies
+- Watch movie
+- View wichlist
+- Add to wichlist
+- Add subscribtion to user after stripe payment
 
+#### Admin
+- View users stats
+- Add list of movies
+- Add movies
+- Add genre
 
 # Project structure
 
 ```shell
 ├── src
-│   ├── assets
+│   ├── context
 │   │   └── ...
 │   ├── components
 │   │   └──  ...
-│   ├── redux
+│   ├── middleware
 │   │   └──  ...  
-│   ├── router
+│   ├── pages
 │   │   └──  ...
-│   ├── screens
+│   ├── services
 │   │   └──  ...
-│   ├── screens
+│   ├── styles
 │       └──  ...
 ├──  index.js
 ├──  App.js
